@@ -9,7 +9,9 @@ const notesDB = [
     isPinned: true,
     style: {},
     style: { backgroundColor: '#00d' },
-    info: { txt: 'Fullstack Me Baby!' },
+    info: {
+      txt: 'Fullstack Me Baby! Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
+    },
   },
   {
     id: 'n102',
@@ -51,6 +53,7 @@ export const noteService = {
   remove,
   get,
   save,
+  getEmptyNote,
 }
 
 function query(filterBy) {
@@ -97,5 +100,17 @@ function _createNotes() {
   if (!notes || !notes.length) {
     notes = notesDB
     utilService.saveToStorage(NOTES_KEY, notes)
+  }
+}
+
+function getEmptyNote() {
+  return {
+    type: 'NoteTxt',
+    isPinned: false,
+    style: {},
+    info: {
+      title: '',
+      txt: '',
+    },
   }
 }
