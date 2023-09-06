@@ -1,0 +1,34 @@
+.SideBarComponent{
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    padding: 0 0.65rem;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    color: #989aa0;
+}
+
+
+
+.SideBarComponent > h3 {
+    flex: 1;
+    margin-left: 0.65rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.SideBarComponent > i {
+    padding: 0.35rem;
+}
+
+
+.SideBarComponent:hover,
+.SideBarComponent:hover > p,
+.SideBarComponent:hover > h3 {
+    background-color: #fcecec;
+    color: #c04b37;
+    font-weight: 800;
+}
+
+
