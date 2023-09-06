@@ -57,7 +57,7 @@ const emailRowData = [
         time: "Monday 17th Febuary 2023 18:30 PM", 
         isRead: false,
         removedAt: null,
-        from: 'alfie@protonmail.com',
+        from: 'Dimitri@protonmail.com',
         to: 'alfie@gmail.com',
         isStarred: false,
         isTrash: false,
@@ -90,237 +90,191 @@ const emailRowData = [
     }
     ,
     {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
+        id: 3,
+        title: "Emily",
+        subject: "Introducing Our New Solar Panel Technology",
         description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
+        Hey there,
+    
+        We've just launched our revolutionary solar panels capable of generating twice the power of traditional models. We're offering a limited-time discount for early adopters.
+    
+        Cheers,
+        Emily`,
+        time: "Wednesday 21st September 2023 10:15 AM",
+        isRead: false,
         removedAt: null,
-        from: 'alfie@gmail.com',
+        from: 'Emily@solarenergy.com',
         to: 'alfie@gmail.com',
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        isChecked: false,
     }
     ,
     {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
+        id: 4,
+        title: "John",
+        subject: "Pet Food Recall Notice",
         description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
+        Hi Alfie,
+    
+        Urgent notice regarding the recall of our latest pet food batch. Please refrain from feeding this to your pets and return the product immediately for a full refund.
+    
+        Regards,
+        John`,
+        time: "Saturday 3rd June 2023 4:05 PM",
+        isRead: false,
         removedAt: null,
-        from: 'alfie@gmail.com',
+        from: 'John@petcare.com',
         to: 'alfie@gmail.com',
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        isChecked: false,
     }
     ,
     {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
+        id: 5,
+        title: "Sophia",
+        subject: "Important Software Update Required",
         description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
+        Dear Alfie,
+    
+        Our systems show that you have not yet updated your software to the latest version. Failure to update may expose your system to security risks.
+    
+        Best,
+        Sophia`,
+        time: "Friday 25th August 2023 2:30 PM",
+        isRead: false,
         removedAt: null,
-        from: 'alfie@gmail.com',
+        from: 'Sophia@techupdate.com',
         to: 'alfie@gmail.com',
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        isChecked: false,
     }
     ,
     {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
+        id: 6,
+        title: "Mark",
+        subject: "Cancelled Flight Information",
         description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
+        Hi Alfie,
+    
+        We regret to inform you that your flight has been cancelled due to unforeseen weather conditions. We apologize for any inconvenience caused.
+    
+        Regards,
+        Mark`,
+        time: "Sunday 9th July 2023 11:05 AM",
+        isRead: false,
+        removedAt: null,
+        from: 'Mark@airways.com',
+        to: 'alfie@gmail.com',
+        isStarred: false,
+        isTrash: false,
+        isDraft: false,
+    }
+    ,
+    {
+        id: 7,
+        title: "Alfie",
+        subject: "Upcoming Events in Your Area",
+        description: `
+        Hey John,
+    
+        There are several exciting events happening in your area soon! Check them out before tickets run out!
+    
+        Warm regards,
+        Alfie`,
+        time: "Tuesday 1st November 2023 6:50 PM",
+        isRead: false,
         removedAt: null,
         from: 'alfie@gmail.com',
+        to: 'John@gmail.com',
+        isStarred: false,
+        isTrash: false,
+        isDraft: false,
+    }
+    ,
+    {
+        id: 8,
+        title: "Daniel",
+        subject: "Your Gym Membership is Expiring Soon",
+        description: `
+        Dear Alfie,
+    
+        Your gym membership is expiring soon. Would you like to renew or are you considering another option?
+    
+        Cheers,
+        Daniel`,
+        time: "Monday 12th December 2023 10:30 AM",
+        isRead: false,
+        removedAt: null,
+        from: 'Daniel@gym.com',
+        to: 'alfie@gmail.com',
+        isStarred: false,
+        isTrash: false,
+        isDraft: false,
+    }
+    ,
+    {
+        id: 9,
+        title: "Olivia",
+        subject: "Your Subscription to Art Monthly",
+        description: `
+        Hi Alfie,
+    
+        Just a reminder that your subscription to Art Monthly is set to auto-renew in 7 days. To make changes, please visit your account settings.
+    
+        Best,
+        Olivia`,
+        time: "Friday 20th October 2023 3:00 PM",
+        isRead: false,
+        removedAt: null,
+        from: 'Olivia@artmonthly.com',
+        to: 'alfie@gmail.com',
+        isStarred: false,
+        isTrash: false,
+        isDraft: false,
+    }
+    ,
+    {
+        id: 10,
+        title: "Liam",
+        subject: "How to Boost Your WiFi Signal",
+        description: `
+        Alfie,
+    
+        Struggling with a slow WiFi connection? Our guide provides some practical tips to boost your signal at home.
+    
+        Kind regards,
+        Liam`,
+        time: "Thursday 18th May 2023 4:45 PM",
+        isRead: false,
+        removedAt: null,
+        from: 'Liam@techguide.com',
         to: 'alfie@gmail.com',
         isStarred: true,
         isTrash: false,
-        isDraft: true,
-        isChecked: false,
+        isDraft: false,
     }
     ,
     {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
+        id: 11,
+        title: "Emma",
+        subject: "Your Car's Scheduled Maintenance",
         description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
+        Hello Alfie,
+    
+        Your car is due for its scheduled maintenance next week. Please make an appointment at your earliest convenience.
+    
+        Emma`,
+        time: "Saturday 29th April 2023 1:25 PM",
+        isRead: false,
         removedAt: null,
-        from: 'alfie@gmail.com',
-        to: 'alfie@gmail.com',
-        isStarred: false,
-        isTrash: false,
-        isDraft: true,
-        isChecked: false,
-    }
-    ,
-    {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
-        description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
-        removedAt: null,
-        from: 'alfie@gmail.com',
+        from: 'Emma@carservice.com',
         to: 'alfie@gmail.com',
         isStarred: true,
         isTrash: false,
         isDraft: false,
-        isChecked: false,
-    }
-    ,
-    {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
-        description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
-        removedAt: null,
-        from: 'alfie@gmail.com',
-        to: 'alfie@gmail.com',
-        isStarred: false,
-        isTrash: false,
-        isDraft: false,
-        isChecked: false,
-    }
-    ,
-    {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
-        description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
-        removedAt: null,
-        from: 'alfie@gmail.com',
-        to: 'alfie@gmail.com',
-        isStarred: false,
-        isTrash: false,
-        isDraft: false,
-        isChecked: false,
-    }
-    ,
-    {
-        id: 2,
-        title: "Ariella",
-        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
-        description: `
-        
-        Dear Yarin,
-        
-        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
-        
-        Warmest congratulations,
-        
-        Ariella
-        Mifal Hapias Team
-        `,
-        time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: true,
-        removedAt: null,
-        from: 'alfie@gmail.com',
-        to: 'alfie@gmail.com',
-        isStarred: false,
-        isTrash: false,
-        isDraft: false,
-        isChecked: false,
     }
 
 ];
