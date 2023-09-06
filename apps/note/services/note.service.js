@@ -4,13 +4,14 @@ import { utilService } from '../../../services/util.service.js'
 const notesDB = [
   {
     id: 'n101',
-    createdAt: 1112222,
+    createdAt: 'Aug 20, 1994',
     type: 'NoteTxt',
     isPinned: true,
     style: {},
-    style: { backgroundColor: '#00d' },
+    style: { backgroundColor: '#b4ddd3' },
     info: {
-      txt: 'Fullstack Me Baby! Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel suscipit cum excepturi corporis, eveniet consequuntur. Mollitia amet eligendi doloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
+      title: 'Estoy Componenta Estupando ',
+      txt: 'Fullstack Me Baby! Lorem ipsum dolpur adipisicing elit. Veoloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
     },
   },
   {
@@ -54,6 +55,7 @@ export const noteService = {
   get,
   save,
   getEmptyNote,
+  updateNoteContent,
 }
 
 function query(filterBy) {
@@ -113,4 +115,24 @@ function getEmptyNote() {
       txt: '',
     },
   }
+}
+
+function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index) {
+  return get(noteId).then(note => {
+    switch (noteType) {
+      case 'NoteTxt':
+        if (updatedTitle) note.info.title = updatedTitle
+        if (updatedText) note.info.txt = updatedText
+        return save(note)
+      case 'NoteTodos':
+        if (updatedTitle) note.info.title = updatedTitle
+        if (updatedText) {
+          note.info.todos[index].txt = updatedText
+        }
+        return save(note)
+
+      default:
+        throw new Error('Unsupported noteType')
+    }
+  })
 }

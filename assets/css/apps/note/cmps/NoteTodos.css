@@ -1,12 +1,27 @@
+.note-todos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.note-todos .todo-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
 .note-todos .done {
   text-decoration: line-through;
 }
 
 .note-todos .material-icons-outlined {
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .note-todos input[type='checkbox'] {
-  appearance: none;
+  display: none;
 }
