@@ -1,6 +1,6 @@
 const { useNavigate } = ReactRouterDOM
 
-export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox }) {
+export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred }) {
     const navigate = useNavigate();
 
     
@@ -14,7 +14,13 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
                         <i className="material-icons-outlined">check_box_outline_blank</i>
                     }
                 </span>
-                <i className="fa-regular fa-star"></i>
+                <span onClick={e => { e.stopPropagation(); toggleIsStarred(id); }}>
+                    {isStarred ?
+                        <i className="fa-solid fa-star" style={{color: '#ffdd00'}}></i> :
+                        <i className="fa-regular fa-star"></i>
+                    }
+                </span>
+                
             </div>
 
 
@@ -41,4 +47,3 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
         </div>
     )
 }
-
