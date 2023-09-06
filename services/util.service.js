@@ -6,20 +6,25 @@ export const utilService = {
   padNum,
   getDayName,
   getMonthName,
+  saveToStorage,
+  loadFromStorage,
 }
-
+function saveToStorage(key, val) {
+  localStorage.setItem(key, JSON.stringify(val))
+}
+function loadFromStorage(key) {
+  var val = localStorage.getItem(key)
+  return JSON.parse(val)
+}
 function makeId(length = 6) {
   var txt = ''
   var possible =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
   for (var i = 0; i < length; i++) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length))
   }
-
   return txt
 }
-
 function makeLorem(size = 100) {
   var words = [
     'The sky',
@@ -62,17 +67,14 @@ function makeLorem(size = 100) {
   }
   return txt
 }
-
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive
 }
-
 function padNum(num) {
   return num > 9 ? num + '' : '0' + num
 }
-
 function getRandomColor() {
   const letters = '0123456789ABCDEF'
   var color = '#'
@@ -81,12 +83,10 @@ function getRandomColor() {
   }
   return color
 }
-
 function getDayName(date, locale) {
   date = new Date(date)
   return date.toLocaleDateString(locale, { weekday: 'long' })
 }
-
 function getMonthName(date) {
   const monthNames = [
     'January',
