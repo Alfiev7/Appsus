@@ -5,17 +5,12 @@ export function NoteList({ notes }) {
   console.log('NOTE LIST')
 
   return (
-    <ul className='note-list'>
+    <div className='note-list'>
       {notes.map(note => (
         <React.Fragment key={note.id}>
-          <li>
-            <NotePreview note={note} />
-          </li>
-          <button>
-            <i icon='fa-regular fa-trash-can' style={{ color: '#000000' }} />
-          </button>
+          <NotePreview note={note} />
         </React.Fragment>
       ))}
-    </ul>
+    </div>
   )
 }
