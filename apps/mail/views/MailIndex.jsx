@@ -1,6 +1,5 @@
-
-const { Routes, Route, Navigate } = ReactRouterDOM
-const { useState,useEffect } = React
+const { Routes, Route } = ReactRouterDOM
+const { useState, useEffect } = React
 
 import { Header } from "../cmps/Header.jsx";
 import { SideBar } from "../cmps/SideBar.jsx";
@@ -14,44 +13,70 @@ import { emailIncoming } from "../services/emailList.service.js";
 
 export function MailIndex() {
     const [emails, setEmails] = useState([]);
-    const [unreadCount, setUnreadCount] = useState(0);
-  
+    const [appliedFilter, setAppliedFilter] = useState('')
+
+
     useEffect(() => {
         emailIncoming.getEmailRowData()
-          .then(fetchedEmails => {
-            setEmails(fetchedEmails);
-        
-            const newUnreadCount = fetchedEmails.filter(email => !email.isRead).length;
-            setUnreadCount(newUnreadCount);
-          })
-          .catch(error => {
-            console.error('Failed to fetch emails:', error);
-          });
+            .then(fetchedEmails => {
+                setEmails(fetchedEmails);
+
+
+
+            })
+            .catch(error => {
+                console.error('Failed to fetch emails:', error);
+            });
     }, [emails]);
+
+
+
+    const getAppliedFilterParameter = (selectedItemTitle) => {
+        setAppliedFilter(selectedItemTitle)
+    }
+
+
+
+
+    const getFilteredEmails = () => {
+
+        switch (appliedFilter) {
+
+
+            
+            case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com');
+            case 'Starred': return emails.filter(email => email.isStarred);
+            case 'Sent': return emails.filter(email => email.from === 'alfie@gmail.com');
+            case 'Drafts': return emails.filter(email => email.isDraft);
+            case 'Trash': return emails.filter(email => email.isTrash);
+            default: return emails;
+        }
+    }
+
 
 
 
 
     return (
 
-        <div className="mailapp"> 
+        <div className="mailapp">
             <Header />
 
             <div className="app_body">
-                <SideBar unreadCount={unreadCount} /> 
+                <SideBar
+                    allEmails={emails}
+                    updateFilterByTitle={(e) => getAppliedFilterParameter(e)} />
 
+
+                    
                 <Routes>
-                    <Route path="/" element={<EmailList />} />
-                    <Route path="/EmailPreview" element={<EmailPreview />} />
+                    <Route path="/" element={<EmailList emailsAfterFilter={getFilteredEmails()} />} />
                     <Route path="/EmailPreview/:id" element={<EmailPreview />} />
                 </Routes>
             </div>
         </div>
-
-
     )
 }
-
 
 
 

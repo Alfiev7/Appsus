@@ -7,10 +7,11 @@ import { storageService } from "../../../services/async-storage.service.js";
 import { sectionService, emailIncoming, EMAILROWDATA_KEY, saveToStorage } from "../services/emailList.service.js";
 
 
-export function EmailList() {
+export function EmailList( {emailsAfterFilter}) {
     const [sectionData, setSectionData] = useState(null);
     const [emailRowData, setEmailRowData] = useState(null);
     const [emails, setEmails] = useState([]);
+
     
 
     useEffect(() => {
@@ -33,6 +34,12 @@ export function EmailList() {
     };
 
 
+const toggleIsStarred = (id) => {
+    setEmails(emails.map(email => email.id === id ? { ...email, isStarred: !email.isStarred } : email));
+};
+
+
+
     const toggleCheckbox = (id) => {
         setEmails(emails.map(email => email.id === id ? { ...email, isChecked: !email.isChecked } : email));
     };
@@ -51,6 +58,10 @@ export function EmailList() {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: false } : email));
     };
 
+
+
+
+    // console.log(emailsAfterFilter);
     return (
 
         <div className="EmailList">
@@ -78,7 +89,7 @@ export function EmailList() {
 
             <div className="emailList_list">
 
-                {emailRowData && emails.map((data, index) => (
+                {emailsAfterFilter && emailsAfterFilter.map((data, index) => (
                     <EmailRow
                         key={index}
                         id={data.id}
@@ -88,7 +99,9 @@ export function EmailList() {
                         time={data.time}
                         isRead={data.isRead}
                         isChecked={data.isChecked}
+                        isStarred={data.isStarred}
                         toggleCheckbox={toggleCheckbox}
+                        toggleIsStarred={toggleIsStarred}
                         removedAt={data.removedAt}
                         from={data.from}
                         to={data.to}
@@ -100,6 +113,3 @@ export function EmailList() {
         </div>
     )
 }
-
-
-
