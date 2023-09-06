@@ -58,7 +58,10 @@ const emailRowData = [
         isRead: false,
         removedAt: null,
         from: 'dimitri@protonmail.com',
-        to: 'alfie@gmail.com'
+        to: 'alfie@gmail.com',
+        isStarred: false,
+        isTrash: false,
+        isDraft: false,
     },
     {
         id: 2,
@@ -79,7 +82,10 @@ const emailRowData = [
         isRead: true,
         removedAt: null,
         from: 'ariella@gmail.com',
-        to: 'alfie@gmail.com'
+        to: 'alfie@gmail.com',
+        isStarred: false,
+        isTrash: false,
+        isDraft: false,
     }
 ];
 
