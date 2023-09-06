@@ -27,7 +27,7 @@ export function NotePreview({ note, onRemoveNote, onChangeColor }) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [])
+  }, [colorPickerRef])
 
   function getNoteToRender() {
     switch (note.type) {
@@ -68,16 +68,16 @@ export function NotePreview({ note, onRemoveNote, onChangeColor }) {
               palette
             </a>
           </div>
-          {isColorPickerExpanded && (
-            <div ref={colorPickerRef} className='top'>
-              <ColorPicker
-                onChangeColor={onChangeColor}
-                note={note}
-                setIsColorPickerExpanded={setIsColorPickerExpanded}
-              />
-            </div>
-          )}
         </React.Fragment>
+        {isColorPickerExpanded && (
+          <div ref={colorPickerRef} className='top'>
+            <ColorPicker
+              onChangeColor={onChangeColor}
+              note={note}
+              setIsColorPickerExpanded={setIsColorPickerExpanded}
+            />
+          </div>
+        )}
       </div>
     </article>
   )

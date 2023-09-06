@@ -1,5 +1,7 @@
 .note-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  grid-auto-flow: dense;
+  text-align: center;
+  margin: 20px auto;
+  columns: auto 240px;
+  column-gap: 30px;
+  align-items: center;
 }
