@@ -19,9 +19,20 @@
 }
 
 .emailRow_options>i {
-
+align-items: center;
     margin-left: 1rem;
     color: #989aa0;
+}
+
+
+.emailRow_options > span {
+    display: flex;
+    align-items: center;
+}
+.emailRow_options > span > i {
+    margin-left: 1rem;
+    color: #989aa0;
+    font-size: 1.2rem;
 }
 
 .emailRow_message {
@@ -49,11 +60,21 @@
 
 .emailRow_time {
     padding-right: 0.95rem;
-    font-size: 0.75rem;
-    font-weight: bold;
+    font-size: 0.55rem;
+    font-weight: 100;
+    color: grey;
 }
 
 .emailRow_description {
 font-weight: 400;
 color: grey;
 }
+
+.read {
+    background-color: whitesmoke;
+  }
+  
+  .unread {
+    background-color: white;
+  }
+  

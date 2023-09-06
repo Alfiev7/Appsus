@@ -20,6 +20,7 @@ export function MailIndex() {
                 <Routes>
                     <Route path="/" element={<EmailList />} />
                     <Route path="/EmailPreview" element={<EmailPreview />} />
+                    <Route path="/EmailPreview/:id" element={<EmailPreview />} />
                 </Routes>
             </div>
         </div>

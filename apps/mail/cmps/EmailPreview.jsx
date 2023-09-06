@@ -1,14 +1,29 @@
-const { useNavigate } = ReactRouterDOM
+const { useNavigate, useParams } = ReactRouterDOM
+const { useEffect, useState } = React 
 
-
+import { emailIncoming } from "../services/emailList.service.js";
 
 
 export function EmailPreview() {
+  const { id } = useParams(); 
+  const [email, setEmail] = useState(null);
   const navigate = useNavigate();
 
   const goBackToHome = () => {
     navigate('/mail');
   };
+
+  useEffect(() => {
+    emailIncoming.getEmailRowData()
+        .then(data => {
+            const foundEmail = data.find(email => email.id === parseInt(id));
+            setEmail(foundEmail);
+        });
+}, [id]);
+
+if (!email) {
+  return <div>Loading...</div>;
+}
 
   return (
     <div className="emailpreview">
@@ -33,16 +48,16 @@ export function EmailPreview() {
 
         <div className="emailpreview-bodyheader">
 
-          <h2>Subject</h2>
+          <h2>{email.subject}</h2>
           <i className="material-icons-outlined">label_important</i>
-          <p>(david@testing.com)</p>
+          <p>{email.from}</p>
           <div className="time">Monday 17th Febuary 2023 18:30 PM </div>
 
         </div>
         <div className="emailpreview-message">
 
-         <p>This is a message for testing body of email</p> 
-         
+         <p>{email.description}</p> 
+
         </div>
 
 
