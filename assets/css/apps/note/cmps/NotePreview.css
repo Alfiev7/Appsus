@@ -1,4 +1,6 @@
 .note-preview {
+  display: flex;
+  flex-direction: column;
   break-inside: avoid;
 
   border: 1px solid rgb(224, 224, 224);
@@ -37,4 +39,11 @@ img {
 
 .note-preview .top {
   z-index: 11;
+}
+
+.note-preview .last-edit {
+  color: #555555;
+  text-align: start;
+  padding: 1.5rem 0.625rem 0.3rem;
+  pointer-events: none;
 }
