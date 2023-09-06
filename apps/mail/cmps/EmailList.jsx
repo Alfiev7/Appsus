@@ -41,7 +41,11 @@ export function EmailList() {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: true } : email));
     };
 
-
+    const removeSelectedEmails = () => {
+        const remainingEmails = emails.filter(email => !email.isChecked);
+        setEmails(remainingEmails);
+    };
+    
 
     const markAsUnread = () => {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: false } : email));
@@ -55,6 +59,7 @@ export function EmailList() {
                 <span className="material-icons-outlined" onClick={toggleAllCheckboxes}>check_box_outline_blank</span>
                 <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
+                <span className="material-icons-outlined" onClick={removeSelectedEmails}>delete_outline</span>
             </div>
 
 
