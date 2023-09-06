@@ -7,9 +7,46 @@ export function NoteIndex() {
   // const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
-    noteService.getNotes().then(setNotes)
+    noteService.query('').then(setNotes)
   }, [])
 
+  function onRemoveNote(noteId) {
+    noteService
+      .remove(noteId)
+      .then(() => {
+        setNotes(notes.filter(note => note.id !== noteId))
+      })
+      .catch(err => console.log(err))
+  }
+
+  function onChangeColor(noteId, backgroundColor) {
+    noteService
+      .get(noteId)
+      .then(note => {
+        note.style.backgroundColor = backgroundColor
+        return noteService.save(note)
+      })
+      .then(updatedNote => {
+        const updatedNotes = notes.map(note =>
+          note.id === updatedNote.id ? updatedNote : note
+        )
+        setNotes(updatedNotes)
+      })
+      .catch(error => {
+        console.error('Error updating note:', error)
+      })
+  }
+
   if (!notes) return <div>Loading...</div>
-  return <section className='note-index'>{<NoteList notes={notes} />}</section>
+  return (
+    <section className='note-index'>
+      {
+        <NoteList
+          notes={notes}
+          onRemoveNote={onRemoveNote}
+          onChangeColor={onChangeColor}
+        />
+      }
+    </section>
+  )
 }
