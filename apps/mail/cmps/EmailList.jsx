@@ -3,23 +3,30 @@ const { useEffect, useState } = React
 
 import { Section } from "./Section.jsx";
 import { EmailRow } from "./EmailRow.jsx";
-import { sectionService, emailIncoming } from "../services/emailList.service.js";
+import { storageService } from "../../../services/async-storage.service.js";
+import { sectionService, emailIncoming, EMAILROWDATA_KEY, saveToStorage } from "../services/emailList.service.js";
 
 
 export function EmailList() {
     const [sectionData, setSectionData] = useState(null);
     const [emailRowData, setEmailRowData] = useState(null);
     const [emails, setEmails] = useState([]);
+    
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
         emailIncoming.getEmailRowData().then(data => {
             setEmailRowData(data);
             setEmails(data);
-          });
-        }, []);
+        });
+    }, []);
+            
 
+        useEffect(() => {
+            emailIncoming.saveToStorage(EMAILROWDATA_KEY, emails); 
+        }, [emails]);
 
+        
     const toggleAllCheckboxes = () => {
         const allChecked = emails.every(email => email.isChecked);
         setEmails(emails.map(email => ({ ...email, isChecked: !allChecked })));
@@ -34,14 +41,11 @@ export function EmailList() {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: true } : email));
     };
 
+
+
     const markAsUnread = () => {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: false } : email));
     };
-
-
-
-
-
 
     return (
 

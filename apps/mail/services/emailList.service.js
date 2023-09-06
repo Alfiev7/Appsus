@@ -2,7 +2,7 @@ import { storageService } from "../../../services/async-storage.service.js";
 import {utilService} from "../../../services/util.service.js";
 
 const SECTIONDATA_KEY = 'SECTIONDATA_DB'
-const EMAILROWDATA_KEY = 'EMAILROW_DB'
+export const EMAILROWDATA_KEY = 'EMAILROW_DB'
 
 
 const sectionData = [
@@ -94,9 +94,11 @@ _createEmailRowData()
 
 export const emailIncoming = {
     getEmailRowData,
+    saveToStorage,
 }
 
 function getEmailRowData(){
+    
     return storageService.query(EMAILROWDATA_KEY).then(emailRowData => emailRowData)
 }
 
@@ -104,7 +106,15 @@ function getEmailRowData(){
 function _createEmailRowData() {
     let data = utilService.loadFromStorage(EMAILROWDATA_KEY)
     if (!data || !data.length) {
-      data = emailRowData
-      utilService.saveToStorage(EMAILROWDATA_KEY, data)
+        data = emailRowData
+        utilService.saveToStorage(EMAILROWDATA_KEY, data)
     }
-  }
+}
+        
+
+
+
+  function saveToStorage(key, data) {
+    
+    return utilService.saveToStorage(key, data);
+}
