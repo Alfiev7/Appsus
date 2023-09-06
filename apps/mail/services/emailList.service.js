@@ -67,10 +67,21 @@ const emailRowData = [
     }
 ];
 
+_createEmailRowData()
+
 export const emailIncoming = {
     getEmailRowData,
 }
 
 function getEmailRowData(){
-    return Promise.resolve(emailRowData)
+    return storageService.query(EMAILROWDATA_KEY).then(emailRowData => emailRowData)
 }
+
+
+function _createEmailRowData() {
+    let data = utilService.loadFromStorage(EMAILROWDATA_KEY)
+    if (!data || !data.length) {
+      data = emailRowData
+      utilService.saveToStorage(EMAILROWDATA_KEY, data)
+    }
+  }
