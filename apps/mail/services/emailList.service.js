@@ -5,6 +5,7 @@ const SECTIONDATA_KEY = 'SECTIONDATA_DB'
 export const EMAILROWDATA_KEY = 'EMAILROW_DB'
 
 
+
 const sectionData = [
     {
         Icon: "fa-solid fa-inbox",
@@ -45,7 +46,7 @@ function _createSectionData() {
 const emailRowData = [
     {
         id: 1,
-        title: "Dimitri",
+        title: "Dima",
         subject: "Funds Found by an African Oil Tycoon for you!",
         description: `
         Dear Alfie,
@@ -65,7 +66,7 @@ const emailRowData = [
     },
     {
         id: 2,
-        title: "Ariella",
+        title: "Alfie",
         subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
         description: `
         
@@ -75,7 +76,7 @@ const emailRowData = [
         
         Warmest congratulations,
         
-        Ariella
+        Alfie
         Mifal Hapias Team
         `,
         time: "Tuesday 19th March 2023 23:30 PM",
@@ -259,7 +260,7 @@ const emailRowData = [
     ,
     {
         id: 11,
-        title: "Emma",
+        title: "Eleanor",
         subject: "Your Car's Scheduled Maintenance",
         description: `
         Hello Alfie,
@@ -279,7 +280,6 @@ const emailRowData = [
 
 ];
 
-_createEmailRowData()
 
 export const emailIncoming = {
     getEmailRowData,
@@ -291,12 +291,19 @@ function getEmailRowData(){
     return storageService.query(EMAILROWDATA_KEY).then(emailRowData => emailRowData)
 }
 
+const LATEST_EMAIL_VERSION = 4; 
+const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
+
+_createEmailRowData()
 
 function _createEmailRowData() {
-    let data = utilService.loadFromStorage(EMAILROWDATA_KEY)
-    if (!data || !data.length) {
-        data = emailRowData
-        utilService.saveToStorage(EMAILROWDATA_KEY, data)
+    let storedVersion = utilService.loadFromStorage(EMAIL_VERSION_KEY);
+
+
+    if (storedVersion !== LATEST_EMAIL_VERSION) {
+  
+        utilService.saveToStorage(EMAILROWDATA_KEY, emailRowData);
+        utilService.saveToStorage(EMAIL_VERSION_KEY, LATEST_EMAIL_VERSION);
     }
 }
         
