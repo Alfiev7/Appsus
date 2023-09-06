@@ -1,12 +1,13 @@
 .note-todos {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   gap: 0.5rem;
 }
 
 .note-todos .todo-line {
+  margin-left: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,4 +25,19 @@
 
 .note-todos input[type='checkbox'] {
   display: none;
+}
+
+.note-todos .icon.icon-remove {
+  padding: 0.2rem;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.note-todos .todo-line:hover .icon.icon-remove {
+  opacity: 1;
+}
+
+.note-todos .icon.icon-remove:hover {
+  background-color: rgba(228, 228, 228, 0.671);
+  border-radius: 50%;
 }
