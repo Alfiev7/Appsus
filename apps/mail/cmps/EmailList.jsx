@@ -16,8 +16,6 @@ export function EmailList() {
     }, []);
 
 
-    if(!sectionData || !emailRowData) return <div>Loading...</div>
-
     return (
 
         <div className="EmailList">
