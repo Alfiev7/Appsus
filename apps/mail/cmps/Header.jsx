@@ -5,7 +5,7 @@ export function Header() {
     <div className='header'>
       <div className="header_left">
         <i className="fas fa-bars"></i>
-      <img src="../../../assets/img/gmail.png" alt="" />
+      <img src="/assets/img/gmail.png" alt="" />
       </div>
 
 
@@ -18,7 +18,7 @@ export function Header() {
 
       <div className="header_right">
       <i className="fa-solid fa-sun"></i>
-      <img src="../../../assets/img/profile.png" alt="" />
+      <img src="/assets/img/profile.png" alt="" />
       </div>
     </div>
   )
