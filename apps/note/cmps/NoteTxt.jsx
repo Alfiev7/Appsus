@@ -1,5 +1,4 @@
 export function NoteTxt({ id, createdAt, isPinned, style, info }) {
-  console.log('NoteTxt')
   const { txt } = info
   return (
     <div className='note-txt' style={style}>

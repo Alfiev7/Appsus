@@ -1,5 +1,4 @@
 export function NoteImg({ id, createdAt, isPinned, style, info }) {
-  console.log('NoteTxt')
   const { url, title } = info
   return (
     <div className='note-txt' style={style}>

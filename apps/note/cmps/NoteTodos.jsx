@@ -27,6 +27,11 @@ export function NoteTodos({ id, createdAt, isPinned, style, info }) {
             checked={todo.isDone}
             onChange={() => handleOnChange(index)}
           />
+          {(!todo.isDone && (
+            <a className='material-icons-outlined md-18'>
+              check_box_outline_blank
+            </a>
+          )) || <span className='material-icons-outlined'>check_box</span>}
           {todo.txt}
         </label>
       ))}

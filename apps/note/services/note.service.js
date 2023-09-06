@@ -29,6 +29,15 @@ const notesDB = [
       ],
     },
   },
+  {
+    id: 'n104',
+    type: 'NoteVideo',
+    isPinned: false,
+    info: {
+      title: 'Why use this ?',
+      url: 'https://www.youtube.com/embed/uCH1ta5OUHw',
+    },
+  },
 ]
 const NOTES_KEY = 'notesDB'
 _createNotes()
@@ -36,6 +45,7 @@ _createNotes()
 export const noteService = {
   query,
   getNotes,
+  remove,
 }
 
 function query(filterBy) {
@@ -61,8 +71,8 @@ function get(bookId) {
   })
 }
 
-function remove(bookId) {
-  return storageService.remove(BOOKS_KEY, bookId)
+function remove(noteId) {
+  return storageService.remove(NOTES_KEY, noteId)
 }
 
 function save(book) {

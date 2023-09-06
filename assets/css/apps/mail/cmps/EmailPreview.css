@@ -1,75 +1,71 @@
 .emailpreview {
-    flex: 1;
-    background-color: whitesmoke;
+  flex: 1;
+  background-color: whitesmoke;
 }
 
-.emailpreview-tools{
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
+.emailpreview-tools {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
 }
 .emailpreview-toolsright > i,
 .emailpreview-toolsleft > i {
-    color: grey;
-    padding: 0.4rem;
-    cursor: pointer;
+  color: grey;
+  padding: 0.4rem;
+  cursor: pointer;
 }
-.emailpreview-toolsleft{
-    display: flex;
-}
-
-.emailpreview-toolsright{
-    display: flex;
+.emailpreview-toolsleft {
+  display: flex;
 }
 
-.emailpreview-body{
-    display: flex;
-    flex-direction: column;
-    margin: 1.875rem;
-    background-color: white;
-    padding: 1.25rem;
-    height: 90vh;
-    box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.24);
+.emailpreview-toolsright {
+  display: flex;
 }
 
-
-.emailpreview-bodyheader{
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid whitesmoke;
-    padding: 1.25rem;
-    justify-items: space-between;
+.emailpreview-body {
+  display: flex;
+  flex-direction: column;
+  margin: 1.875rem;
+  background-color: white;
+  padding: 1.25rem;
+  height: 90vh;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.24);
 }
-    
 
-.emailpreview-bodyheader > h2{
-    font-weight: 400;
-    margin-right: 1.25rem;
+.emailpreview-bodyheader {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid whitesmoke;
+  padding: 1.25rem;
+  justify-items: space-between;
+}
+
+.emailpreview-bodyheader > h2 {
+  font-weight: 400;
+  margin-right: 1.25rem;
 }
 
 .emailpreview-bodyheader > i {
-    color: #e8ab02;
-    font-size: 1.2rem;
-    
+  color: #e8ab02;
+  font-size: 1.2rem;
 }
 
 .emailpreview-bodyheader > p {
-    margin-left: 1.25rem;
-    font-weight: 100;
-    font-size: 0.75rem;
-    color: grey;
+  margin-left: 1.25rem;
+  font-weight: 100;
+  font-size: 0.75rem;
+  color: grey;
 }
 
 .emailpreview-bodyheader .time {
-    margin-inline-start: auto;
-    font-size: 0.75rem;
-    color: grey;
-    font-weight: 100;
+  margin-inline-start: auto;
+  font-size: 0.75rem;
+  color: grey;
+  font-weight: 100;
 }
 
 .emailpreview-message {
-    padding: 0.625rem;
-    margin-right: 1.25rem;
-    overflow-wrap: break-word;
+  padding: 0.625rem;
+  margin-right: 1.25rem;
+  overflow-wrap: break-word;
 }
-
