@@ -6,6 +6,10 @@ export function NoteIndex() {
   const [notes, setNotes] = useState(null)
   // const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
+  useEffect(() => {
+    noteService.query('').then(setNotes)
+  }, [])
+
   function onRemoveNote(noteId) {
     noteService
       .remove(noteId)
@@ -15,27 +19,34 @@ export function NoteIndex() {
       .catch(err => console.log(err))
   }
 
-  function onRemoveBook(bookId) {
-    bookService
-      .remove(bookId)
-      .then(() => {
-        setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
-        showSuccessMsg(`Book Removed! ${bookId}`)
+  function onChangeColor(noteId, backgroundColor) {
+    noteService
+      .get(noteId)
+      .then(note => {
+        note.style.backgroundColor = backgroundColor
+        return noteService.save(note)
       })
-      .catch(err => {
-        console.error(err)
-        showErrorMsg(`Problem Removing ${bookId}`)
+      .then(updatedNote => {
+        const updatedNotes = notes.map(note =>
+          note.id === updatedNote.id ? updatedNote : note
+        )
+        setNotes(updatedNotes)
+      })
+      .catch(error => {
+        console.error('Error updating note:', error)
       })
   }
-
-  useEffect(() => {
-    noteService.getNotes().then(setNotes)
-  }, [])
 
   if (!notes) return <div>Loading...</div>
   return (
     <section className='note-index'>
-      {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+      {
+        <NoteList
+          notes={notes}
+          onRemoveNote={onRemoveNote}
+          onChangeColor={onChangeColor}
+        />
+      }
     </section>
   )
 }

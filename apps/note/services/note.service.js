@@ -7,6 +7,7 @@ const notesDB = [
     createdAt: 1112222,
     type: 'NoteTxt',
     isPinned: true,
+    style: {},
     style: { backgroundColor: '#00d' },
     info: { txt: 'Fullstack Me Baby!' },
   },
@@ -21,6 +22,7 @@ const notesDB = [
     id: 'n103',
     type: 'NoteTodos',
     isPinned: false,
+    style: {},
     info: {
       title: 'Get my stuff together',
       todos: [
@@ -33,6 +35,7 @@ const notesDB = [
     id: 'n104',
     type: 'NoteVideo',
     isPinned: false,
+    style: {},
     info: {
       title: 'Why use this ?',
       url: 'https://www.youtube.com/embed/uCH1ta5OUHw',
@@ -46,6 +49,8 @@ export const noteService = {
   query,
   getNotes,
   remove,
+  get,
+  save,
 }
 
 function query(filterBy) {
@@ -64,10 +69,10 @@ function query(filterBy) {
   })
 }
 
-function get(bookId) {
-  return storageService.get(BOOKS_KEY, bookId).then(book => {
-    book = _setNextPrevBookId(book)
-    return book
+function get(noteId) {
+  return storageService.get(NOTES_KEY, noteId).then(note => {
+    // note = _setNextPrevNoteId(note)
+    return note
   })
 }
 
@@ -75,11 +80,11 @@ function remove(noteId) {
   return storageService.remove(NOTES_KEY, noteId)
 }
 
-function save(book) {
-  if (book.id) {
-    return storageService.put(BOOKS_KEY, book)
+function save(note) {
+  if (note.id) {
+    return storageService.put(NOTES_KEY, note)
   } else {
-    return storageService.post(BOOKS_KEY, book)
+    return storageService.post(NOTES_KEY, note)
   }
 }
 
