@@ -5,7 +5,7 @@ import { SideBarComponent } from "./SideBarComponent.jsx"
 import { sideBarService } from "../services/sidebar.service.js";
 
 
-export function SideBar() {
+export function SideBar({ unreadCount }) {
     const [sideBarData, setSideBarData] = useState(null);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export function SideBar() {
                     key={index}
                     icon={data.icon}
                     title={data.title}
-                    number={data.number}
+                    number={data.title === "Inbox" ? unreadCount : data.number}
                 />
             ))}
         </div>

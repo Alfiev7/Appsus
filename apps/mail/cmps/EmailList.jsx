@@ -3,23 +3,30 @@ const { useEffect, useState } = React
 
 import { Section } from "./Section.jsx";
 import { EmailRow } from "./EmailRow.jsx";
-import { sectionService, emailIncoming } from "../services/emailList.service.js";
+import { storageService } from "../../../services/async-storage.service.js";
+import { sectionService, emailIncoming, EMAILROWDATA_KEY, saveToStorage } from "../services/emailList.service.js";
 
 
 export function EmailList() {
     const [sectionData, setSectionData] = useState(null);
     const [emailRowData, setEmailRowData] = useState(null);
     const [emails, setEmails] = useState([]);
+    
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
         emailIncoming.getEmailRowData().then(data => {
             setEmailRowData(data);
             setEmails(data);
-          });
-        }, []);
+        });
+    }, []);
+            
 
+        useEffect(() => {
+            emailIncoming.saveToStorage(EMAILROWDATA_KEY, emails); 
+        }, [emails]);
 
+        
     const toggleAllCheckboxes = () => {
         const allChecked = emails.every(email => email.isChecked);
         setEmails(emails.map(email => ({ ...email, isChecked: !allChecked })));
@@ -34,14 +41,15 @@ export function EmailList() {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: true } : email));
     };
 
+    const removeSelectedEmails = () => {
+        const remainingEmails = emails.filter(email => !email.isChecked);
+        setEmails(remainingEmails);
+    };
+    
+
     const markAsUnread = () => {
         setEmails(emails.map(email => email.isChecked ? { ...email, isRead: false } : email));
     };
-
-
-
-
-
 
     return (
 
@@ -51,6 +59,7 @@ export function EmailList() {
                 <span className="material-icons-outlined" onClick={toggleAllCheckboxes}>check_box_outline_blank</span>
                 <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
+                <span className="material-icons-outlined" onClick={removeSelectedEmails}>delete_outline</span>
             </div>
 
 

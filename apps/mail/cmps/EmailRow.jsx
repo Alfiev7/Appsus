@@ -2,7 +2,7 @@ const { useNavigate } = ReactRouterDOM
 
 export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox }) {
     const navigate = useNavigate();
-    console.log(id)
+
     
     return (
         <div onClick={() => navigate(`EmailPreview/${id}`)} className={`emailRow ${isRead ? 'read' : 'unread'}`}>

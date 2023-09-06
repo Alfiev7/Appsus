@@ -1,7 +1,8 @@
 const { useNavigate, useParams } = ReactRouterDOM
 const { useEffect, useState } = React 
 
-import { emailIncoming } from "../services/emailList.service.js";
+import { emailIncoming, EMAILROWDATA_KEY } from "../services/emailList.service.js";
+
 
 
 export function EmailPreview() {
@@ -13,6 +14,16 @@ export function EmailPreview() {
     navigate('/mail');
   };
 
+  const deleteEmail = () => {
+    emailIncoming.getEmailRowData()
+      .then(data => {
+        const remainingEmails = data.filter(email => email.id !== parseInt(id));
+        emailIncoming.saveToStorage(EMAILROWDATA_KEY, remainingEmails);  
+        goBackToHome();
+      });
+    };
+        
+        
   useEffect(() => {
     emailIncoming.getEmailRowData()
         .then(data => {
@@ -32,8 +43,8 @@ if (!email) {
         <div className="emailpreview-toolsleft">
 
           <i className="material-icons-outlined" onClick={goBackToHome}>arrow_back</i>
-          <i className="material-icons-outlined">delete</i>
-          <i className="material-icons-outlined">mark_email_unread</i>
+          <i className="material-icons-outlined" onClick={deleteEmail}>delete</i> 
+          
 
         </div>
 
