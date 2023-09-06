@@ -4,6 +4,7 @@ import { noteService } from '../services/note.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
+  // const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
     noteService.getNotes().then(setNotes)
