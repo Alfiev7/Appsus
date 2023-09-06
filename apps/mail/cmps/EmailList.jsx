@@ -15,7 +15,7 @@ export function EmailList() {
         emailIncoming.getEmailRowData().then(setEmailRowData);
     }, []);
 
-
+    console.log(emailRowData)
     return (
 
         <div className="EmailList">
@@ -38,10 +38,15 @@ export function EmailList() {
                 {emailRowData && emailRowData.map((data, index) => (
                     <EmailRow
                         key={index}
+                        id={data.id}
                         title={data.title}
                         subject={data.subject}
                         description={data.description}
                         time={data.time}
+                        isRead={data.isRead}
+                        removedAt={data.removedAt}
+                        from={data.from}
+                        to={data.to}
                     />
                 ))}
 

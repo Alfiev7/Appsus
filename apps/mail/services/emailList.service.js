@@ -45,21 +45,37 @@ function _createSectionData() {
 const emailRowData = [
     {
         id: 1,
-        title: "Daniel",
-        subject: "Alfie you are fired",
-        description: "Due to unforseen events, you will be fired at 10:30am, please be sure to check out the office at 10:30am on tuesday",
-        time: "10:30am", 
+        title: "Dimitri",
+        subject: "Funds Found by an African Oil Tycoon for you!",
+        description: `
+        Dear Alfie,
+
+        In an unexpected turn of events, the African oil tycoon who reached out to you previously has made a discovery that may be of interest. He claims to have come across a significant sum of money, and he believes it belongs to you. We recommend proceeding with caution and verifying the authenticity of this claim.
+        
+        Best regards,
+        Dimitri`,
+        time: "Monday 17th Febuary 2023 18:30 PM", 
         isRead: false,
         removedAt: null,
-        from: 'daniel@gmail.com',
+        from: 'dimitri@protonmail.com',
         to: 'alfie@gmail.com'
     },
     {
         id: 2,
         title: "Ariella",
-        subject: "Yarin, congradulations on winning the lottery!",
-        description: "You are the lucky winner of 19 million USD!",
-        time: "10:30am",
+        subject: "Congratulations,You've Won $19 Million USD in the Lottery!",
+        description: `
+        
+        Dear Yarin,
+        
+        We are thrilled to inform you that you are the lucky winner of a staggering $19 million USD in the lottery organized by Mifal Hapias! Your persistence has truly paid off, and we couldn't be happier for you. Please get in touch with us at your earliest convenience to claim your life-changing prize.
+        
+        Warmest congratulations,
+        
+        Ariella
+        Mifal Hapias Team
+        `,
+        time: "Tuesday 19th March 2023 23:30 PM",
         isRead: false,
         removedAt: null,
         from: 'ariella@gmail.com',

@@ -6,9 +6,9 @@ import { EmailPreview } from "./EmailPreview.jsx";
 
 export function EmailRow({ id, title, subject, description, time, }) {
     const navigate = useNavigate();
-
+    console.log(id)
     return (
-        <div onClick={() => navigate('EmailPreview')} className="emailRow">
+        <div onClick={() => navigate(`EmailPreview/${id}`)} className="emailRow">
 
             <div className="emailRow_options">
                 <i className="fa-regular fa-square"></i>
