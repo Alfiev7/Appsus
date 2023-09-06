@@ -58,3 +58,12 @@
 font-weight: 400;
 color: grey;
 }
+
+.read {
+    background-color: whitesmoke;
+  }
+  
+  .unread {
+    background-color: white;
+  }
+  

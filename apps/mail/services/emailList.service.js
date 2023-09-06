@@ -76,7 +76,7 @@ const emailRowData = [
         Mifal Hapias Team
         `,
         time: "Tuesday 19th March 2023 23:30 PM",
-        isRead: false,
+        isRead: true,
         removedAt: null,
         from: 'ariella@gmail.com',
         to: 'alfie@gmail.com'

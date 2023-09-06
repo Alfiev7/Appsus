@@ -1,14 +1,14 @@
 const { useNavigate } = ReactRouterDOM
-import { EmailPreview } from "./EmailPreview.jsx";
 
 
 
 
-export function EmailRow({ id, title, subject, description, time, }) {
+
+export function EmailRow({ id, title, subject, description, time, isRead }) {
     const navigate = useNavigate();
     console.log(id)
     return (
-        <div onClick={() => navigate(`EmailPreview/${id}`)} className="emailRow">
+        <div onClick={() => navigate(`EmailPreview/${id}`)} className={`emailRow ${isRead ? 'read' : 'unread'}`}>
 
             <div className="emailRow_options">
                 <i className="fa-regular fa-square"></i>
