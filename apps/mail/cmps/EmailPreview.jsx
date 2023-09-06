@@ -2,7 +2,30 @@
 export function EmailPreview() {
   return (
     <div className="EmailPreview">
-        <h1>hi YYYYYYYYYYYYYYYYYYYYYYYY</h1>
+        <div className="emailpreview-tools">
+
+<div className="emailpreview-toolsleft">
+
+</div>
+
+<div className="emailpreview-toolsRight">
+
+
+</div>
+
+
+
+
+          
+
+
+
+
+
+
+
+
+        </div>
     </div>
   )
 }

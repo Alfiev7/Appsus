@@ -8,9 +8,6 @@ export function Header() {
       <img src="../../assets/img/gmail.png" alt="" />
       </div>
 
-
-
-
       <div className="header_middle">
       <i className="fa-solid fa-magnifying-glass"></i>
       <input placeholder="Search mail" type="text" className="searchHeader" />
