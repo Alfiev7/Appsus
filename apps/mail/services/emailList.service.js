@@ -86,6 +86,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        isChecked: false,
     }
 ];
 

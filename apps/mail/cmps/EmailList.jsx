@@ -9,16 +9,50 @@ import { sectionService, emailIncoming } from "../services/emailList.service.js"
 export function EmailList() {
     const [sectionData, setSectionData] = useState(null);
     const [emailRowData, setEmailRowData] = useState(null);
+    const [emails, setEmails] = useState([]);
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
-        emailIncoming.getEmailRowData().then(setEmailRowData);
-    }, []);
+        emailIncoming.getEmailRowData().then(data => {
+            setEmailRowData(data);
+            setEmails(data);
+          });
+        }, []);
 
-    console.log(emailRowData)
+
+    const toggleAllCheckboxes = () => {
+        const allChecked = emails.every(email => email.isChecked);
+        setEmails(emails.map(email => ({ ...email, isChecked: !allChecked })));
+    };
+
+
+    const toggleCheckbox = (id) => {
+        setEmails(emails.map(email => email.id === id ? { ...email, isChecked: !email.isChecked } : email));
+    };
+
+    const markAsRead = () => {
+        setEmails(emails.map(email => email.isChecked ? { ...email, isRead: true } : email));
+    };
+
+    const markAsUnread = () => {
+        setEmails(emails.map(email => email.isChecked ? { ...email, isRead: false } : email));
+    };
+
+
+
+
+
+
     return (
 
         <div className="EmailList">
+
+            <div className="emaillist-topbuttons">
+                <span className="material-icons-outlined" onClick={toggleAllCheckboxes}>check_box_outline_blank</span>
+                <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
+                <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
+            </div>
+
 
             <div className="emaillist_sections">
 
@@ -35,7 +69,7 @@ export function EmailList() {
 
             <div className="emailList_list">
 
-                {emailRowData && emailRowData.map((data, index) => (
+                {emailRowData && emails.map((data, index) => (
                     <EmailRow
                         key={index}
                         id={data.id}
@@ -44,6 +78,8 @@ export function EmailList() {
                         description={data.description}
                         time={data.time}
                         isRead={data.isRead}
+                        isChecked={data.isChecked}
+                        toggleCheckbox={toggleCheckbox}
                         removedAt={data.removedAt}
                         from={data.from}
                         to={data.to}

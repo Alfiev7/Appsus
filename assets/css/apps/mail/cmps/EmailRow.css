@@ -19,9 +19,20 @@
 }
 
 .emailRow_options>i {
-
+align-items: center;
     margin-left: 1rem;
     color: #989aa0;
+}
+
+
+.emailRow_options > span {
+    display: flex;
+    align-items: center;
+}
+.emailRow_options > span > i {
+    margin-left: 1rem;
+    color: #989aa0;
+    font-size: 1.2rem;
 }
 
 .emailRow_message {
