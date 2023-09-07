@@ -3,6 +3,7 @@ import { AddNote } from '../cmps/AddNote.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { KeepHeader } from '../cmps/KeepHeader.jsx'
+import { utilService } from '../../../services/util.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
@@ -25,6 +26,12 @@ export function NoteIndex() {
     noteService
       .save(note)
       .then(note => setNotes(prevNotes => [...prevNotes, note]))
+  }
+
+  function onDuplicateNote(note) {
+    const duplicatedNote = structuredClone(note)
+    duplicatedNote.id = null
+    onAddNote(duplicatedNote)
   }
 
   function onRemoveNote(noteId) {
@@ -87,6 +94,7 @@ export function NoteIndex() {
             onRemoveNote={onRemoveNote}
             onChangeColor={onChangeColor}
             onPinNote={onPinNote}
+            onDuplicateNote={onDuplicateNote}
           />
         </div>
       )}
@@ -100,6 +108,7 @@ export function NoteIndex() {
           onRemoveNote={onRemoveNote}
           onChangeColor={onChangeColor}
           onPinNote={onPinNote}
+          onDuplicateNote={onDuplicateNote}
         />
       </div>
     </section>

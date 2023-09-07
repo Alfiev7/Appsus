@@ -8,7 +8,13 @@ import { NoteHeader } from './NoteHeader.jsx'
 
 const { useState, useEffect, useRef } = React
 
-export function NotePreview({ note, onRemoveNote, onChangeColor, onPinNote }) {
+export function NotePreview({
+  note,
+  onRemoveNote,
+  onChangeColor,
+  onPinNote,
+  onDuplicateNote,
+}) {
   const [isColorPickerExpanded, setIsColorPickerExpanded] = useState(false)
   const colorPickerRef = useRef(null)
   const paletteRef = useRef(null)
@@ -82,6 +88,12 @@ export function NotePreview({ note, onRemoveNote, onChangeColor, onPinNote }) {
               ref={paletteRef}
             >
               palette
+            </a>
+            <a
+              className='material-symbols-outlined'
+              onClick={() => onDuplicateNote(note)}
+            >
+              content_copy
             </a>
           </div>
         </React.Fragment>
