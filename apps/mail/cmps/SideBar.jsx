@@ -6,7 +6,7 @@ import { sideBarService } from "../services/sidebar.service.js";
 import { EmailCompose } from './EmailCompose.jsx';
 
 
-export function SideBar({ allEmails, updateFilterByTitle }) {
+export function SideBar({ allEmails, updateFilterByTitle, addNewEmail }) {
     const [sideBarData, setSideBarData] = useState(null);
     const [showCompose, setShowCompose] = useState(false);
     
@@ -17,15 +17,10 @@ export function SideBar({ allEmails, updateFilterByTitle }) {
     }, []);
 
     if(!sideBarData) return <div>Loading...</div>
-
-
-
-
-    
-    
+  
     const handleSideBarItemClick = (selectedItemTitle) => {
-        console.log(selectedItemTitle)
         updateFilterByTitle(selectedItemTitle);
+        
     }
     
     const handleComposeClick = () => {
@@ -52,7 +47,7 @@ export function SideBar({ allEmails, updateFilterByTitle }) {
         <div className="sidebar">
             <button className="sidebar_compose" onClick={handleComposeClick}>
                 <i className="fa-regular fa-pen-to-square"></i> Compose </button>
-                <EmailCompose show={showCompose} onClose={handleCloseCompose} allEmails={allEmails}  />
+                <EmailCompose show={showCompose} onClose={handleCloseCompose} addNewEmail={addNewEmail}  />
 
                 {sideBarData.map((sideBarItemData) => (
                 <SideBarComponent onClick={() => handleSideBarItemClick(sideBarItemData.title)}

@@ -3,65 +3,64 @@ const { useEffect, useState } = React
 
 import { Section } from "./Section.jsx";
 import { EmailRow } from "./EmailRow.jsx";
-import { storageService } from "../../../services/async-storage.service.js";
-import { sectionService, emailIncoming, EMAILROWDATA_KEY, saveToStorage } from "../services/emailList.service.js";
+import { sectionService, EMAILROWDATA_KEY } from "../services/emailList.service.js";
+import { utilService } from "../../../services/util.service.js";
 
 
-export function EmailList( {emailsAfterFilter}) {
+
+export function EmailList({ emailsAfterFilter, emails, setEmails }) {
     const [sectionData, setSectionData] = useState(null);
-    const [emailRowData, setEmailRowData] = useState(null);
-    const [emails, setEmails] = useState([]);
-
-    
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
-        emailIncoming.getEmailRowData().then(data => {
-            setEmailRowData(data);
-            setEmails(data);
-        });
     }, []);
-            
 
-        useEffect(() => {
-            emailIncoming.saveToStorage(EMAILROWDATA_KEY, emails); 
-        }, [emails]);
 
-        
     const toggleAllCheckboxes = () => {
         const allChecked = emails.every(email => email.isChecked);
-        setEmails(emails.map(email => ({ ...email, isChecked: !allChecked })));
+        const updatedEmails = emails.map(email => ({ ...email, isChecked: !allChecked }));
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
 
-const toggleIsStarred = (id) => {
-    setEmails(emails.map(email => email.id === id ? { ...email, isStarred: !email.isStarred } : email));
-};
+    const toggleIsStarred = (id) => {
+        const updatedEmails = emails.map(email => email.id === id ? { ...email, isStarred: !email.isStarred } : email);
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
+    };
+
 
 
 
     const toggleCheckbox = (id) => {
-        setEmails(emails.map(email => email.id === id ? { ...email, isChecked: !email.isChecked } : email));
+        const updatedEmails = emails.map(email => email.id === id ? { ...email, isChecked: !email.isChecked } : email);
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
     const markAsRead = () => {
-        setEmails(emails.map(email => email.isChecked ? { ...email, isRead: true } : email));
+        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: true } : email);
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
     const removeSelectedEmails = () => {
         const remainingEmails = emails.filter(email => !email.isChecked);
         setEmails(remainingEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, remainingEmails);
     };
-    
+
 
     const markAsUnread = () => {
-        setEmails(emails.map(email => email.isChecked ? { ...email, isRead: false } : email));
+        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false } : email);
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
 
 
 
-    // console.log(emailsAfterFilter);
     return (
 
         <div className="EmailList">
