@@ -17,12 +17,7 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail }) {
     }, []);
 
     if(!sideBarData) return <div>Loading...</div>
-
-
-
-
-    
-    
+  
     const handleSideBarItemClick = (selectedItemTitle) => {
         updateFilterByTitle(selectedItemTitle);
         

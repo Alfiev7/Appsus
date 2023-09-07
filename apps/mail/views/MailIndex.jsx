@@ -7,30 +7,19 @@ import { EmailList } from "../cmps/EmailList.jsx";
 import { EmailPreview } from "../cmps/EmailPreview.jsx";
 import { emailIncoming } from "../services/emailList.service.js";
 
-
-
-
-
-
 export function MailIndex() {
     const [emails, setEmails] = useState([]);
     const [appliedFilter, setAppliedFilter] = useState('')
     const [searchKeyword, setSearchKeyword] = useState('');
 
-
     useEffect(() => {
         emailIncoming.getEmailRowData()
-          .then(fetchedEmails => {
-              setEmails(fetchedEmails);
+            .then(fetchedEmails => {
+                setEmails(fetchedEmails);
             })
             .catch(error => {
             });
-        }, []);
-
-
-      
-
-
+    }, []);
 
     const getAppliedFilterParameter = (selectedItemTitle) => {
         setAppliedFilter(selectedItemTitle)
@@ -44,8 +33,6 @@ export function MailIndex() {
     const getFilteredEmails = () => {
 
         switch (appliedFilter) {
-
-
 
             case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com');
             case 'Starred': return emails.filter(email => email.isStarred);
@@ -67,8 +54,6 @@ export function MailIndex() {
         return filteredEmails;
     };
 
-
-
     const addNewEmail = (newEmail) => {
         setEmails(prevEmails => [...prevEmails, newEmail]);
     };
@@ -81,20 +66,20 @@ export function MailIndex() {
             <div className="app_body">
                 <SideBar
                     allEmails={emails}
-                    updateFilterByTitle={(e) => getAppliedFilterParameter(e)} addNewEmail={addNewEmail}/>
-
-
+                    updateFilterByTitle={(e) => getAppliedFilterParameter(e)} addNewEmail={addNewEmail} />
 
                 <Routes>
-                <Route path="/" element={<EmailList emails={emails} setEmails={setEmails} emailsAfterFilter={getSearchFilteredEmails()} />} />
-                 <Route path="/EmailPreview/:id" element={<EmailPreview />} />
-
-
+                    <Route path="/" element={<EmailList emails={emails} setEmails={setEmails} emailsAfterFilter={getSearchFilteredEmails()} />} />
+                    <Route path="/EmailPreview/:id" element={<EmailPreview />} />
                 </Routes>
             </div>
         </div>
     )
 }
+
+
+
+
 
 
 

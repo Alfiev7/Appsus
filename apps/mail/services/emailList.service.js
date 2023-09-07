@@ -326,8 +326,6 @@ function saveEmail(newEmail) {
       });
   }
   
-
-
   function saveToStorage(key, data) {
     
     return utilService.saveToStorage(key, data);

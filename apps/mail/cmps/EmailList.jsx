@@ -3,26 +3,19 @@ const { useEffect, useState } = React
 
 import { Section } from "./Section.jsx";
 import { EmailRow } from "./EmailRow.jsx";
-import { storageService } from "../../../services/async-storage.service.js";
-import { sectionService, emailIncoming, EMAILROWDATA_KEY } from "../services/emailList.service.js";
-import {utilService} from "../../../services/util.service.js";
+import { sectionService, EMAILROWDATA_KEY } from "../services/emailList.service.js";
+import { utilService } from "../../../services/util.service.js";
 
 
-export function EmailList(  {emailsAfterFilter, emails, setEmails}) {
+
+export function EmailList({ emailsAfterFilter, emails, setEmails }) {
     const [sectionData, setSectionData] = useState(null);
-    
-    
-
-    
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
     }, []);
-        
 
- 
 
-        
     const toggleAllCheckboxes = () => {
         const allChecked = emails.every(email => email.isChecked);
         const updatedEmails = emails.map(email => ({ ...email, isChecked: !allChecked }));
@@ -36,7 +29,7 @@ export function EmailList(  {emailsAfterFilter, emails, setEmails}) {
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
-    
+
 
 
 
@@ -57,7 +50,7 @@ export function EmailList(  {emailsAfterFilter, emails, setEmails}) {
         setEmails(remainingEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, remainingEmails);
     };
-    
+
 
     const markAsUnread = () => {
         const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false } : email);
