@@ -63,6 +63,7 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
   return (
     <div className='note-todos' style={style}>
       <h2
+        className='note-todos-title'
         onInput={onUpdateTitle}
         contentEditable
         suppressContentEditableWarning={true}

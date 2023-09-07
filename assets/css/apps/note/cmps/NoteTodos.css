@@ -6,6 +6,10 @@
   gap: 0.5rem;
 }
 
+.note-todos .note-todos-title {
+  align-self: center;
+}
+
 .note-todos .todo-line {
   margin-inline-start: 0.6rem;
   display: flex;
@@ -31,6 +35,10 @@
   padding: 0.2rem;
   opacity: 0;
   transition: all 0.3s ease-in-out;
+}
+
+.note-todos .icon.icon-add {
+  pointer-events: none;
 }
 
 .note-todos .todo-line:hover .icon.icon-remove {
