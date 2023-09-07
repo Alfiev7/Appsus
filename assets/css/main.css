@@ -43,3 +43,5 @@
 @import './apps/mail/cmps/EmailPreview.css';
 @import './apps/mail/cmps/Section.css';
 @import './apps/mail/cmps/EmailRow.css';
+@import './apps/mail/cmps/EmailCompose.css';
+
