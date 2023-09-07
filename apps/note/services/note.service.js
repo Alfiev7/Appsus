@@ -25,7 +25,7 @@ const notesDB = [
     id: 'n103',
     type: 'NoteTodos',
     isPinned: false,
-    style: {},
+    style: { backgroundColor: '#d3bfdb' },
     info: {
       title: 'I have todo this, i have to !',
       todos: [
@@ -44,6 +44,16 @@ const notesDB = [
       url: 'https://www.youtube.com/embed/uCH1ta5OUHw',
     },
   },
+  {
+    id: 'n112',
+    type: 'NoteImg',
+    isPinned: false,
+    info: {
+      url: 'https://t3.ftcdn.net/jpg/01/20/68/68/360_F_120686889_nDaqiMH8I5AmT5B0hpuJ14ZasdrrgRAK.jpg',
+      title: 'Me on CR mornings',
+    },
+    style: { backgroundColor: '' },
+  },
 ]
 const NOTES_KEY = 'notesDB'
 _createNotes()
@@ -56,6 +66,7 @@ export const noteService = {
   save,
   getEmptyNote,
   updateNoteContent,
+  getIcons,
 }
 
 function query(filterBy) {
@@ -113,6 +124,8 @@ function getEmptyNote() {
     info: {
       title: '',
       txt: '',
+      todos: [],
+      url: '',
     },
   }
 }
@@ -135,4 +148,39 @@ function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index) {
         throw new Error('Unsupported noteType')
     }
   })
+}
+
+function getIcons() {
+  return {
+    add_notes: {
+      type: 'NoteTxt',
+      placeholder: "What's on your mind ?",
+      disabled: false,
+      isExpanded: false,
+    },
+    check_box: {
+      type: 'NoteTodos',
+      placeholder: 'Add todos title',
+      disabled: true,
+      isExpanded: true,
+    },
+    image: {
+      type: 'NoteImg',
+      placeholder: 'Add image url',
+      disabled: false,
+      isExpanded: true,
+    },
+    slideshow: {
+      type: 'NoteVideo',
+      placeholder: 'Add video url',
+      disabled: false,
+      isExpanded: true,
+    },
+    brush: {
+      type: 'NoteCanvas',
+      placeholder: 'Add brush content',
+      disabled: false,
+      isExpanded: true,
+    },
+  }
 }
