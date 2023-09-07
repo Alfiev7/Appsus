@@ -1,10 +1,18 @@
-export function NoteImg({ id, createdAt, isPinned, style, info }) {
+import { NoteHeader } from './NoteHeader.jsx'
+
+export function NoteImg({
+  id,
+  createdAt,
+  isPinned,
+  style,
+  info,
+  onUpdateTitle,
+}) {
   const { url, title } = info
   return (
     <div className='note-img' style={style}>
-      <h2>{title}</h2>
-      <h3>{createdAt}</h3>
       <p>{<img src={url} alt={title} />}</p>
+      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

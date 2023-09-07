@@ -58,16 +58,15 @@
   margin-inline-start: 0.6rem;
   padding: 0.3rem;
   color: gray;
-  /* border: 1px solid gray; */
 }
 
 .note-todos .add-todo {
   margin-inline-start: 0.3rem;
   padding: 2px 4px;
   width: 100px;
+  text-align: start;
 }
 
 .note-todos .add-todo:focus-visible {
-  /* outline:  */
   padding: 2px 4px;
 }

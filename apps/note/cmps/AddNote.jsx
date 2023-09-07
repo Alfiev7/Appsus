@@ -41,7 +41,6 @@ export function AddNote({ onAddNote }) {
 
   useEffect(() => {
     const { placeholder, disabled, isExpanded, type } = icons[selectedIcon]
-
     contentInputRef.current.placeholder = placeholder
     contentInputRef.current.disabled = disabled
     setIsExpanded(isExpanded)
@@ -53,33 +52,23 @@ export function AddNote({ onAddNote }) {
   }, [selectedIcon])
 
   function handleTextChange({ target: { value } }) {
-    console.log('noteToAdd.type', noteToAdd.type)
-    if (noteToAdd.type === 'NoteTxt')
-      setNoteToAdd(prevNoteToAdd => ({
-        ...prevNoteToAdd,
-        info: {
-          ...prevNoteToAdd.info,
-          txt: value,
-        },
-      }))
-    if (noteToAdd.type === 'NoteImg')
-      setNoteToAdd(prevNoteToAdd => ({
-        ...prevNoteToAdd,
-        info: {
-          ...prevNoteToAdd.info,
-          url: value,
-        },
-      }))
-    if (noteToAdd.type === 'NoteVideo')
-      setNoteToAdd(prevNoteToAdd => ({
-        ...prevNoteToAdd,
-        info: {
-          ...prevNoteToAdd.info,
-          url: `https://www.youtube.com/embed/${
-            value.match(/[?&]v=([^&]+)/)[1]
-          }`,
-        },
-      }))
+    setNoteToAdd(prevNoteToAdd => ({
+      ...prevNoteToAdd,
+      info: {
+        ...prevNoteToAdd.info,
+        ...(prevNoteToAdd.type === 'NoteTxt'
+          ? { txt: value }
+          : prevNoteToAdd.type === 'NoteImg'
+          ? { url: value }
+          : prevNoteToAdd.type === 'NoteVideo'
+          ? {
+              url: `https://www.youtube.com/embed/${
+                value.match(/[?&]v=([^&]+)/)[1]
+              }`,
+            }
+          : {}),
+      },
+    }))
   }
 
   function handleTitleChange({ target: { value } }) {
@@ -91,39 +80,6 @@ export function AddNote({ onAddNote }) {
       },
     }))
   }
-
-  // const icons = {
-  //   add_notes: {
-  //     type: 'NoteTxt',
-  //     placeholder: "What's on your mind ?",
-  //     disabled: false,
-  //     isExpanded: false,
-  //   },
-  //   check_box: {
-  //     type: 'NoteTodos',
-  //     placeholder: 'Add todos title',
-  //     disabled: true,
-  //     isExpanded: true,
-  //   },
-  //   image: {
-  //     type: 'NoteImg',
-  //     placeholder: 'Add image url',
-  //     disabled: false,
-  //     isExpanded: true,
-  //   },
-  //   slideshow: {
-  //     type: 'NoteVideo',
-  //     placeholder: 'Add video url',
-  //     disabled: false,
-  //     isExpanded: true,
-  //   },
-  //   brush: {
-  //     type: 'NoteCanvas',
-  //     placeholder: 'Add brush content',
-  //     disabled: false,
-  //     isExpanded: true,
-  //   },
-  // }
 
   return (
     <section className='add-note'>

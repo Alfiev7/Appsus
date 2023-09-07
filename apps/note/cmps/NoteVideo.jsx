@@ -1,10 +1,20 @@
-export function NoteVideo({ id, createdAt, isPinned, style, info }) {
+import { NoteHeader } from './NoteHeader.jsx'
+
+export function NoteVideo({
+  id,
+  createdAt,
+  isPinned,
+  style,
+  info,
+  onUpdateTitle,
+}) {
   const { url, title } = info
   return (
     <div className='note-video' style={style}>
-      <h2>{title}</h2>
-      <h3>{createdAt}</h3>
-      <div className={'video-container'}>{<iframe src={url}></iframe>}</div>
+      <div className={'video-container'}>
+        {<iframe className='video-player' src={url}></iframe>}
+      </div>
+      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

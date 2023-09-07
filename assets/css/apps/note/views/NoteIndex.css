@@ -1,1 +1,21 @@
- /* note index */
+.note-index .pinned-notes {
+  margin-block-end: 60px;
+}
+
+.note-index .unpinned-notes .note-list,
+.note-index .pinned-notes .note-list {
+  margin-block-start: 10px;
+}
+
+.note-index .unpinned-notes .unpinned-notes-label,
+.note-index .pinned-notes .pinned-notes-label {
+  margin-inline-start: 70px;
+  margin-block-start: 20px;
+  pointer-events: none;
+  color: #5f6368;
+}
+
+.note-index .pinned-notes .icon.icon-pushpin {
+  opacity: 1;
+  color: black;
+}

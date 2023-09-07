@@ -1,6 +1,6 @@
 import { NotePreview } from './NotePreview.jsx'
 
-export function NoteList({ notes, onRemoveNote, onChangeColor }) {
+export function NoteList({ notes, onRemoveNote, onChangeColor, onPinNote }) {
   return (
     <div className='note-list'>
       {notes.map(note => (
@@ -9,6 +9,7 @@ export function NoteList({ notes, onRemoveNote, onChangeColor }) {
             note={note}
             onRemoveNote={onRemoveNote}
             onChangeColor={onChangeColor}
+            onPinNote={onPinNote}
           />
         </React.Fragment>
       ))}

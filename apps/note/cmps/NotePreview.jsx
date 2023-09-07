@@ -3,13 +3,20 @@ import { NoteImg } from './NoteImg.jsx'
 import { NoteTodos } from './NoteTodos.jsx'
 import { NoteVideo } from './NoteVideo.jsx'
 import { ColorPicker } from './ColorPicker.jsx'
+import { noteService } from '../services/note.service.js'
+import { NoteHeader } from './NoteHeader.jsx'
 
 const { useState, useEffect, useRef } = React
 
-export function NotePreview({ note, onRemoveNote, onChangeColor }) {
+export function NotePreview({ note, onRemoveNote, onChangeColor, onPinNote }) {
   const [isColorPickerExpanded, setIsColorPickerExpanded] = useState(false)
   const colorPickerRef = useRef(null)
   const paletteRef = useRef(null)
+  const {
+    id,
+    type,
+    info: { txt, title },
+  } = note
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -48,8 +55,17 @@ export function NotePreview({ note, onRemoveNote, onChangeColor }) {
     }
   }
 
+  function onUpdateTitle({ target: { textContent: newTitle } }) {
+    noteService.updateNoteContent(id, type, txt, newTitle)
+  }
+
   return (
     <article className='note-preview' style={note.style}>
+      <NoteHeader
+        note={note}
+        onUpdateTitle={onUpdateTitle}
+        onPinNote={onPinNote}
+      />
       {getNoteToRender()}
       <div className='note-actions'>
         <React.Fragment>

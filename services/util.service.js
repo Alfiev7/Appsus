@@ -8,6 +8,7 @@ export const utilService = {
   getMonthName,
   saveToStorage,
   loadFromStorage,
+  getFormattedDate,
 }
 function saveToStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val))
@@ -103,4 +104,31 @@ function getMonthName(date) {
     'December',
   ]
   return monthNames[date.getMonth()]
+}
+
+function getFormattedDate() {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
+
+  const currentDate = new Date()
+  const month = months[currentDate.getMonth()]
+  const day = currentDate.getDate()
+  const year = currentDate.getFullYear()
+
+  const hours = currentDate.getHours().toString().padStart(2, '0')
+  const minutes = currentDate.getMinutes().toString().padStart(2, '0')
+
+  return `${month} ${day}, ${year} at ${hours}:${minutes}`
 }

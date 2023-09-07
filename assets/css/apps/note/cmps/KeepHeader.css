@@ -35,12 +35,14 @@
 }
 
 .keep-header-middle {
-  display: flex;
   flex: 0.7;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: whitesmoke;
   padding: 0.625rem;
   border-radius: 5px;
+  gap: 0.5rem;
 }
 
 .keep-header-middle input {
@@ -50,6 +52,24 @@
   outline-width: 0;
   font-size: medium;
   background-color: transparent;
+}
+
+.keep-header .icon {
+  padding: 5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.keep-header .icon:hover,
+.keep-header .icon.active {
+  background: rgba(211, 211, 211, 0.34);
+  border-radius: 50%;
+  padding: 5px;
+  border: 2px solid transparent;
+}
+
+.keep-header .icon.active {
+  border: 2px solid gray;
 }
 
 .keep-header-right > i {

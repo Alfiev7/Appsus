@@ -3,7 +3,7 @@
   flex-direction: column;
   border: 1px solid rgb(224, 224, 224);
   border-radius: 0.5rem;
-  margin: 1rem;
+  margin-block-end: 1rem;
   padding: 0.5rem;
   break-inside: avoid;
 }
@@ -48,4 +48,33 @@ ease-in-out img {
   text-align: start;
   padding: 1.5rem 0.625rem 0.3rem;
   pointer-events: none;
+}
+
+.note-preview h2 {
+  margin-block-end: 0.9rem;
+}
+
+.note-preview .note-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note-preview .icon.icon-pushpin {
+  margin-block-end: 5px;
+  padding: 5px;
+  margin-inline-end: 0.5rem;
+  opacity: 0;
+  color: gray;
+}
+
+.note-preview:hover .icon.icon-pushpin {
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.note-preview .icon.icon-pushpin:hover {
+  background: rgba(211, 211, 211, 0.548);
+  border-radius: 50%;
+  color: black;
 }
