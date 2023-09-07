@@ -8,16 +8,18 @@ export function NoteHeader({ note, onUpdateTitle, onPinNote }) {
       <a
         className='material-symbols-outlined icon icon-pushpin'
         onClick={() => onPinNote(id)}
+        title='Pin note'
       >
         push_pin
       </a>
-      <h2
+      <h3
         onInput={onUpdateTitle}
         contentEditable
         suppressContentEditableWarning={true}
+        title='Edit title'
       >
         {title}
-      </h2>
+      </h3>
     </div>
   )
 }

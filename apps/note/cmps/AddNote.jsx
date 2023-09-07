@@ -8,13 +8,15 @@ export function AddNote({ onAddNote }) {
   const titleInputRef = useRef(null)
   const addNoteSectionRef = useRef(null)
   const contentInputRef = useRef(null)
+  const pinIconRef = useRef(null)
   const icons = noteService.getIcons()
 
   useEffect(() => {
     function handleClickOutside({ target }) {
       if (
-        addNoteSectionRef.current &&
-        addNoteSectionRef.current.contains(target)
+        (addNoteSectionRef.current &&
+          addNoteSectionRef.current.contains(target)) ||
+        (pinIconRef.current && pinIconRef.current.contains(target))
       )
         return
       if (isExpanded) {
@@ -32,7 +34,6 @@ export function AddNote({ onAddNote }) {
         }
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
@@ -81,6 +82,15 @@ export function AddNote({ onAddNote }) {
     }))
   }
 
+  function onPinNoteChange({ target: { classList } }) {
+    classList.toggle('pinned-icon')
+    classList.toggle('active')
+    setNoteToAdd(prevNoteToAdd => ({
+      ...prevNoteToAdd,
+      isPinned: !prevNoteToAdd.isPinned,
+    }))
+  }
+
   return (
     <section className='add-note'>
       <React.Fragment>
@@ -96,7 +106,13 @@ export function AddNote({ onAddNote }) {
               className='title'
               onChange={handleTitleChange}
             />
-            <a className='material-icons-outlined pin'>push_pin</a>
+            <a
+              className='material-icons-outlined icon icon-pin'
+              onClick={onPinNoteChange}
+              ref={pinIconRef}
+            >
+              push_pin
+            </a>
           </div>
         )}
         <div className='content-input' ref={addNoteSectionRef}>
@@ -107,6 +123,7 @@ export function AddNote({ onAddNote }) {
             type='text'
             name='txt'
             id='content'
+            title='Add a note'
             placeholder="What's on your mind ?"
             onChange={handleTextChange}
             onFocus={() => setIsExpanded(true)}
@@ -117,6 +134,7 @@ export function AddNote({ onAddNote }) {
               className={`material-symbols-outlined icon ${
                 selectedIcon === icon ? 'active' : ''
               }`}
+              title={icons[icon].title}
               onClick={() => setSelectedIcon(icon)}
             >
               {icon}

@@ -4,7 +4,7 @@
 
 .note-index .unpinned-notes .note-list,
 .note-index .pinned-notes .note-list {
-  margin-block-start: 10px;
+  margin-block-start: 20px;
 }
 
 .note-index .unpinned-notes .unpinned-notes-label,

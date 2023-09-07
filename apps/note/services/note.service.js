@@ -10,7 +10,7 @@ const notesDB = [
     style: {},
     style: { backgroundColor: '#b4ddd3' },
     info: {
-      title: 'Estoy Componenta Estupanda ',
+      title: 'Componenta Estupanda ',
       txt: 'Fullstack Me Baby! Lorem ipsum dolpur adipisicing elit. Veoloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
     },
   },
@@ -29,10 +29,10 @@ const notesDB = [
     isPinned: false,
     style: { backgroundColor: '#d3bfdb' },
     info: {
-      title: 'I have todo this, i have to !',
+      title: 'I have todo this !',
       todos: [
-        { txt: 'Driving license', doneAt: null, isDone: false },
-        { txt: 'Coding power', doneAt: 187111111, isDone: false },
+        { txt: "Catch 'em all", doneAt: null, isDone: false },
+        { txt: 'Kamehameha a cat', doneAt: 187111111, isDone: false },
       ],
     },
   },
@@ -43,8 +43,8 @@ const notesDB = [
     isPinned: false,
     style: {},
     info: {
-      title: 'Why use this ?',
-      url: 'https://www.youtube.com/embed/uCH1ta5OUHw',
+      title: 'Deprecated feature',
+      url: 'https://www.youtube.com/embed/Yvz_axxWG4Y',
     },
   },
   {
@@ -54,7 +54,7 @@ const notesDB = [
     isPinned: false,
     info: {
       url: 'https://t3.ftcdn.net/jpg/01/20/68/68/360_F_120686889_nDaqiMH8I5AmT5B0hpuJ14ZasdrrgRAK.jpg',
-      title: 'Me on CR mornings',
+      title: 'CR mornings be like..',
     },
     style: { backgroundColor: '' },
   },
@@ -169,30 +169,35 @@ function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index) {
 function getIcons() {
   return {
     add_notes: {
+      title: 'Text note',
       type: 'NoteTxt',
       placeholder: "What's on your mind ?",
       disabled: false,
       isExpanded: false,
     },
     check_box: {
+      title: 'Todo list',
       type: 'NoteTodos',
-      placeholder: 'Add todos title',
+      placeholder: 'Add title to create template',
       disabled: true,
       isExpanded: true,
     },
     image: {
+      title: 'Image note',
       type: 'NoteImg',
       placeholder: 'Add image url',
       disabled: false,
       isExpanded: true,
     },
     slideshow: {
+      title: 'Video note',
       type: 'NoteVideo',
       placeholder: 'Add video url',
       disabled: false,
       isExpanded: true,
     },
     brush: {
+      title: 'Canvas note',
       type: 'NoteCanvas',
       placeholder: 'Add brush content',
       disabled: false,
@@ -203,7 +208,6 @@ function getIcons() {
 
 function getPinnedNotes() {
   return storageService.query(NOTES_KEY).then(notes => {
-    console.log('notes', notes)
     return notes.filter(note => note.isPinned)
   })
 }

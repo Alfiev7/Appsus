@@ -10,10 +10,12 @@ const { useState, useEffect, useRef } = React
 
 export function NotePreview({
   note,
-  onRemoveNote,
-  onChangeColor,
-  onPinNote,
-  onDuplicateNote,
+  noteHandlingFuncs: {
+    onRemoveNote,
+    onChangeColor,
+    onPinNote,
+    onDuplicateNote,
+  },
 }) {
   const [isColorPickerExpanded, setIsColorPickerExpanded] = useState(false)
   const colorPickerRef = useRef(null)
@@ -79,12 +81,14 @@ export function NotePreview({
             <a
               className='material-icons-outlined'
               onClick={() => onRemoveNote(note.id)}
+              title='Delete note'
             >
               delete
             </a>
             <a
               className='material-icons-outlined'
               onClick={() => setIsColorPickerExpanded(!isColorPickerExpanded)}
+              title='Change color'
               ref={paletteRef}
             >
               palette
@@ -92,6 +96,7 @@ export function NotePreview({
             <a
               className='material-symbols-outlined'
               onClick={() => onDuplicateNote(note)}
+              title='Duplicate note'
             >
               content_copy
             </a>

@@ -3,7 +3,6 @@ import { AddNote } from '../cmps/AddNote.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { KeepHeader } from '../cmps/KeepHeader.jsx'
-import { utilService } from '../../../services/util.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
@@ -79,6 +78,13 @@ export function NoteIndex() {
       })
   }
 
+  const noteHandlingFuncs = {
+    onRemoveNote,
+    onChangeColor,
+    onDuplicateNote,
+    onPinNote,
+  }
+
   if (!notes) return <div>Loading...</div>
   return (
     <section className='note-index'>
@@ -90,11 +96,7 @@ export function NoteIndex() {
           <pre className='pinned-notes-label'>Pinned</pre>
           <NoteList
             notes={notes.filter(note => note.isPinned)}
-            hasPinnedNotes={hasPinnedNotes}
-            onRemoveNote={onRemoveNote}
-            onChangeColor={onChangeColor}
-            onPinNote={onPinNote}
-            onDuplicateNote={onDuplicateNote}
+            noteHandlingFuncs={noteHandlingFuncs}
           />
         </div>
       )}
@@ -105,10 +107,7 @@ export function NoteIndex() {
         )}
         <NoteList
           notes={notes.filter(note => !note.isPinned)}
-          onRemoveNote={onRemoveNote}
-          onChangeColor={onChangeColor}
-          onPinNote={onPinNote}
-          onDuplicateNote={onDuplicateNote}
+          noteHandlingFuncs={noteHandlingFuncs}
         />
       </div>
     </section>

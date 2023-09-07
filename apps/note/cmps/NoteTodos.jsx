@@ -77,7 +77,7 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
               <a
                 className='material-icons-outlined icon'
                 onClick={() => handleOnChange(index, todo)}
-                title='mark as done'
+                title='Mark as done'
               >
                 check_box_outline_blank
               </a>
@@ -85,7 +85,7 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
               <a
                 className='material-icons-outlined icon'
                 onClick={() => handleOnChange(index, todo)}
-                title='unmark as done'
+                title='Unmark as done'
               >
                 check_box
               </a>
@@ -95,12 +95,14 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
               onInput={ev => onUpdateTxt(ev, index)}
               contentEditable
               suppressContentEditableWarning={true}
+              title='Edit todo text'
             >
               {todo.txt}
             </span>
             <a
               className='material-icons-outlined icon icon-remove'
               onClick={() => onRemoveTodo(index)}
+              title='Remove todo'
             >
               close
             </a>
@@ -115,6 +117,7 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
           suppressContentEditableWarning={true}
           onBlur={onAddTodo}
           onFocus={ev => (ev.target.textContent = '')}
+          title='Add a todo'
           ref={editRef}
         >
           Todo item..

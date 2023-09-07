@@ -63,3 +63,17 @@
 .add-note .icon.active {
   border: 2px solid gray;
 }
+
+.add-note .icon.icon-pin {
+  margin-block-end: 5px;
+  padding: 5px;
+  margin-inline-end: 0.5rem;
+  color: gray;
+  transition: 0.2s ease-in-out;
+}
+
+.add-note .icon.icon-pin:hover {
+  background: rgba(211, 211, 211, 0.548);
+  border-radius: 50%;
+  color: black;
+}
