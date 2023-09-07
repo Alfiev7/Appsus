@@ -1,4 +1,5 @@
 import { noteService } from '../services/note.service.js'
+import { NoteHeader } from './NoteHeader.jsx'
 
 const { useState, useRef } = React
 
@@ -62,15 +63,6 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
 
   return (
     <div className='note-todos' style={style}>
-      <h2
-        className='note-todos-title'
-        onInput={onUpdateTitle}
-        contentEditable
-        suppressContentEditableWarning={true}
-      >
-        {title}
-      </h2>
-      <h3>{createdAt}</h3>
       {todos.map((todo, index) => (
         <div key={index}>
           <input
@@ -128,6 +120,7 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
           Todo item..
         </span>
       </div>
+      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

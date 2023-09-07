@@ -4,18 +4,19 @@ import { utilService } from '../../../services/util.service.js'
 const notesDB = [
   {
     id: 'n101',
-    createdAt: 'Aug 20, 1994',
+    createdAt: 'Aug 20, 1994 at 05:20',
     type: 'NoteTxt',
-    isPinned: true,
+    isPinned: false,
     style: {},
     style: { backgroundColor: '#b4ddd3' },
     info: {
-      title: 'Estoy Componenta Estupando ',
+      title: 'Estoy Componenta Estupanda ',
       txt: 'Fullstack Me Baby! Lorem ipsum dolpur adipisicing elit. Veoloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
     },
   },
   {
     id: 'n102',
+    createdAt: 'Sep 11, 2011 at 16:24',
     type: 'NoteImg',
     isPinned: false,
     info: { url: 'https://i.imgflip.com/7y6l0y.jpg', title: 'Making this...' },
@@ -23,6 +24,7 @@ const notesDB = [
   },
   {
     id: 'n103',
+    createdAt: 'Jul 13, 1973 at 08:30',
     type: 'NoteTodos',
     isPinned: false,
     style: { backgroundColor: '#d3bfdb' },
@@ -36,6 +38,7 @@ const notesDB = [
   },
   {
     id: 'n104',
+    createdAt: 'Jan 1, 0 at 00:00',
     type: 'NoteVideo',
     isPinned: false,
     style: {},
@@ -46,6 +49,7 @@ const notesDB = [
   },
   {
     id: 'n112',
+    createdAt: 'Nov 08, 2023 at 18:00',
     type: 'NoteImg',
     isPinned: false,
     info: {
@@ -67,19 +71,24 @@ export const noteService = {
   getEmptyNote,
   updateNoteContent,
   getIcons,
+  getDefaultFilter,
+  getPinnedNotes,
+  getUnpinnedNotes,
 }
 
 function query(filterBy) {
+  const regex = new RegExp(filterBy, 'i')
+
   return storageService.query(NOTES_KEY).then(notes => {
-    if (filterBy.title) {
-      const regex = new RegExp(filterBy.title, 'i')
-      notes = notes.filter(note => regex.test(note.title))
-    }
-    if (filterBy.price) {
-      notes = notes.filter(note => note.listPrice.amount >= filterBy.price)
-    }
-    if (filterBy.publishedDate) {
-      notes = notes.filter(note => note.publishedDate >= filterBy.publishedDate)
+    if (filterBy) {
+      return notes.filter(({ info, type }) => {
+        return (
+          regex.test(info.title) ||
+          regex.test(info.txt) ||
+          (info.todos && info.todos.some(todo => regex.test(todo.txt))) ||
+          regex.test(type)
+        )
+      })
     }
     return notes
   })
@@ -116,10 +125,15 @@ function _createNotes() {
   }
 }
 
+function getDefaultFilter() {
+  return { title: '', txt: '', type: '' }
+}
+
 function getEmptyNote() {
   return {
     type: 'NoteTxt',
     isPinned: false,
+    createdAt: utilService.getFormattedDate(),
     style: {},
     info: {
       title: '',
@@ -132,21 +146,23 @@ function getEmptyNote() {
 
 function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index) {
   return get(noteId).then(note => {
+    if (updatedTitle) note.info.title = updatedTitle
+
     switch (noteType) {
       case 'NoteTxt':
-        if (updatedTitle) note.info.title = updatedTitle
         if (updatedText) note.info.txt = updatedText
-        return save(note)
+        break
       case 'NoteTodos':
-        if (updatedTitle) note.info.title = updatedTitle
-        if (updatedText) {
-          note.info.todos[index].txt = updatedText
-        }
-        return save(note)
-
+        if (updatedText) note.info.todos[index].txt = updatedText
+        break
+      case 'NoteVideo':
+      case 'NoteImg':
+        break
       default:
         throw new Error('Unsupported noteType')
     }
+
+    return save(note)
   })
 }
 
@@ -183,4 +199,17 @@ function getIcons() {
       isExpanded: true,
     },
   }
+}
+
+function getPinnedNotes() {
+  return storageService.query(NOTES_KEY).then(notes => {
+    console.log('notes', notes)
+    return notes.filter(note => note.isPinned)
+  })
+}
+
+function getUnpinnedNotes() {
+  return storageService.query(NOTES_KEY).then(notes => {
+    return notes.filter(note => !note.isPinned)
+  })
 }
