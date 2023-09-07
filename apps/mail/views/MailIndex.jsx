@@ -20,16 +20,15 @@ export function MailIndex() {
 
     useEffect(() => {
         emailIncoming.getEmailRowData()
-            .then(fetchedEmails => {
-                setEmails(fetchedEmails);
-
-
-
+          .then(fetchedEmails => {
+              setEmails(fetchedEmails);
             })
             .catch(error => {
-                console.error('Failed to fetch emails:', error);
             });
-    }, [emails]);
+        }, []);
+
+
+      
 
 
 
@@ -69,6 +68,11 @@ export function MailIndex() {
     };
 
 
+
+    const addNewEmail = (newEmail) => {
+        setEmails(prevEmails => [...prevEmails, newEmail]);
+    };
+
     return (
 
         <div className="mailapp">
@@ -77,13 +81,14 @@ export function MailIndex() {
             <div className="app_body">
                 <SideBar
                     allEmails={emails}
-                    updateFilterByTitle={(e) => getAppliedFilterParameter(e)} />
+                    updateFilterByTitle={(e) => getAppliedFilterParameter(e)} addNewEmail={addNewEmail}/>
 
 
 
                 <Routes>
-                    <Route path="/" element={<EmailList emailsAfterFilter={getSearchFilteredEmails()} />} />
-                    <Route path="/EmailPreview/:id" element={<EmailPreview />} />
+                <Route path="/" element={<EmailList emails={emails} setEmails={setEmails} emailsAfterFilter={getSearchFilteredEmails()} />} />
+                 <Route path="/EmailPreview/:id" element={<EmailPreview />} />
+
 
                 </Routes>
             </div>

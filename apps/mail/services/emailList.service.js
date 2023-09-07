@@ -286,27 +286,37 @@ export const emailIncoming = {
     saveToStorage,
     saveEmail
 }
-
-function getEmailRowData(){
-    
-    return storageService.query(EMAILROWDATA_KEY).then(emailRowData => emailRowData)
-}
-
-const LATEST_EMAIL_VERSION = 5; 
+const LATEST_EMAIL_VERSION = 6; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
 
+async function getEmailRowData() {
+    try {
+        const emailRowData = await storageService.query(EMAILROWDATA_KEY);
+        
+        if (emailRowData.length === 0) {
+            console.log('No email data found');  
+        }
+        return emailRowData;
+    } catch (error) {
+        console.error('An error occurred while fetching email data:', error);
+        return null;  
+    }
+}
+
+  
+
+
 function _createEmailRowData() {
     let storedVersion = utilService.loadFromStorage(EMAIL_VERSION_KEY);
-
-
     if (storedVersion !== LATEST_EMAIL_VERSION) {
-  
         utilService.saveToStorage(EMAILROWDATA_KEY, emailRowData);
         utilService.saveToStorage(EMAIL_VERSION_KEY, LATEST_EMAIL_VERSION);
     }
 }
+        
+
         
 function saveEmail(newEmail) {
     return storageService.query(EMAILROWDATA_KEY)

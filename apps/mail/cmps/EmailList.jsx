@@ -7,25 +7,20 @@ import { storageService } from "../../../services/async-storage.service.js";
 import { sectionService, emailIncoming, EMAILROWDATA_KEY, saveToStorage } from "../services/emailList.service.js";
 
 
-export function EmailList( {emailsAfterFilter}) {
+export function EmailList(  {emailsAfterFilter, emails, setEmails}) {
     const [sectionData, setSectionData] = useState(null);
-    const [emailRowData, setEmailRowData] = useState(null);
-    const [emails, setEmails] = useState([]);
+    
+    
 
     
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
-        emailIncoming.getEmailRowData().then(data => {
-            setEmailRowData(data);
-            setEmails(data);
-        });
     }, []);
+        
             
 
-        useEffect(() => {
-            emailIncoming.saveToStorage(EMAILROWDATA_KEY, emails); 
-        }, [emails]);
+ 
 
         
     const toggleAllCheckboxes = () => {
@@ -61,7 +56,7 @@ const toggleIsStarred = (id) => {
 
 
 
-    // console.log(emailsAfterFilter);
+
     return (
 
         <div className="EmailList">

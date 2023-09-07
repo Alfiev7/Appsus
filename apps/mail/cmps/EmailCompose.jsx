@@ -1,7 +1,7 @@
 const { useState } = React
 import { emailIncoming } from '../services/emailList.service.js';
 
-export function EmailCompose({ show, onClose, allEmails }) {
+export function EmailCompose({ show, onClose, addNewEmail }) {
   const [to, setTo] = useState('');
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
@@ -23,13 +23,13 @@ export function EmailCompose({ show, onClose, allEmails }) {
       isDraft: false
     };
     try {
-        await emailIncoming.saveEmail(newEmail);
-        allEmails.push(newEmail); 
-        onClose();
+      await emailIncoming.saveEmail(newEmail);
+      addNewEmail(newEmail);  
+      onClose();
     } catch (error) {
-        console.error("Failed to save email", error);
+      console.error("Failed to save email", error);
     }
-  };
+};
   
 
    
