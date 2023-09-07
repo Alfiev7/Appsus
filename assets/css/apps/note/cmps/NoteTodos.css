@@ -18,8 +18,15 @@
   gap: 0.3rem;
 }
 
-.note-todos .done {
+.note-todos .todo-txt.done {
   text-decoration: line-through;
+}
+
+.note-todos .todo-done-at {
+  font-size: 0.8rem;
+  color: rgba(68, 68, 68, 0.493);
+  pointer-events: none;
+  user-select: none;
 }
 
 .note-todos .material-icons-outlined:not(.icon-add) {

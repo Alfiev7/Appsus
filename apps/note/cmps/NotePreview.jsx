@@ -5,6 +5,7 @@ import { NoteVideo } from './NoteVideo.jsx'
 import { ColorPicker } from './ColorPicker.jsx'
 import { noteService } from '../services/note.service.js'
 import { NoteHeader } from './NoteHeader.jsx'
+import { NoteCanvas } from './NoteCanvas.jsx'
 
 const { useState, useEffect, useRef } = React
 
@@ -23,7 +24,7 @@ export function NotePreview({
   const {
     id,
     type,
-    info: { txt, title },
+    info: { txt },
   } = note
 
   useEffect(() => {
@@ -57,6 +58,9 @@ export function NotePreview({
 
       case 'NoteTodos':
         return <NoteTodos {...note} />
+
+      case 'NoteCanvas':
+        return <NoteCanvas {...note} />
 
       default:
         return null

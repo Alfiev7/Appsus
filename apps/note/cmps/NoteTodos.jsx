@@ -1,12 +1,12 @@
+import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
-import { NoteHeader } from './NoteHeader.jsx'
+import { TodoItem } from './TodoItem.jsx'
 
 const { useState, useRef } = React
 
 export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
   const [todos, setTodos] = useState(info.todos)
   const editRef = useRef(null)
-  const { title } = info
 
   function handleOnChange(index) {
     setTodos(prevTodos => {
@@ -14,6 +14,7 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
       updatedTodos[index] = {
         ...updatedTodos[index],
         isDone: !updatedTodos[index].isDone,
+        doneAt: utilService.getFormattedDate(),
       }
       return updatedTodos
     })
@@ -57,57 +58,21 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
     noteService.updateNoteContent(id, type, newTxt, null, index)
   }
 
-  function onUpdateTitle({ target: { textContent: newTitle } }) {
-    noteService.updateNoteContent(id, type, null, newTitle)
+  const todoHandleFuncs = {
+    handleOnChange,
+    onRemoveTodo,
+    onUpdateTxt,
   }
 
   return (
     <div className='note-todos' style={style}>
       {todos.map((todo, index) => (
-        <div key={index}>
-          <input
-            id={todo.txt}
-            type='checkbox'
-            checked={todo.isDone}
-            onChange={() => handleOnChange(index)}
-          />
-
-          <div className='todo-line'>
-            {!todo.isDone ? (
-              <a
-                className='material-icons-outlined icon'
-                onClick={() => handleOnChange(index, todo)}
-                title='Mark as done'
-              >
-                check_box_outline_blank
-              </a>
-            ) : (
-              <a
-                className='material-icons-outlined icon'
-                onClick={() => handleOnChange(index, todo)}
-                title='Unmark as done'
-              >
-                check_box
-              </a>
-            )}
-            <span
-              className={todo.isDone ? 'todo-txt done' : 'todo-txt'}
-              onInput={ev => onUpdateTxt(ev, index)}
-              contentEditable
-              suppressContentEditableWarning={true}
-              title='Edit todo text'
-            >
-              {todo.txt}
-            </span>
-            <a
-              className='material-icons-outlined icon icon-remove'
-              onClick={() => onRemoveTodo(index)}
-              title='Remove todo'
-            >
-              close
-            </a>
-          </div>
-        </div>
+        <TodoItem
+          key={index}
+          todo={todo}
+          index={index}
+          todoHandleFuncs={todoHandleFuncs}
+        />
       ))}
       <div className='add-todo-line'>
         <a className='material-icons-outlined icon icon-add'>add</a>

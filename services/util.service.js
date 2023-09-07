@@ -125,7 +125,7 @@ function getFormattedDate() {
   const currentDate = new Date()
   const month = months[currentDate.getMonth()]
   const day = currentDate.getDate()
-  const year = currentDate.getFullYear()
+  const year = currentDate.getFullYear().toString().slice(-2)
 
   const hours = currentDate.getHours().toString().padStart(2, '0')
   const minutes = currentDate.getMinutes().toString().padStart(2, '0')
