@@ -9,6 +9,7 @@ export const utilService = {
   saveToStorage,
   loadFromStorage,
   getFormattedDate,
+  animateCSS,
 }
 function saveToStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val))
@@ -19,8 +20,7 @@ function loadFromStorage(key) {
 }
 function makeId(length = 6) {
   var txt = ''
-  var possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   for (var i = 0; i < length; i++) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length))
   }
@@ -107,20 +107,7 @@ function getMonthName(date) {
 }
 
 function getFormattedDate() {
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
   const currentDate = new Date()
   const month = months[currentDate.getMonth()]
@@ -131,4 +118,18 @@ function getFormattedDate() {
   const minutes = currentDate.getMinutes().toString().padStart(2, '0')
 
   return `${month} ${day}, '${year} at ${hours}:${minutes}`
+}
+
+function animateCSS(el, animation) {
+  const prefix = 'animate__'
+  return new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`
+    el.classList.add(`${prefix}animated`, animationName)
+    function handleAnimationEnd(event) {
+      event.stopPropagation()
+      el.classList.remove(`${prefix}animated`, animationName)
+      resolve('Animation ended')
+    }
+    el.addEventListener('animationend', handleAnimationEnd, { once: true })
+  })
 }

@@ -172,14 +172,7 @@ function getEmptyNote() {
   }
 }
 
-function updateNoteContent(
-  noteId,
-  noteType,
-  updatedText,
-  updatedTitle,
-  index,
-  updatedUrl
-) {
+function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index, updatedUrl) {
   return get(noteId).then(note => {
     if (updatedTitle) note.info.title = updatedTitle
 
@@ -194,6 +187,7 @@ function updateNoteContent(
       case 'NoteImg':
         break
       case 'NoteCanvas':
+      case 'NoteRecording':
         if (updatedUrl) note.info.url = updatedUrl
         break
       default:
@@ -245,6 +239,13 @@ function getIcons() {
       title: 'Map note',
       type: 'NoteMap',
       placeholder: 'Add title to create map',
+      disabled: true,
+      isExpanded: true,
+    },
+    mic: {
+      title: 'Voice note',
+      type: 'NoteRecording',
+      placeholder: 'Add title to create voice note',
       disabled: true,
       isExpanded: true,
     },

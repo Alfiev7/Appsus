@@ -14,18 +14,13 @@ export function AddNote({ onAddNote }) {
   useEffect(() => {
     function handleClickOutside({ target }) {
       if (
-        (addNoteSectionRef.current &&
-          addNoteSectionRef.current.contains(target)) ||
+        (addNoteSectionRef.current && addNoteSectionRef.current.contains(target)) ||
         (pinIconRef.current && pinIconRef.current.contains(target))
       )
         return
       if (isExpanded) {
         if (titleInputRef.current && !titleInputRef.current.contains(target)) {
-          if (
-            noteToAdd.info.txt ||
-            noteToAdd.info.title ||
-            noteToAdd.info.url
-          ) {
+          if (noteToAdd.info.txt || noteToAdd.info.title || noteToAdd.info.url) {
             onAddNote(noteToAdd)
           }
           setIsExpanded(false)
@@ -63,9 +58,7 @@ export function AddNote({ onAddNote }) {
           ? { url: value }
           : prevNoteToAdd.type === 'NoteVideo'
           ? {
-              url: `https://www.youtube.com/embed/${
-                value.match(/[?&]v=([^&]+)/)[1]
-              }`,
+              url: `https://www.youtube.com/embed/${value.match(/[?&]v=([^&]+)/)[1]}`,
             }
           : {}),
       },
@@ -106,11 +99,7 @@ export function AddNote({ onAddNote }) {
               className='title'
               onChange={handleTitleChange}
             />
-            <a
-              className='material-icons-outlined icon icon-pin'
-              onClick={onPinNoteChange}
-              ref={pinIconRef}
-            >
+            <a className='material-icons-outlined icon icon-pin' onClick={onPinNoteChange} ref={pinIconRef}>
               push_pin
             </a>
           </div>
@@ -131,9 +120,7 @@ export function AddNote({ onAddNote }) {
           {Object.keys(icons).map(icon => (
             <a
               key={icon}
-              className={`material-symbols-outlined icon ${
-                selectedIcon === icon ? 'active' : ''
-              }`}
+              className={`material-symbols-outlined icon ${selectedIcon === icon ? 'active' : ''}`}
               title={icons[icon].title}
               onClick={() => setSelectedIcon(icon)}
             >

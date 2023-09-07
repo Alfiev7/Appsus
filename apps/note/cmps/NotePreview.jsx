@@ -7,6 +7,7 @@ import { noteService } from '../services/note.service.js'
 import { NoteHeader } from './NoteHeader.jsx'
 import { NoteCanvas } from './NoteCanvas.jsx'
 import { NoteMap } from './NoteMap.jsx'
+import { NoteRecording } from './NoteRecording.jsx'
 
 const { useState, useEffect, useRef } = React
 
@@ -65,6 +66,9 @@ export function NotePreview({
 
       case 'NoteMap':
         return <NoteMap {...note} />
+
+      case 'NoteRecording':
+        return <NoteRecording {...note} />
 
       default:
         return null
