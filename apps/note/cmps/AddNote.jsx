@@ -8,12 +8,11 @@ export function AddNote({ onAddNote }) {
   const contentInputRef = useRef(null)
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside({ target }) {
+      if (contentInputRef.current && contentInputRef.current.contains(target))
+        return
       if (isExpanded) {
-        if (
-          titleInputRef.current &&
-          !titleInputRef.current.contains(event.target)
-        ) {
+        if (titleInputRef.current && !titleInputRef.current.contains(target)) {
           if (noteToAdd.info.txt) {
             onAddNote(noteToAdd)
           }
@@ -29,8 +28,7 @@ export function AddNote({ onAddNote }) {
     }
   }, [isExpanded, noteToAdd, onAddNote])
 
-  function handleTextChange(event) {
-    const value = event.target.value
+  function handleTextChange({ target: { value } }) {
     setNoteToAdd(prevNoteToAdd => ({
       ...prevNoteToAdd,
       info: {
@@ -40,8 +38,7 @@ export function AddNote({ onAddNote }) {
     }))
   }
 
-  function handleTitleChange(event) {
-    const value = event.target.value
+  function handleTitleChange({ target: { value } }) {
     setNoteToAdd(prevNoteToAdd => ({
       ...prevNoteToAdd,
       info: {
