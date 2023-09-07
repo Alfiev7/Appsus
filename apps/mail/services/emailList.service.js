@@ -186,7 +186,7 @@ const emailRowData = [
         Warm regards,
         Alfie`,
         time: "Tuesday 1st November 2023 6:50 PM",
-        isRead: false,
+        isRead: true,
         removedAt: null,
         from: 'alfie@gmail.com',
         to: 'John@gmail.com',
@@ -284,6 +284,7 @@ const emailRowData = [
 export const emailIncoming = {
     getEmailRowData,
     saveToStorage,
+    saveEmail
 }
 
 function getEmailRowData(){
@@ -291,7 +292,7 @@ function getEmailRowData(){
     return storageService.query(EMAILROWDATA_KEY).then(emailRowData => emailRowData)
 }
 
-const LATEST_EMAIL_VERSION = 4; 
+const LATEST_EMAIL_VERSION = 5; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
@@ -307,7 +308,14 @@ function _createEmailRowData() {
     }
 }
         
-
+function saveEmail(newEmail) {
+    return storageService.query(EMAILROWDATA_KEY)
+      .then(emailRowData => {
+        emailRowData.push(newEmail);
+        return utilService.saveToStorage(EMAILROWDATA_KEY, emailRowData);
+      });
+  }
+  
 
 
   function saveToStorage(key, data) {
