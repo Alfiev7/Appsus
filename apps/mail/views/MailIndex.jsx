@@ -11,6 +11,7 @@ import { emailIncoming } from "../services/emailList.service.js";
 
 
 
+
 export function MailIndex() {
     const [emails, setEmails] = useState([]);
     const [appliedFilter, setAppliedFilter] = useState('')
@@ -52,8 +53,6 @@ export function MailIndex() {
             default: return emails;
         }
     }
-
-
 
 
 
