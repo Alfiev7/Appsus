@@ -13,6 +13,7 @@
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
     0 1px 3px 1px rgba(60, 64, 67, 0.4);
 }
+
 ease-in-out img {
   display: block;
   width: 100%;
@@ -31,12 +32,20 @@ ease-in-out img {
   margin: 3px 3px;
   border: 1px solid transparent;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+  opacity: 0;
+  color: #7a7a7a;
+}
+
+.note-preview:hover .note-actions a {
+  opacity: 1;
 }
 
 .note-preview .note-actions a:hover {
   cursor: pointer;
   background-color: rgba(95, 99, 104, 0.157);
   border-radius: 50%;
+  color: black;
 }
 
 .note-preview .top {

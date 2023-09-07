@@ -58,18 +58,24 @@ export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
 
   return (
     <div className='note-canvas'>
-      <canvas
-        ref={canvasRef}
-        width='300'
-        height='150'
-        className='canvas'
-      ></canvas>
+      <canvas ref={canvasRef} title='Draw on me' className='canvas'></canvas>
       <div className='canvas-buttons'>
-        <button onClick={() => onCanvasSave(canvasRef.current.toDataURL())}>
-          Save Canvas
-        </button>
-        <button onClick={clearCanvas}>Clear Canvas</button>
+        <a
+          className='material-symbols-outlined icon icon-save'
+          onClick={() => onCanvasSave(canvasRef.current.toDataURL())}
+          title='Save changes'
+        >
+          save
+        </a>
+        <a
+          className='material-symbols-outlined'
+          onClick={clearCanvas}
+          title='Clear canvas'
+        >
+          delete_sweep
+        </a>
       </div>
+      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

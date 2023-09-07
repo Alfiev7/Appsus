@@ -6,6 +6,7 @@ import { ColorPicker } from './ColorPicker.jsx'
 import { noteService } from '../services/note.service.js'
 import { NoteHeader } from './NoteHeader.jsx'
 import { NoteCanvas } from './NoteCanvas.jsx'
+import { NoteMap } from './NoteMap.jsx'
 
 const { useState, useEffect, useRef } = React
 
@@ -61,6 +62,9 @@ export function NotePreview({
 
       case 'NoteCanvas':
         return <NoteCanvas {...note} />
+
+      case 'NoteMap':
+        return <NoteMap {...note} />
 
       default:
         return null

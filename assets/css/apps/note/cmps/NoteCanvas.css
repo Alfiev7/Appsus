@@ -1,0 +1,32 @@
+.note-canvas .canvas-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.note-canvas .canvas-buttons a {
+  text-align: center;
+  padding: 6px;
+  margin: 3px 3px;
+  border: 1px solid transparent;
+  transition: 0.3s ease-in-out;
+}
+
+.note-canvas .canvas-buttons a:hover {
+  cursor: pointer;
+  background-color: rgba(95, 99, 104, 0.157);
+  border-radius: 50%;
+}
+
+.note-canvas .canvas {
+  width: 100%;
+  border: 1px solid rgba(179, 177, 177, 0.327);
+  border-radius: 0.5rem;
+  transition: 0.3s ease-in-out;
+}
+
+.note-canvas .canvas:hover {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.4);
+}

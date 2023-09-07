@@ -130,5 +130,5 @@ function getFormattedDate() {
   const hours = currentDate.getHours().toString().padStart(2, '0')
   const minutes = currentDate.getMinutes().toString().padStart(2, '0')
 
-  return `${month} ${day}, ${year} at ${hours}:${minutes}`
+  return `${month} ${day}, '${year} at ${hours}:${minutes}`
 }
