@@ -10,9 +10,9 @@ export function EmailCompose({ show, onClose, addNewEmail }) {
 
   const handleSend = async () => {
     const newEmail = {
-      id: Date.now(),  
+      id: Date.now(),
       title: "Alfie",
-      from: 'alfie@gmail.com',  
+      from: 'alfie@gmail.com',
       to,
       subject,
       description,
@@ -24,39 +24,51 @@ export function EmailCompose({ show, onClose, addNewEmail }) {
     };
     try {
       await emailIncoming.saveEmail(newEmail);
-      addNewEmail(newEmail);  
+      addNewEmail(newEmail);
       onClose();
     } catch (error) {
       console.error("Failed to save email", error);
     }
-};
-  
+  };
 
-   
+
+
 
 
   return (
+
+
+    
     <div className="compose-container">
-      <h2>New Email</h2>
-      <input
+      <div className='compose-header'>
+        <h3>New Email</h3>
+        <button onClick={onClose}>X</button>
+      </div>
+<div className='compose-forms'>
+
+      <input className='compose-to'
         type="text"
         placeholder="To:"
         value={to}
         onChange={(e) => setTo(e.target.value)}
-      />
-      <input
+        />
+      <input className='compose-subject'
         type="text"
         placeholder="Subject"
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
-      />
-      <textarea
-        placeholder="Description"
+        />
+      <textarea className='compose-message'
+        placeholder=""
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-      />
-      <button onClick={handleSend}>Send</button>
-      <button onClick={onClose}>Close</button>
+        />
+        </div>
+
+      <div className='compose-buttons'>
+      <button onClick={handleSend}>SEND</button>
+      </div>
+
     </div>
   );
 }

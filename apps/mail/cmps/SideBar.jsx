@@ -50,13 +50,13 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail }) {
                 <EmailCompose show={showCompose} onClose={handleCloseCompose} addNewEmail={addNewEmail}  />
 
                 {sideBarData.map((sideBarItemData) => (
-                <SideBarComponent onClick={() => handleSideBarItemClick(sideBarItemData.title)}
+                    <SideBarComponent onClick={() => handleSideBarItemClick(sideBarItemData.title)}
                     key={sideBarItemData.title}
                     icon={sideBarItemData.icon}
                     title={sideBarItemData.title}
                     number = {getEmailsCountByTitle(sideBarItemData.title)} 
-                />
-            ))}
+                    />
+                    ))}
         </div>
     );
 }
