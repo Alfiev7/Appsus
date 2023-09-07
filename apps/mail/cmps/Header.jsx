@@ -1,6 +1,6 @@
 
 
-export function Header() {
+export function Header({ updateSearchKeyword }) {
   return (
     <div className='header'>
       <div className="header_left">
@@ -10,7 +10,7 @@ export function Header() {
 
       <div className="header_middle">
       <i className="fa-solid fa-magnifying-glass"></i>
-      <input placeholder="Search mail" type="text" className="searchHeader" />
+      <input placeholder="Search mail" type="text" onChange={e => updateSearchKeyword(e.target.value)} className="searchHeader" />
       </div>
 
       <div className="header_right">
