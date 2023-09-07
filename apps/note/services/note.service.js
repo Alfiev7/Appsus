@@ -10,7 +10,7 @@ const notesDB = [
     style: {},
     style: { backgroundColor: '#b4ddd3' },
     info: {
-      title: 'Estoy Componenta Estupando ',
+      title: 'Estoy Componenta Estupanda ',
       txt: 'Fullstack Me Baby! Lorem ipsum dolpur adipisicing elit. Veoloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
     },
   },
@@ -67,19 +67,21 @@ export const noteService = {
   getEmptyNote,
   updateNoteContent,
   getIcons,
+  getDefaultFilter,
 }
 
 function query(filterBy) {
+  const regex = new RegExp(filterBy, 'i')
+
   return storageService.query(NOTES_KEY).then(notes => {
-    if (filterBy.title) {
-      const regex = new RegExp(filterBy.title, 'i')
-      notes = notes.filter(note => regex.test(note.title))
-    }
-    if (filterBy.price) {
-      notes = notes.filter(note => note.listPrice.amount >= filterBy.price)
-    }
-    if (filterBy.publishedDate) {
-      notes = notes.filter(note => note.publishedDate >= filterBy.publishedDate)
+    if (filterBy) {
+      return notes.filter(({ info: { title, txt, todos } }) => {
+        return (
+          regex.test(title) ||
+          regex.test(txt) ||
+          (todos && todos.some(todo => regex.test(todo.txt)))
+        )
+      })
     }
     return notes
   })
@@ -114,6 +116,10 @@ function _createNotes() {
     notes = notesDB
     utilService.saveToStorage(NOTES_KEY, notes)
   }
+}
+
+function getDefaultFilter() {
+  return { title: '', txt: '', type: '' }
 }
 
 function getEmptyNote() {
