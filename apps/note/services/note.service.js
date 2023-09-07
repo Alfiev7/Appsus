@@ -27,7 +27,7 @@ const notesDB = [
     isPinned: false,
     style: {},
     info: {
-      title: 'Get my stuff together',
+      title: 'I have todo this, i have to !',
       todos: [
         { txt: 'Driving license', doneAt: null, isDone: false },
         { txt: 'Coding power', doneAt: 187111111, isDone: false },

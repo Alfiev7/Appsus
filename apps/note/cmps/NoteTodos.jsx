@@ -1,9 +1,10 @@
 import { noteService } from '../services/note.service.js'
 
-const { useState } = React
+const { useState, useRef } = React
 
 export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
   const [todos, setTodos] = useState(info.todos)
+  const editRef = useRef(null)
   const { title } = info
 
   function handleOnChange(index) {
@@ -15,6 +16,27 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
       }
       return updatedTodos
     })
+  }
+
+  function onAddTodo({ target: { textContent: todoToAdd } }) {
+    if (!todoToAdd) {
+      editRef.current.textContent = 'Todo item..'
+      return
+    }
+    noteService
+      .get(id)
+      .then(note => {
+        const newTodo = { txt: todoToAdd, isDone: false, doneAt: null }
+        note.info.todos.push(newTodo)
+        return noteService.save(note).then(() => newTodo)
+      })
+      .then(newTodo => {
+        setTodos(prevTodos => [...prevTodos, newTodo])
+        editRef.current.textContent = 'Todo item..'
+      })
+      .catch(error => {
+        console.error("Couldn't add todo:", error)
+      })
   }
 
   function onRemoveTodo(index) {
@@ -92,6 +114,19 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
           </div>
         </div>
       ))}
+      <div className='add-todo-line'>
+        <a className='material-icons-outlined icon icon-add'>add</a>
+        <span
+          className='add-todo'
+          contentEditable
+          suppressContentEditableWarning={true}
+          onBlur={onAddTodo}
+          onFocus={ev => (ev.target.textContent = '')}
+          ref={editRef}
+        >
+          Todo item..
+        </span>
+      </div>
     </div>
   )
 }
