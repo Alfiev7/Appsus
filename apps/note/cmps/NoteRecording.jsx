@@ -8,6 +8,8 @@ export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
   const [audioUrl, setAudioUrl] = useState(info.url || null)
   const [mediaRecorderState, setmediaRecorderState] = useState(null)
   const eqRef = useRef(null)
+  const micRef = useRef(null)
+  let timeout
 
   useEffect(() => {
     let stream
@@ -67,30 +69,48 @@ export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
     setRecording(false)
   }
 
-  function handleRecording(ev) {
-    ev.preventDefault()
+  function handleMouseDown() {
+    timeout = setTimeout(() => {
+      startRecording()
+    }, 500)
+  }
+
+  function handleMouseUp() {
+    clearTimeout(timeout)
     if (recording) {
       stopRecording()
-    } else {
-      startRecording()
     }
   }
 
   return (
     <div className='note-recording'>
       {recording ? (
-        <a
-          ref={eqRef}
-          className='material-symbols-outlined icon icon-eq'
-          onClick={handleRecording}
-          title='Stop recording'
-        >
-          graphic_eq
-        </a>
+        <React.Fragment>
+          <p>Release to save</p>
+          <a
+            ref={eqRef}
+            className='material-symbols-outlined icon icon-eq'
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            title='Stop recording'
+          >
+            graphic_eq
+          </a>
+        </React.Fragment>
       ) : (
-        <a className='material-symbols-outlined icon icon-mic' onClick={handleRecording} title='Start recording'>
-          mic
-        </a>
+        <React.Fragment>
+          <p>Hold to record</p>
+          <a
+            ref={micRef}
+            className='material-symbols-outlined icon icon-mic'
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseOver={() => utilService.animateCSS(micRef.current, 'heartBeat')}
+            title='Start recording'
+          >
+            mic
+          </a>
+        </React.Fragment>
       )}
       {
         <div className='audio-container'>

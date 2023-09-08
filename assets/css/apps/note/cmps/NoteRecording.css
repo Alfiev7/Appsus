@@ -1,7 +1,9 @@
 .note-recording .icon {
   margin-block-end: 5px;
-  padding: 5px;
+  padding: 25px;
   margin-inline-end: 0.5rem;
+  background: rgba(211, 211, 211, 0.548);
+  border-radius: 35%;
   color: gray;
   cursor: pointer;
   transition: 0.2s ease-in-out;
