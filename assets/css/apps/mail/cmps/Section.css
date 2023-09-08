@@ -5,7 +5,7 @@
     padding: 0.9rem;
     min-width: 12.5rem;
     cursor: pointer;
-    color: #041e49;
+    color: grey;
     border-width: 0 !important;
 }
 
@@ -17,4 +17,9 @@
     font-size: 0.8rem;
     margin-left: 1rem;
     font-weight: 100;
+}
+
+.section.active {
+    background-color: whitesmoke;
+    border-bottom-width: 3px !important;
 }

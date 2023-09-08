@@ -14,14 +14,26 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
 
 
     useEffect(() => {
-        sideBarService.getSideBarData().then(setSideBarData);
+        sideBarService.getSideBarData().then((data) => {
+            const updatedData = data.map((item) => ({
+                ...item,
+                isActive: item.title === 'Inbox',
+            }));
+            setSideBarData(updatedData);
+        });
     }, []);
+          
 
+    
     if (!sideBarData) return <div>Loading...</div>
 
     const handleSideBarItemClick = (selectedItemTitle) => {
+        const updatedSideBarData = sideBarData.map((item) => ({
+            ...item,
+            isActive: item.title === selectedItemTitle,
+        }));
+        setSideBarData(updatedSideBarData);
         updateFilterByTitle(selectedItemTitle);
-
     }
 
 
@@ -50,6 +62,7 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
                     icon={sideBarItemData.icon}
                     title={sideBarItemData.title}
                     number={getEmailsCountByTitle(sideBarItemData.title)}
+                    isActive={sideBarItemData.isActive}
                 />
             ))}
         </div>
