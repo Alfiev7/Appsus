@@ -1,6 +1,6 @@
 export function ColorPicker({ onChangeColor, note, setIsColorPickerExpanded }) {
   const colors = {
-    lightgray: '#e9e3d4',
+    lightgray: '#eeeeee',
     beige: '#e9e3d4',
     blossom: '#f6e2dd',
     lightpurple: '#d3bfdb',
@@ -30,10 +30,7 @@ export function ColorPicker({ onChangeColor, note, setIsColorPickerExpanded }) {
           ></article>
         )
       })}
-      <article
-        className='material-icons-outlined no-color'
-        onClick={() => handleColorChange(note.id, '#fff')}
-      >
+      <article className='material-icons-outlined no-color' onClick={() => handleColorChange(note.id, '#fff')}>
         format_color_reset
       </article>
     </div>

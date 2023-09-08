@@ -5,8 +5,7 @@
   width: 600px;
   margin: 1rem auto 0;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
   padding: 0rem 1rem 0.75rem;
 }
 
@@ -60,10 +59,6 @@
   padding: 5px;
 }
 
-.add-note .icon.active {
-  border: 2px solid gray;
-}
-
 .add-note .icon.icon-pin {
   margin-block-end: 5px;
   padding: 5px;
@@ -76,4 +71,9 @@
   background: rgba(211, 211, 211, 0.548);
   border-radius: 50%;
   color: black;
+}
+
+.add-note .icon.active {
+  color: black;
+  border: 2px solid gray;
 }

@@ -4,7 +4,7 @@ import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { KeepHeader } from '../cmps/KeepHeader.jsx'
 import { UserMsg } from '../../../cmps/UserMsg.jsx'
-import { showSuccessMsg } from '../../../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
@@ -23,14 +23,24 @@ export function NoteIndex() {
     setFilterBy(filterBy)
   }
 
-  function onAddNote(note) {
-    noteService.save(note).then(note => setNotes(prevNotes => [...prevNotes, note]))
+  function onAddNote(note, isDuplicate = false) {
+    noteService
+      .save(note)
+      .then(note => {
+        setNotes(prevNotes => [...prevNotes, note])
+        !isDuplicate && showSuccessMsg('Note added')
+      })
+      .catch(err => {
+        console.error('Unable to save note:', err)
+        showErrorMsg('Unable to add note')
+      })
   }
 
   function onDuplicateNote(note) {
     const duplicatedNote = structuredClone(note)
     duplicatedNote.id = null
-    onAddNote(duplicatedNote)
+    onAddNote(duplicatedNote, true)
+    showSuccessMsg('Note duplicated')
   }
 
   function onRemoveNote(noteId) {
@@ -38,9 +48,12 @@ export function NoteIndex() {
       .remove(noteId)
       .then(() => {
         setNotes(notes.filter(note => note.id !== noteId))
-        showSuccessMsg('Note successfully removed')
+        showSuccessMsg('Note removed')
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.error('Cannot remove note:', err)
+        showErrorMsg('Unable to remove note')
+      })
   }
 
   function onChangeColor(noteId, backgroundColor) {
@@ -56,6 +69,7 @@ export function NoteIndex() {
       })
       .catch(error => {
         console.error('Error updating note:', error)
+        showErrorMsg('Unable to change color')
       })
   }
 
@@ -69,9 +83,12 @@ export function NoteIndex() {
       .then(updatedNote => {
         const updatedNotes = notes.map(note => (note.id === updatedNote.id ? updatedNote : note))
         setNotes(updatedNotes)
+        updatedNote.isPinned && showSuccessMsg('Note pinned')
+        !updatedNote.isPinned && showSuccessMsg('Note unpinned')
       })
       .catch(error => {
         console.error('Error updating note:', error)
+        showErrorMsg('Unable to pin note')
       })
   }
 

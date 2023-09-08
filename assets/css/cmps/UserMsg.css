@@ -4,11 +4,12 @@
   align-items: center;
   background-color: lightgray;
   color: aliceblue;
-  padding: 1rem;
+  padding: 0.7rem;
   position: fixed;
   bottom: 2em;
   left: 1em;
   border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }
 
 .user-msg.success {
@@ -20,6 +21,9 @@
 }
 
 .user-msg a {
+  border: 1px solid rgba(176, 176, 176, 0.311);
+  border-radius: 0.3rem;
+  font-size: 1rem;
   float: right;
   margin-inline-start: 0.5rem;
   cursor: pointer;
@@ -28,7 +32,7 @@
 }
 
 .user-msg a:hover {
-  background-color: rgba(184, 178, 178, 0.676);
+  background-color: rgba(199, 194, 194, 0.91);
   color: black;
   border-radius: 50%;
   padding: 2px;
