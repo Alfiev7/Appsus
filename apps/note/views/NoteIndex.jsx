@@ -3,7 +3,8 @@ import { AddNote } from '../cmps/AddNote.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { KeepHeader } from '../cmps/KeepHeader.jsx'
-import { utilService } from '../../../services/util.service.js'
+import { UserMsg } from '../../../cmps/UserMsg.jsx'
+import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
@@ -22,16 +23,24 @@ export function NoteIndex() {
     setFilterBy(filterBy)
   }
 
-  function onAddNote(note) {
+  function onAddNote(note, isDuplicate = false) {
     noteService
       .save(note)
-      .then(note => setNotes(prevNotes => [...prevNotes, note]))
+      .then(note => {
+        setNotes(prevNotes => [...prevNotes, note])
+        !isDuplicate && showSuccessMsg('Note added')
+      })
+      .catch(err => {
+        console.error('Unable to save note:', err)
+        showErrorMsg('Unable to add note')
+      })
   }
 
   function onDuplicateNote(note) {
     const duplicatedNote = structuredClone(note)
     duplicatedNote.id = null
-    onAddNote(duplicatedNote)
+    onAddNote(duplicatedNote, true)
+    showSuccessMsg('Note duplicated')
   }
 
   function onRemoveNote(noteId) {
@@ -39,8 +48,12 @@ export function NoteIndex() {
       .remove(noteId)
       .then(() => {
         setNotes(notes.filter(note => note.id !== noteId))
+        showSuccessMsg('Note removed')
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.error('Cannot remove note:', err)
+        showErrorMsg('Unable to remove note')
+      })
   }
 
   function onChangeColor(noteId, backgroundColor) {
@@ -51,13 +64,12 @@ export function NoteIndex() {
         return noteService.save(note)
       })
       .then(updatedNote => {
-        const updatedNotes = notes.map(note =>
-          note.id === updatedNote.id ? updatedNote : note
-        )
+        const updatedNotes = notes.map(note => (note.id === updatedNote.id ? updatedNote : note))
         setNotes(updatedNotes)
       })
       .catch(error => {
         console.error('Error updating note:', error)
+        showErrorMsg('Unable to change color')
       })
   }
 
@@ -69,14 +81,22 @@ export function NoteIndex() {
         return noteService.save(note)
       })
       .then(updatedNote => {
-        const updatedNotes = notes.map(note =>
-          note.id === updatedNote.id ? updatedNote : note
-        )
+        const updatedNotes = notes.map(note => (note.id === updatedNote.id ? updatedNote : note))
         setNotes(updatedNotes)
+        updatedNote.isPinned && showSuccessMsg('Note pinned')
+        !updatedNote.isPinned && showSuccessMsg('Note unpinned')
       })
       .catch(error => {
         console.error('Error updating note:', error)
+        showErrorMsg('Unable to pin note')
       })
+  }
+
+  const noteHandlingFuncs = {
+    onRemoveNote,
+    onChangeColor,
+    onDuplicateNote,
+    onPinNote,
   }
 
   if (!notes) return <div>Loading...</div>
@@ -88,29 +108,15 @@ export function NoteIndex() {
       {hasPinnedNotes && (
         <div className='pinned-notes'>
           <pre className='pinned-notes-label'>Pinned</pre>
-          <NoteList
-            notes={notes.filter(note => note.isPinned)}
-            hasPinnedNotes={hasPinnedNotes}
-            onRemoveNote={onRemoveNote}
-            onChangeColor={onChangeColor}
-            onPinNote={onPinNote}
-            onDuplicateNote={onDuplicateNote}
-          />
+          <NoteList notes={notes.filter(note => note.isPinned)} noteHandlingFuncs={noteHandlingFuncs} />
         </div>
       )}
 
       <div className='unpinned-notes'>
-        {hasPinnedNotes && (
-          <pre className='unpinned-notes-label'>Other notes</pre>
-        )}
-        <NoteList
-          notes={notes.filter(note => !note.isPinned)}
-          onRemoveNote={onRemoveNote}
-          onChangeColor={onChangeColor}
-          onPinNote={onPinNote}
-          onDuplicateNote={onDuplicateNote}
-        />
+        {hasPinnedNotes && <pre className='unpinned-notes-label'>Other notes</pre>}
+        <NoteList notes={notes.filter(note => !note.isPinned)} noteHandlingFuncs={noteHandlingFuncs} />
       </div>
+      <UserMsg />
     </section>
   )
 }

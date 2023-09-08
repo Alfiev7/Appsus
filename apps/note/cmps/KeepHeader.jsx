@@ -27,6 +27,7 @@ export function KeepHeader({ onSetFilterBy }) {
         className={`material-symbols-outlined icon ${
           selectedIcon === icon ? 'active' : ''
         }`}
+        title={icons[icon].title}
         onClick={() => handleFilterByIcon(icon)}
       >
         {icon}

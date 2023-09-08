@@ -5,15 +5,20 @@ import { NoteVideo } from './NoteVideo.jsx'
 import { ColorPicker } from './ColorPicker.jsx'
 import { noteService } from '../services/note.service.js'
 import { NoteHeader } from './NoteHeader.jsx'
+import { NoteCanvas } from './NoteCanvas.jsx'
+import { NoteMap } from './NoteMap.jsx'
+import { NoteRecording } from './NoteRecording.jsx'
 
 const { useState, useEffect, useRef } = React
 
 export function NotePreview({
   note,
-  onRemoveNote,
-  onChangeColor,
-  onPinNote,
-  onDuplicateNote,
+  noteHandlingFuncs: {
+    onRemoveNote,
+    onChangeColor,
+    onPinNote,
+    onDuplicateNote,
+  },
 }) {
   const [isColorPickerExpanded, setIsColorPickerExpanded] = useState(false)
   const colorPickerRef = useRef(null)
@@ -21,7 +26,7 @@ export function NotePreview({
   const {
     id,
     type,
-    info: { txt, title },
+    info: { txt },
   } = note
 
   useEffect(() => {
@@ -56,6 +61,15 @@ export function NotePreview({
       case 'NoteTodos':
         return <NoteTodos {...note} />
 
+      case 'NoteCanvas':
+        return <NoteCanvas {...note} />
+
+      case 'NoteMap':
+        return <NoteMap {...note} />
+
+      case 'NoteRecording':
+        return <NoteRecording {...note} />
+
       default:
         return null
     }
@@ -79,12 +93,14 @@ export function NotePreview({
             <a
               className='material-icons-outlined'
               onClick={() => onRemoveNote(note.id)}
+              title='Delete note'
             >
               delete
             </a>
             <a
               className='material-icons-outlined'
               onClick={() => setIsColorPickerExpanded(!isColorPickerExpanded)}
+              title='Change color'
               ref={paletteRef}
             >
               palette
@@ -92,6 +108,7 @@ export function NotePreview({
             <a
               className='material-symbols-outlined'
               onClick={() => onDuplicateNote(note)}
+              title='Duplicate note'
             >
               content_copy
             </a>

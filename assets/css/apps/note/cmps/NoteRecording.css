@@ -1,0 +1,25 @@
+.note-recording .icon {
+  margin-block-end: 5px;
+  padding: 5px;
+  margin-inline-end: 0.5rem;
+  color: gray;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  border: 2px solid transparent;
+}
+
+.note-recording .icon:hover {
+  background: rgba(211, 211, 211, 0.548);
+  border-radius: 50%;
+  color: black;
+}
+
+.note-recording .icon.icon-eq {
+  background: rgba(211, 211, 211, 0.548);
+  border-radius: 50%;
+  border: 2px solid rgba(149, 145, 145, 0.779);
+}
+
+.note-recording .audio-container audio {
+  width: 100%;
+}
