@@ -40,13 +40,13 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
     };
 
     const markAsRead = () => {
-        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: true } : email);
+        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: true, isChecked: false } : email);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
     const markAsUnread = () => {
-        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false } : email);
+        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false, isChecked: false } : email);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
@@ -60,7 +60,7 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
               flaggedForRemoval.push(email.id);
               return null;
             } else {
-              return { ...email, isTrash: true };
+              return { ...email, isTrash: true, isChecked: false };
             }
           }
           return email;
