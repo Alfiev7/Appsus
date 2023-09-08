@@ -2,9 +2,10 @@
 
 
 
-    body{
+    body {
         overflow: hidden;
     }
+
     .SideBarComponent>h3,
     .SideBarComponent>p,
     button.sidebar_compose>h2 {
@@ -23,10 +24,10 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        max-width: none; 
+        max-width: none;
         justify-content: center;
     }
-        
+
 
     button.sidebar_compose {
         margin-right: 20px;
@@ -34,14 +35,14 @@
         background-color: lightblue;
         margin-top: 0.3rem;
     }
-    
-    .emaillist-topbuttons{
+
+    .emaillist-topbuttons {
         justify-content: space-between;
     }
 
     .EmailList {
         width: 100%;
-        
+
     }
 
     .emaillist_sections {
@@ -109,6 +110,10 @@
     .header_left>img {
         margin-left: 0;
         height: 1.3rem;
+        object-fit:scale-down;
+        top: 0.7rem;
+        left: 0.7rem;
+        
     }
 
     .header_right {
@@ -116,8 +121,9 @@
     }
 
     .header_middle input {
-        width: 100%; 
+        width: 100%;
     }
+
     .header_right>img {
         margin-left: 10px;
         margin-right: 0;
@@ -131,4 +137,3 @@
         border-bottom: 3px solid whitesmoke;
     }
 }
-
