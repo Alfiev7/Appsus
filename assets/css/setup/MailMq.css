@@ -12,18 +12,31 @@
     }
 
     .sidebar {
-        max-width: 3rem;
-        border-right: 1px solid whitesmoke;
-
+        position: absolute;
+        display: flex;
+        background-color: whitesmoke;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-width: none; 
+        justify-content: center;
     }
+        
 
     button.sidebar_compose {
-        padding: 0.5rem;
+        margin-right: 20px;
+        padding: 0.7rem;
+        background-color: lightblue;
+        margin-top: 0.3rem;
+    }
+    
+    .emaillist-topbuttons{
+        justify-content: space-between;
     }
 
     .EmailList {
         width: 100%;
-        /* overflow: h */
+        
     }
 
     .emaillist_sections {
