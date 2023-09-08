@@ -49,6 +49,8 @@ export function NotePreview({ note, noteHandlingFuncs }) {
     noteService.updateNoteContent(id, type, txt, newTitle)
   }
 
+  console.log('note.style', note.style)
+
   return (
     <article className='note-preview' style={note.style}>
       <NoteHeader note={note} onUpdateTitle={onUpdateTitle} onPinNote={onPinNote} />

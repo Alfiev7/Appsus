@@ -9,7 +9,7 @@ export function NoteTxt({ id, createdAt, style, info, type }) {
   }
 
   return (
-    <div className='note-txt' style={style}>
+    <div className='note-txt'>
       <p onInput={onUpdateTxt} contentEditable suppressContentEditableWarning={true}>
         <LongTxt txt={txt} />
       </p>
