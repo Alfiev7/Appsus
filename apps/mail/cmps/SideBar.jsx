@@ -7,14 +7,11 @@ import { EmailCompose } from './EmailCompose.jsx';
 import { EmailList } from './EmailList.jsx';
 
 
-export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompose, handleCloseCompose, handleComposeClick, draftData }) {
+export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompose, handleCloseCompose, handleComposeClick, draftData, hideTitles, showTitlesAndNumbers, toggleHideTitles }) {
     const [sideBarData, setSideBarData] = useState(null);
-    
 
-
-
-
-    useEffect(() => {
+ 
+   useEffect(() => {
         sideBarService.getSideBarData().then(setSideBarData);
 
     }, []);
@@ -45,11 +42,15 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
         }
     }
 
-    return (
-        <div className="sidebar">
-            <button className="sidebar_compose" onClick={handleComposeClick}>
 
-                <i className="fa-regular fa-pen-to-square"></i> Compose </button>
+
+    return (
+        <div className={`sidebar ${showTitlesAndNumbers? '' : 'sidebar-icons-only'}`}>
+            <button className="sidebar_compose" onClick={handleComposeClick}>
+                <i className="fa-regular fa-pen-to-square"></i>
+                <h2 className={hideTitles ? 'hidden' : ''}>Compose</h2>
+                </button>
+
             <EmailCompose show={showCompose} onClose={handleCloseCompose} addNewEmail={addNewEmail} draftData={draftData} />
 
             {sideBarData.map((sideBarItemData) => (
@@ -63,27 +64,29 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
             ))}
 
 
+
+
             <div className="sidebar-labels">
                 <h2>Labels</h2>
 
                 <div className="critical">
                     <span className="material-symbols-outlined">label</span>
-                    <h3>Critical</h3>
+                    <h3 className={hideTitles ? 'hidden' : ''}>Critical</h3>
                 </div>
 
                 <div className="family">
                     <span className="material-symbols-outlined">label</span>
-                    <h3>Family</h3>
+                    <h3 className={hideTitles ? 'hidden' : ''}>Family</h3>
                 </div>
 
                 <div className="work">
                     <span className="material-symbols-outlined">label</span>
-                    <h3>Work</h3>
+                    <h3 className={hideTitles ? 'hidden' : ''}>Work</h3>
                 </div>
 
                 <div className="memories">
                     <span className="material-symbols-outlined">label</span>
-                    <h3>Memories</h3>
+                    <h3 className={hideTitles ? 'hidden' : ''}>Memories</h3>
                 </div>
 
 

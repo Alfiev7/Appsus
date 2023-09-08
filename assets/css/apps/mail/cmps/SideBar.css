@@ -1,28 +1,52 @@
-
-.sidebar{
+.sidebar {
     flex: 0.3;
     max-width: 18.75rem;
     padding-right: 1.25rem;
 }
+ 
 
-button.sidebar_compose{
-margin-top: 1rem;
-margin-left: 0.6rem;
-margin-bottom: 1rem;
-padding: 1rem;
-border-radius: 30px;
-box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
-border: none;
-color: #041e49;
-background-color: whitesmoke;
-cursor: pointer;
 
+.sidebar-icons-only {
+    max-width: 6rem;
 }
 
 
-button.sidebar_compose > i {
- font-weight: 400;
+.sidebar-icons-only .SideBarComponent>h3,
+.sidebar-icons-only .SideBarComponent>p {
+    display: none;
+}
+
+button.sidebar_compose {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-left: 0.6rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 30px;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+    border: none;
     color: #041e49;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+
+
+button.sidebar_compose>i {
+    font-weight: 400;
+    color: #041e49;
+}
+
+button.sidebar_compose>h2 {
+    color: grey;
+    font-size: 0.85rem;
+    margin-left: 0.2rem;
+}
+
+
+.hidden {
+    display: none;
 }
 
 .sidebar-labels {
@@ -30,7 +54,7 @@ button.sidebar_compose > i {
     flex-direction: column;
 }
 
-.sidebar-labels > h2 {
+.sidebar-labels>h2 {
     margin-top: 2rem;
     margin-left: 0.9rem;
     padding: 0.35rem;
@@ -38,19 +62,28 @@ button.sidebar_compose > i {
     color: #202124;
 }
 
-.critical, .family, .work, .memories {
+.critical,
+.family,
+.work,
+.memories {
     padding: 0 0.65rem;
     display: flex;
     align-items: center;
     color: #202124;
 }
 
-.critical > span, .family > span, .work > span, .memories > span {
+.critical>span,
+.family>span,
+.work>span,
+.memories>span {
     padding: 0.35rem;
     color: grey;
 }
 
-.critical > h3, .family > h3, .work > h3, .memories > h3 {
+.critical>h3,
+.family>h3,
+.work>h3,
+.memories>h3 {
     flex: 1;
     margin-left: 0.65rem;
     font-size: 0.85rem;

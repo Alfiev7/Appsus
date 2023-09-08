@@ -1,10 +1,23 @@
+const { useState } = React
 
+export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitlesAndNumbers }) {
+  const [hideTitles, setHideTitles] = useState(false);
 
-export function Header({ updateSearchKeyword }) {
+  const handleToggleHideTitles = () => {
+    setHideTitles(!hideTitles);
+    toggleHideTitles(); 
+  };
+
+  const handleToggleShowTitlesAndNumbers = () => {
+    toggleShowTitlesAndNumbers();
+    handleToggleHideTitles()
+  };
+
   return (
     <div className='header'>
       <div className="header_left">
-        <i className="fas fa-bars"></i>
+      <i className="fas fa-bars" onClick={handleToggleShowTitlesAndNumbers}></i>
+
       <img src="./assets/img/gmail.png" alt="" />
       </div>
 

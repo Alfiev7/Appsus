@@ -14,6 +14,8 @@ export function MailIndex() {
     const [showCompose, setShowCompose] = useState(false);
     const [draftData, setDraftData] = useState(null);
     const [isAscending, setIsAscending] = useState(true);
+    const [hideTitles, setHideTitles] = useState(false);
+    const [showTitlesAndNumbers, setShowTitlesAndNumbers] = useState(true);
 
 
 
@@ -38,8 +40,8 @@ export function MailIndex() {
 
     const sortEmailsByDate = () => {
         const sortedEmails = [...emails].sort((a, b) => {
-          const diff = a.time - b.time; 
-          return isAscending ? diff : -diff; 
+            const diff = a.time - b.time;
+            return isAscending ? diff : -diff;
         });
         setEmails(sortedEmails);
         setIsAscending(!isAscending);
@@ -47,17 +49,17 @@ export function MailIndex() {
 
     const sortEmailsByTitle = () => {
         const sortedEmails = [...emails].sort((a, b) => {
-          const titleA = a.title.toLowerCase();
-          const titleB = b.title.toLowerCase();
-          const firstLetterA = titleA.charAt(0);
-          const firstLetterB = titleB.charAt(0);
-    
-          const diff = firstLetterA.localeCompare(firstLetterB);
-          return isAscending ? diff : -diff;
+            const titleA = a.title.toLowerCase();
+            const titleB = b.title.toLowerCase();
+            const firstLetterA = titleA.charAt(0);
+            const firstLetterB = titleB.charAt(0);
+
+            const diff = firstLetterA.localeCompare(firstLetterB);
+            return isAscending ? diff : -diff;
         });
         setEmails(sortedEmails);
         setIsAscending(!isAscending);
-      };
+    };
 
     const getFilteredEmails = () => {
         switch (appliedFilter) {
@@ -90,9 +92,9 @@ export function MailIndex() {
         }
     };
 
-        
 
-      
+
+
     const handleComposeClick = () => {
         setDraftData(null);
         setShowCompose(true);
@@ -107,10 +109,21 @@ export function MailIndex() {
         setShowCompose(true);
     };
 
+    const toggleShowTitlesAndNumbers = () => {
+        setShowTitlesAndNumbers(!showTitlesAndNumbers);
+    };
+
+
+
+
     return (
 
         <div className="mailapp">
-            <Header updateSearchKeyword={updateSearchKeyword} />
+            <Header
+                updateSearchKeyword={updateSearchKeyword}
+                toggleHideTitles={() => setHideTitles(!hideTitles)}
+                toggleShowTitlesAndNumbers={toggleShowTitlesAndNumbers} 
+            />
 
             <div className="app_body">
                 <SideBar
@@ -121,6 +134,8 @@ export function MailIndex() {
                     handleComposeClick={handleComposeClick}
                     handleCloseCompose={handleCloseCompose}
                     draftData={draftData}
+                    hideTitles={hideTitles}
+                    showTitlesAndNumbers={showTitlesAndNumbers}
                 />
                 <Routes>
                     <Route
@@ -130,7 +145,7 @@ export function MailIndex() {
                                 emails={emails}
                                 setEmails={setEmails}
                                 emailsAfterFilter={getSearchFilteredEmails()}
-                                handleOpenDraft={handleOpenDraft} 
+                                handleOpenDraft={handleOpenDraft}
                                 sortEmailsByDate={sortEmailsByDate}
                                 sortEmailsByTitle={sortEmailsByTitle}
                             />
