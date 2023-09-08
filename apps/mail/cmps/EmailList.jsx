@@ -17,21 +17,21 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
 
 
     const toggleAllCheckboxes = () => {
-        const allChecked = emails.every(email => email.isChecked);
-        const updatedEmails = emails.map(email => ({ ...email, isChecked: !allChecked }));
+        const allChecked = emailsAfterFilter.every(email => email.isChecked);
+        const updatedEmails = emails.map(email => {
+            if (emailsAfterFilter.some(filteredEmail => filteredEmail.id === email.id)) {
+                return { ...email, isChecked: !allChecked };
+            }
+            return email;
+        });
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
-
-
     const toggleIsStarred = (id) => {
         const updatedEmails = emails.map(email => email.id === id ? { ...email, isStarred: !email.isStarred } : email);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
-
-
-
 
     const toggleCheckbox = (id) => {
         const updatedEmails = emails.map(email => email.id === id ? { ...email, isChecked: !email.isChecked } : email);
@@ -51,24 +51,23 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
-    
     const markasTrash = () => {
         const flaggedForRemoval = [];
         const updatedEmails = emails.map(email => {
-          if (email.isChecked) {
-            if (email.isTrash) {
-              flaggedForRemoval.push(email.id);
-              return null;
-            } else {
-              return { ...email, isTrash: true, isChecked: false };
+            if (email.isChecked) {
+                if (email.isTrash) {
+                    flaggedForRemoval.push(email.id);
+                    return null;
+                } else {
+                    return { ...email, isTrash: true, isChecked: false };
+                }
             }
-          }
-          return email;
+            return email;
         }).filter(email => email !== null);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
-        
+
     return (
 
         <div className="EmailList">
@@ -79,7 +78,6 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
                 <span className="material-icons-outlined" onClick={markasTrash}>delete_outline</span>
             </div>
-
 
             <div className="emaillist_sections">
 
