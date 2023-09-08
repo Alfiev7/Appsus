@@ -65,14 +65,9 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
   }
 
   return (
-    <div className='note-todos' style={style}>
+    <div className='note-todos'>
       {todos.map((todo, index) => (
-        <TodoItem
-          key={index}
-          todo={todo}
-          index={index}
-          todoHandleFuncs={todoHandleFuncs}
-        />
+        <TodoItem key={index} todo={todo} index={index} todoHandleFuncs={todoHandleFuncs} />
       ))}
       <div className='add-todo-line'>
         <a className='material-icons-outlined icon icon-add'>add</a>

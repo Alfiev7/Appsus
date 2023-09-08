@@ -10,15 +10,11 @@ import { NoteRecording } from './NoteRecording.jsx'
 import { NoteActions } from './NoteActions.jsx'
 
 export function NotePreview({ note, noteHandlingFuncs }) {
-  const {
-    id,
-    type,
-    info: { txt },
-  } = note
+  const { id, type, info } = note
   const { onPinNote } = noteHandlingFuncs
 
   function getNoteToRender() {
-    switch (note.type) {
+    switch (type) {
       case 'NoteTxt':
         return <NoteTxt {...note} />
 
@@ -46,10 +42,8 @@ export function NotePreview({ note, noteHandlingFuncs }) {
   }
 
   function onUpdateTitle({ target: { textContent: newTitle } }) {
-    noteService.updateNoteContent(id, type, txt, newTitle)
+    noteService.updateNoteContent(id, type, info.txt, newTitle)
   }
-
-  console.log('note.style', note.style)
 
   return (
     <article className='note-preview' style={note.style}>

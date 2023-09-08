@@ -77,7 +77,7 @@ export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
   }
 
   return (
-    <div className='note-recording' style={style}>
+    <div className='note-recording'>
       {recording ? (
         <a
           ref={eqRef}
