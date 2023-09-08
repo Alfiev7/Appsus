@@ -1,5 +1,10 @@
 @media (max-width: 640px) {
 
+
+
+    body{
+        overflow: hidden;
+    }
     .SideBarComponent>h3,
     .SideBarComponent>p,
     button.sidebar_compose>h2 {
@@ -110,7 +115,9 @@
         padding-right: 0;
     }
 
-
+    .header_middle input {
+        width: 100%; 
+    }
     .header_right>img {
         margin-left: 10px;
         margin-right: 0;
@@ -118,6 +125,10 @@
 
     .header_middle {
         flex: 0.8;
+    }
+
+    .header {
+        border-bottom: 3px solid whitesmoke;
     }
 }
 
