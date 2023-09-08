@@ -63,7 +63,7 @@ if (!email) {
           <h2>{email.subject}</h2>
           <i className="material-icons-outlined">label_important</i>
           <p>{email.from}</p>
-          <div className="time">Monday 17th Febuary 2023 18:30 PM </div>
+          <div className="time">{email.time}</div>
 
         </div>
         <div className="emailpreview-message">

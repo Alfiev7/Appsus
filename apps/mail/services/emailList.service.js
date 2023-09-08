@@ -43,6 +43,46 @@ function _createSectionData() {
     }
   }
 
+
+  function generateRandomDate(start, end) {
+    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  
+    const dayName = date.toLocaleString('en-US', { weekday: 'long' });
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'long' });
+    const year = date.getFullYear();
+    let hour = date.getHours();
+    const minute = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+  
+    // Convert 24-hour time format to 12-hour format
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+  
+    return `${dayName}, ${month} ${day}, ${year} at ${hour}:${minute} ${ampm}`;
+  }
+  
+  const startDate = new Date('2023-01-01T00:00:00');
+  const endDate = new Date('2023-08-31T23:59:59');
+  
+
+  console.log(generateRandomDate(startDate, endDate));
+  
+
+
+  function formatDate(date) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const dateString = new Intl.DateTimeFormat('en-US', options).format(date);
+    return dateString;
+}
+const now = new Date();
+  
+
+    
+  
+
+  
+
 const emailRowData = [
     {
         id: 1,
@@ -55,7 +95,7 @@ const emailRowData = [
         
         Best regards,
         Dimitri`,
-        time: "Monday 17th Febuary 2023 18:30 PM", 
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Dimitri@protonmail.com',
@@ -79,7 +119,7 @@ const emailRowData = [
         Alfie
         Mifal Hapias Team
         `,
-        time: "Tuesday 19th March 2023 23:30 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: true,
         removedAt: null,
         from: 'alfie@gmail.com',
@@ -101,7 +141,7 @@ const emailRowData = [
     
         Cheers,
         Emily`,
-        time: "Wednesday 21st September 2023 10:15 AM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Emily@solarenergy.com',
@@ -122,7 +162,7 @@ const emailRowData = [
     
         Regards,
         John`,
-        time: "Saturday 3rd June 2023 4:05 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'John@petcare.com',
@@ -143,7 +183,7 @@ const emailRowData = [
     
         Best,
         Sophia`,
-        time: "Friday 25th August 2023 2:30 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Sophia@techupdate.com',
@@ -164,7 +204,7 @@ const emailRowData = [
     
         Regards,
         Mark`,
-        time: "Sunday 9th July 2023 11:05 AM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Mark@airways.com',
@@ -185,7 +225,7 @@ const emailRowData = [
     
         Warm regards,
         Alfie`,
-        time: "Tuesday 1st November 2023 6:50 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: true,
         removedAt: null,
         from: 'alfie@gmail.com',
@@ -206,7 +246,7 @@ const emailRowData = [
     
         Cheers,
         Daniel`,
-        time: "Monday 12th December 2023 10:30 AM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Daniel@gym.com',
@@ -227,7 +267,7 @@ const emailRowData = [
     
         Best,
         Olivia`,
-        time: "Friday 20th October 2023 3:00 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Olivia@artmonthly.com',
@@ -248,7 +288,7 @@ const emailRowData = [
     
         Kind regards,
         Liam`,
-        time: "Thursday 18th May 2023 4:45 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Liam@techguide.com',
@@ -268,7 +308,7 @@ const emailRowData = [
         Your car is due for its scheduled maintenance next week. Please make an appointment at your earliest convenience.
     
         Emma`,
-        time: "Saturday 29th April 2023 1:25 PM",
+        time: generateRandomDate(startDate, endDate),
         isRead: false,
         removedAt: null,
         from: 'Emma@carservice.com',
@@ -285,9 +325,11 @@ export const emailIncoming = {
     getEmailRowData,
     saveToStorage,
     saveEmail,
-    updateEmail
+    deleteEmail, 
+    updateEmail,
+    formatDate
 }
-const LATEST_EMAIL_VERSION = 6; 
+const LATEST_EMAIL_VERSION = 12; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
@@ -295,7 +337,6 @@ _createEmailRowData()
 async function getEmailRowData() {
     try {
         const emailRowData = await storageService.query(EMAILROWDATA_KEY);
-        
         if (emailRowData.length === 0) {
             console.log('No email data found');  
         }
@@ -304,6 +345,18 @@ async function getEmailRowData() {
         console.error('An error occurred while fetching email data:', error);
         return null;  
     }
+}
+        
+function deleteEmail(emailId) {
+    return storageService.query(EMAILROWDATA_KEY)
+        .then(emailRowData => {
+            const emailIdx = emailRowData.findIndex(email => email.id === emailId);
+            if (emailIdx === -1) {
+                throw new Error('Email not found');
+            }
+            emailRowData.splice(emailIdx, 1);
+            return utilService.saveToStorage(EMAILROWDATA_KEY, emailRowData);
+        });
 }
 
   
@@ -344,3 +397,5 @@ function updateEmail(updatedEmail) {
             return utilService.saveToStorage(EMAILROWDATA_KEY, emailRowData);
         });
 }
+
+
