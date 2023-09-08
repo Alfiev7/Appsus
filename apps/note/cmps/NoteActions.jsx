@@ -1,25 +1,44 @@
 import { ColorPicker } from './ColorPicker.jsx'
+import { LabelPicker } from './LabelPicker.jsx'
+import { NoteLabels } from './NoteLabels.jsx'
 const { useState, useEffect, useRef } = React
 
 export function NoteActions({ note, noteHandlingFuncs }) {
   const [isColorPickerExpanded, setIsColorPickerExpanded] = useState(false)
-  const { onChangeColor, onRemoveNote, onDuplicateNote } = noteHandlingFuncs
+  const [isLabelPickerExpanded, setIsLabelPickerExpanded] = useState(false)
+  const { onChangeColor, onRemoveNote, onDuplicateNote, onAddLabel, onRemoveLabel } = noteHandlingFuncs
   const colorPickerRef = useRef(null)
-  const paletteRef = useRef(null)
+  const paletteIconRef = useRef(null)
+  const labelPickerRef = useRef(null)
+  const labelIconRef = useRef(null)
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (paletteRef.current && paletteRef.current.contains(event.target)) return
-      if (colorPickerRef.current && !colorPickerRef.current.contains(event.target)) {
-        setIsColorPickerExpanded(false)
-      }
-    }
-
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [colorPickerRef])
+  }, [isColorPickerExpanded, isLabelPickerExpanded])
+
+  function handleClickOutside({ target }) {
+    if (
+      (paletteIconRef.current && paletteIconRef.current.contains(target)) ||
+      (labelIconRef.current && labelIconRef.current.contains(target))
+    ) {
+      if (isColorPickerExpanded && !isLabelPickerExpanded) {
+        setIsLabelPickerExpanded(false)
+      } else if (!isColorPickerExpanded && isLabelPickerExpanded) {
+        setIsColorPickerExpanded(false)
+      }
+      return
+    }
+
+    if (colorPickerRef.current && !colorPickerRef.current.contains(target)) {
+      setIsColorPickerExpanded(false)
+    }
+    if (labelPickerRef.current && !labelPickerRef.current.contains(target)) {
+      setIsLabelPickerExpanded(false)
+    }
+  }
 
   return (
     <div className='note-actions'>
@@ -30,20 +49,43 @@ export function NoteActions({ note, noteHandlingFuncs }) {
           </a>
           <a
             className='material-icons-outlined'
-            onClick={() => setIsColorPickerExpanded(!isColorPickerExpanded)}
+            onClick={() => {
+              setIsColorPickerExpanded(!isColorPickerExpanded)
+              setIsLabelPickerExpanded(false)
+            }}
             title='Change color'
-            ref={paletteRef}
+            ref={paletteIconRef}
           >
             palette
+          </a>
+          <a
+            className='material-symbols-outlined'
+            onClick={() => {
+              setIsLabelPickerExpanded(!isLabelPickerExpanded)
+              setIsColorPickerExpanded(false)
+            }}
+            title='Add label'
+            ref={labelIconRef}
+          >
+            new_label
           </a>
           <a className='material-symbols-outlined' onClick={() => onDuplicateNote(note)} title='Duplicate note'>
             content_copy
           </a>
+          <a className='material-symbols-outlined' onClick={() => {}} title='Send as mail'>
+            outgoing_mail
+          </a>
         </div>
+        <NoteLabels note={note} onRemoveLabel={onRemoveLabel} />
       </React.Fragment>
+      {isLabelPickerExpanded && (
+        <div ref={labelPickerRef} className='top'>
+          <LabelPicker onAddLabel={onAddLabel} note={note} />
+        </div>
+      )}
       {isColorPickerExpanded && (
         <div ref={colorPickerRef} className='top'>
-          <ColorPicker onChangeColor={onChangeColor} note={note} setIsColorPickerExpanded={setIsColorPickerExpanded} />
+          <ColorPicker onChangeColor={onChangeColor} note={note} />
         </div>
       )}
     </div>

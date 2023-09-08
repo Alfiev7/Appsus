@@ -1,6 +1,6 @@
 import { NoteHeader } from './NoteHeader.jsx'
 
-export function NoteVideo({ id, createdAt, isPinned, style, info }) {
+export function NoteVideo({ createdAt, info }) {
   const { url } = info
   return (
     <div className='note-video'>

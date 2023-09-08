@@ -39,12 +39,8 @@ export function NoteMap({ id, createdAt, isPinned, style, info, type }) {
   }, [])
 
   return (
-    <div className='note-map' style={style}>
-      <div
-        ref={mapRef}
-        className='map-container'
-        style={{ height: '300px', width: '100%' }}
-      ></div>
+    <div className='note-map'>
+      <div ref={mapRef} className='map-container' style={{ height: '300px', width: '100%' }}></div>
       <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )

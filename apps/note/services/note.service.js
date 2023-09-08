@@ -162,6 +162,7 @@ function getEmptyNote() {
       title: '',
       txt: '',
       todos: [],
+      labels: [],
       url: '',
       coords: {
         lat: 0,

@@ -1,0 +1,42 @@
+.label-picker {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 0.3rem;
+  max-width: 100%;
+  padding: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  border-radius: 0.3rem;
+}
+
+.label-picker article {
+  position: relative;
+  color: aliceblue;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  padding: 5px 5px;
+  font-family: inherit;
+  border: 2px solid transparent;
+  transition: 0.2s ease-in-out;
+}
+
+.label-picker article:hover {
+  border: 2px solid black;
+}
+
+.label-picker article.picked {
+  border: 2px solid #a142f4;
+}
+
+.label-picker article.picked::before {
+  content: '\✔';
+  position: absolute;
+  top: -10px;
+  left: 0px;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: aliceblue;
+  background-color: #a142f4;
+  border-radius: 50%;
+  padding: 0rem 0.2rem;
+}

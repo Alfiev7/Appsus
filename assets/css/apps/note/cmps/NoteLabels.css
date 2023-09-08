@@ -1,0 +1,28 @@
+.note-labels {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.note-labels .label-item {
+  color: aliceblue;
+  padding: 2px 5px;
+  border-radius: 0.2em;
+  user-select: none;
+}
+
+.note-labels .label-item .icon-close {
+  opacity: 1;
+  color: #555555;
+  font-size: 0.75rem;
+  margin-inline-start: 5px;
+  margin-inline-end: 0px;
+  padding: 2px;
+}
+
+.note-labels .label-item .icon-close:hover {
+  color: black;
+}

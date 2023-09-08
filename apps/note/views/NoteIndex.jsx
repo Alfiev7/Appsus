@@ -94,11 +94,58 @@ export function NoteIndex() {
       })
   }
 
+  function onAddLabel(noteId, { txt, color }) {
+    noteService
+      .get(noteId)
+      .then(note => {
+        const newLabel = { txt, color }
+        note.info.labels = note.info.labels ? [...note.info.labels, newLabel] : [newLabel]
+        return noteService.save(note).then(() => newLabel)
+      })
+      .then(newLabel => {
+        setNotes(notes =>
+          notes.map(note =>
+            note.id === noteId
+              ? {
+                  ...note,
+                  info: { ...note.info, labels: note.info.labels ? [...note.info.labels, newLabel] : [newLabel] },
+                }
+              : note
+          )
+        )
+        showSuccessMsg('Label added')
+      })
+      .catch(err => {
+        console.error('Error updating note:', err)
+        showErrorMsg('Unable to add label')
+      })
+  }
+
+  function onRemoveLabel(noteId, index) {
+    noteService
+      .get(noteId)
+      .then(note => {
+        note.info.labels.splice(index, 1)
+        return noteService.save(note)
+      })
+      .then(updatedNote => {
+        const updatedNotes = notes.map(note => (note.id === updatedNote.id ? updatedNote : note))
+        setNotes(updatedNotes)
+        showSuccessMsg('Label removed')
+      })
+      .catch(err => {
+        console.error('Error removing label:', err)
+        showErrorMsg('Unable to remove label')
+      })
+  }
+
   const noteHandlingFuncs = {
     onRemoveNote,
     onChangeColor,
     onDuplicateNote,
     onPinNote,
+    onAddLabel,
+    onRemoveLabel,
   }
 
   if (!notes) return <div>Loading...</div>
