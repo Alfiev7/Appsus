@@ -13,6 +13,8 @@ export function MailIndex() {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [showCompose, setShowCompose] = useState(false);
     const [draftData, setDraftData] = useState(null);
+    const [isAscending, setIsAscending] = useState(true);
+
 
 
 
@@ -34,11 +36,15 @@ export function MailIndex() {
         setSearchKeyword(keyword);
     }
 
+    const sortEmailsByDate = () => {
+        const sortedEmails = [...emails].sort((a, b) => {
+          const diff = a.time - b.time; 
+          return isAscending ? diff : -diff; 
+        });
+        setEmails(sortedEmails);
+        setIsAscending(!isAscending);
+    };
 
-        
-      
-
-    
     const getFilteredEmails = () => {
         switch (appliedFilter) {
             case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com' && email.isTrash === false);
@@ -111,6 +117,7 @@ export function MailIndex() {
                                 setEmails={setEmails}
                                 emailsAfterFilter={getSearchFilteredEmails()}
                                 handleOpenDraft={handleOpenDraft} 
+                                sortEmailsByDate={sortEmailsByDate}
                             />
                         }
                     />

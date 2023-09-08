@@ -27,3 +27,12 @@
    font-size: 1.4rem;
 }
   
+.dropdown {
+   display: flex
+}
+
+.dropdown > span {
+   color: grey;
+   font-size: 1.2rem;
+   cursor: pointer;
+}
