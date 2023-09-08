@@ -50,6 +50,7 @@
   cursor: pointer;
   padding: 5px;
   border: 2px solid transparent;
+  transition: 0.2s ease-in-out;
 }
 
 .add-note .icon:hover,

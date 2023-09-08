@@ -16,5 +16,6 @@
 
   .keep-header-middle {
     flex-direction: column;
+    margin-inline-end: 0rem;
   }
 }
