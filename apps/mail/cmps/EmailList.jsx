@@ -45,21 +45,14 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
-    const removeSelectedEmails = () => {
-        const remainingEmails = emails.filter(email => !email.isChecked);
-        setEmails(remainingEmails);
-        utilService.saveToStorage(EMAILROWDATA_KEY, remainingEmails);
-    };
-
-
     const markAsUnread = () => {
         const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false } : email);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
+    
     const markasTrash = () => {
-
         const flaggedForRemoval = [];
         const updatedEmails = emails.map(email => {
           if (email.isChecked) {
@@ -72,18 +65,10 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
           }
           return email;
         }).filter(email => email !== null);
-        if (flaggedForRemoval.length > 0) {
-            console.log(`Removed emails with IDs: ${flaggedForRemoval.join(", ")}`);
-        }
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
-
-      
-      
-    
-    
-
+        
     return (
 
         <div className="EmailList">
