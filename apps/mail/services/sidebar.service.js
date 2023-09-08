@@ -1,7 +1,7 @@
 import { storageService } from "../../../services/async-storage.service.js";
 import {utilService} from "../../../services/util.service.js";
 
-const SIDEBAR_KEY = 'SIDEBAR_DB1';
+const SIDEBAR_KEYNEW = 'SIDEBAR_DB1';
 
 
 
@@ -47,14 +47,14 @@ export const sideBarService = {
 }
 
 function getSideBarData(){
-    return storageService.query(SIDEBAR_KEY).then(sideBarData => sideBarData)
+    return storageService.query(SIDEBAR_KEYNEW).then(sideBarData => sideBarData)
 }
 
 
 function _createSideBarData() {
-    let data = utilService.loadFromStorage(SIDEBAR_KEY)
+    let data = utilService.loadFromStorage(SIDEBAR_KEYNEW)
     if (!data || !data.length) {
       data = sideBarData
-      utilService.saveToStorage(SIDEBAR_KEY, data)
+      utilService.saveToStorage(SIDEBAR_KEYNEW, data)
     }
   }
