@@ -78,7 +78,7 @@ const notesDB = [
     isPinned: false,
     info: {
       url: '',
-      title: 'Where I live',
+      title: 'Home ♥',
     },
     style: { background: '#f6e2dd' },
   },

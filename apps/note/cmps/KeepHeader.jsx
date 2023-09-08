@@ -24,9 +24,7 @@ export function KeepHeader({ onSetFilterBy }) {
     return Object.keys(icons).map(icon => (
       <a
         key={icon}
-        className={`material-symbols-outlined icon ${
-          selectedIcon === icon ? 'active' : ''
-        }`}
+        className={`material-symbols-outlined icon ${selectedIcon === icon ? 'active' : ''}`}
         title={icons[icon].title}
         onClick={() => handleFilterByIcon(icon)}
       >
@@ -44,15 +42,11 @@ export function KeepHeader({ onSetFilterBy }) {
       </div>
 
       <div className='keep-header-middle'>
-        <i className='material-symbols-outlined'>search</i>
-
-        <input
-          placeholder='Search notes'
-          type='text'
-          onChange={handleFilterByText}
-          className='searchHeader'
-        />
-        {renderIcons()}
+        <div className='search-input-container'>
+          <i className='material-symbols-outlined'>search</i>
+          <input placeholder='Search notes' type='text' onChange={handleFilterByText} className='searchHeader' />
+        </div>
+        <div className='icons-container'>{renderIcons()}</div>
       </div>
 
       <div className='keep-header-right'>

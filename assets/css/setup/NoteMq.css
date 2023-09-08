@@ -1,0 +1,20 @@
+@media (max-width: 640px) {
+  .note-list {
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    columns: 1;
+  }
+
+  .content-input {
+    flex-direction: column;
+  }
+  .add-note {
+    margin-inline-start: 0.625rem;
+    margin-inline-end: 0.625rem;
+    width: calc(100% - 0.625rem * 2);
+  }
+
+  .keep-header-middle {
+    flex-direction: column;
+  }
+}

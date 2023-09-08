@@ -6,7 +6,7 @@ export function LongTxt({ txt, length = 200 }) {
   return (
     <React.Fragment>
       {(txt.length <= length && txt) || (
-        <span>
+        <span onClick={() => !isExpanded && setIsExpanded(true)} onBlur={() => setIsExpanded(false)}>
           {isExpanded ? txt : txt.substring(0, length)}
           <span style={{ cursor: 'pointer', color: 'blue' }} onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? '   Less' : ' ...'}

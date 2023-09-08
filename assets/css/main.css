@@ -40,6 +40,7 @@
 @import './apps/note/cmps/LabelPicker.css';
 @import './apps/note/cmps/AddNote.css';
 @import './apps/note/cmps/KeepHeader.css';
+@import './setup/NoteMq.css';
 
 /* MAIL */
 /* @import './apps/mail/cmps/MailList.css'; */
