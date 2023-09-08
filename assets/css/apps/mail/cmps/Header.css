@@ -12,7 +12,7 @@
 }
 
 .header_left > img {
-  object-fit: contain;
+  /* object-fit: contain; */
   height: 1.8rem;
   margin-left: 1rem;
 }
