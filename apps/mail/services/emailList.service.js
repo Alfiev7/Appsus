@@ -729,7 +729,7 @@ export const emailIncoming = {
     updateEmail,
     formatDate
 }
-const LATEST_EMAIL_VERSION = 15; 
+const LATEST_EMAIL_VERSION = 16; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
