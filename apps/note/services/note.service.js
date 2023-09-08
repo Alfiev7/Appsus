@@ -7,8 +7,7 @@ const notesDB = [
     createdAt: "Aug 20, '94 at 05:20",
     type: 'NoteTxt',
     isPinned: false,
-    style: {},
-    style: { backgroundColor: '#b4ddd3' },
+    style: { background: `url('https://www.gstatic.com/keep/backgrounds/travel_light_0614_rtl.svg')` },
     info: {
       title: 'Componenta Estupanda ',
       txt: `Long text trimming in React is a crucial technique for optimizing user interfaces, especially when dealing with extensive content. This process involves displaying a condensed version of a lengthy text, with an option to expand and reveal the complete content. This approach enhances user experience by providing a concise preview while allowing users to delve deeper if desired.
@@ -21,14 +20,14 @@ const notesDB = [
     type: 'NoteImg',
     isPinned: false,
     info: { url: 'https://i.imgflip.com/7y6l0y.jpg', title: 'Making this...' },
-    style: { backgroundColor: '#fffabc' },
+    style: { background: '#fffabc' },
   },
   {
     id: 'n103',
     createdAt: "Jul 13, '73 at 08:30",
     type: 'NoteTodos',
     isPinned: false,
-    style: { backgroundColor: '#d3bfdb' },
+    style: { background: '#d3bfdb' },
     info: {
       title: 'I have todo this !',
       todos: [
@@ -57,7 +56,7 @@ const notesDB = [
       url: 'https://t3.ftcdn.net/jpg/01/20/68/68/360_F_120686889_nDaqiMH8I5AmT5B0hpuJ14ZasdrrgRAK.jpg',
       title: 'CR mornings be like..',
     },
-    style: { backgroundColor: '#e9e3d4' },
+    style: { background: '#e9e3d4' },
   },
   {
     id: 'n1112',
@@ -70,7 +69,7 @@ const notesDB = [
       `,
       title: 'WEIRD',
     },
-    style: { backgroundColor: '#e2f6d3' },
+    style: { background: '#e2f6d3' },
   },
   {
     id: 'n15552',
@@ -81,7 +80,7 @@ const notesDB = [
       url: '',
       title: 'Where I live',
     },
-    style: { backgroundColor: '#f6e2dd' },
+    style: { background: '#f6e2dd' },
   },
 ]
 const NOTES_KEY = 'notesDB'
@@ -121,7 +120,6 @@ function query(filterBy) {
 
 function get(noteId) {
   return storageService.get(NOTES_KEY, noteId).then(note => {
-    // note = _setNextPrevNoteId(note)
     return note
   })
 }
@@ -159,7 +157,7 @@ function getEmptyNote() {
     type: 'NoteTxt',
     isPinned: false,
     createdAt: utilService.getFormattedDate(),
-    style: {},
+    style: { backgroundSize: 'cover' },
     info: {
       title: '',
       txt: '',

@@ -56,11 +56,13 @@ export function NoteIndex() {
       })
   }
 
-  function onChangeColor(noteId, backgroundColor) {
+  function onChangeColor(noteId, newBackground, isBackground) {
     noteService
       .get(noteId)
       .then(note => {
-        note.style.backgroundColor = backgroundColor
+        note.style = isBackground
+          ? { backgroundImage: newBackground, backgroundSize: 'cover' }
+          : { backgroundColor: newBackground }
         return noteService.save(note)
       })
       .then(updatedNote => {
