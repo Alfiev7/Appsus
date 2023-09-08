@@ -49,25 +49,25 @@
         grid-row: 1/5;
     }
 
-    .emailRow_options > span {
-        margin-bottom: 5px; 
+    .emailRow_options>span {
+        margin-bottom: 5px;
     }
 
 
-    .emailRow_title
-     {
+    .emailRow_title {
         grid-column: 2/3;
         padding-right: 10px;
         font-size: 1.3rem;
         grid-row: 1/2;
     }
 
-    .emailRow_time{
+    .emailRow_time {
         grid-column: 2/3;
         grid-row: 3/4;
         font-size: 0.8rem;
         margin-left: 15px;
     }
+
     .emailRow_message {
         grid-column: 2/3;
         font-size: 0.75rem;
@@ -84,4 +84,27 @@
         display: none;
     }
 
+    .header_left>i {
+        display: none
+    }
+
+    .header_left>img {
+        margin-left: 0;
+        height: 1.3rem;
+    }
+
+    .header_right {
+        padding-right: 0;
+    }
+
+
+    .header_right>img {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+
+    .header_middle {
+        flex: 0.8;
+    }
 }
+
