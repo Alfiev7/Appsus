@@ -8,12 +8,19 @@ import { utilService } from "../../../services/util.service.js";
 
 
 
-export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraft }) {
+
+export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraft, sortEmailsByDate, sortEmailsByTitle }) {
     const [sectionData, setSectionData] = useState(null);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+
+
+
 
     useEffect(() => {
         sectionService.getSectionData().then(setSectionData);
     }, []);
+
 
 
     const toggleAllCheckboxes = () => {
@@ -68,6 +75,11 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+      };
+
+
     return (
 
         <div className="EmailList">
@@ -77,7 +89,15 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                 <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
                 <span className="material-icons-outlined" onClick={markasTrash}>delete_outline</span>
-            </div>
+                <span className="material-symbols-outlined"  onClick={toggleDropdown}>filter_list</span>
+                {isDropdownOpen && (
+          <div className="dropdown">
+            <span className="material-symbols-outlined" onClick={sortEmailsByDate}>timer</span>
+            <span className="material-symbols-outlined" onClick={sortEmailsByTitle}>title</span>
+          </div>
+          )}
+            </div> 
+            
 
 
             <div className="emaillist_sections">

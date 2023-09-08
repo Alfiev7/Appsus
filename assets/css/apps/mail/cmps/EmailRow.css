@@ -1,7 +1,7 @@
 .emailRow {
     display: flex;
     align-items: center;
-    height: 3.125rem;
+    height: 2.25rem;
     border-bottom: 1px solid whitesmoke;
     cursor: pointer;
     z-index: 999;

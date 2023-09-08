@@ -44,30 +44,6 @@ function _createSectionData() {
   }
 
 
-  function generateRandomDate(start, end) {
-    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-  
-    const dayName = date.toLocaleString('en-US', { weekday: 'long' });
-    const day = date.getDate();
-    const month = date.toLocaleString('en-US', { month: 'long' });
-    const year = date.getFullYear();
-    let hour = date.getHours();
-    const minute = String(date.getMinutes()).padStart(2, '0');
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-  
-    // Convert 24-hour time format to 12-hour format
-    hour = hour % 12;
-    hour = hour ? hour : 12; // the hour '0' should be '12'
-  
-    return `${dayName}, ${month} ${day}, ${year} at ${hour}:${minute} ${ampm}`;
-  }
-  
-  const startDate = new Date('2023-01-01T00:00:00');
-  const endDate = new Date('2023-08-31T23:59:59');
-  
-
-  console.log(generateRandomDate(startDate, endDate));
-  
 
 
   function formatDate(date) {
@@ -95,7 +71,7 @@ const emailRowData = [
         
         Best regards,
         Dimitri`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1672444800000,
         isRead: false,
         removedAt: null,
         from: 'Dimitri@protonmail.com',
@@ -119,7 +95,7 @@ const emailRowData = [
         Alfie
         Mifal Hapias Team
         `,
-        time: generateRandomDate(startDate, endDate),
+        time: 1684051200000,
         isRead: true,
         removedAt: null,
         from: 'alfie@gmail.com',
@@ -141,7 +117,7 @@ const emailRowData = [
     
         Cheers,
         Emily`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1693017600000,
         isRead: false,
         removedAt: null,
         from: 'Emily@solarenergy.com',
@@ -162,7 +138,7 @@ const emailRowData = [
     
         Regards,
         John`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1659350400000,
         isRead: false,
         removedAt: null,
         from: 'John@petcare.com',
@@ -183,7 +159,7 @@ const emailRowData = [
     
         Best,
         Sophia`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1669862400000,
         isRead: false,
         removedAt: null,
         from: 'Sophia@techupdate.com',
@@ -195,7 +171,7 @@ const emailRowData = [
     ,
     {
         id: 6,
-        title: "Mark",
+        title: "Sebastian",
         subject: "Cancelled Flight Information",
         description: `
         Hi Alfie,
@@ -204,7 +180,7 @@ const emailRowData = [
     
         Regards,
         Mark`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1675987200000,
         isRead: false,
         removedAt: null,
         from: 'Mark@airways.com',
@@ -225,7 +201,7 @@ const emailRowData = [
     
         Warm regards,
         Alfie`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1691308800000,
         isRead: true,
         removedAt: null,
         from: 'alfie@gmail.com',
@@ -237,7 +213,7 @@ const emailRowData = [
     ,
     {
         id: 8,
-        title: "Daniel",
+        title: "Liam",
         subject: "Your Gym Membership is Expiring Soon",
         description: `
         Dear Alfie,
@@ -246,7 +222,7 @@ const emailRowData = [
     
         Cheers,
         Daniel`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1680028800000,
         isRead: false,
         removedAt: null,
         from: 'Daniel@gym.com',
@@ -267,7 +243,7 @@ const emailRowData = [
     
         Best,
         Olivia`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1665888000000,
         isRead: false,
         removedAt: null,
         from: 'Olivia@artmonthly.com',
@@ -288,7 +264,7 @@ const emailRowData = [
     
         Kind regards,
         Liam`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1677715200000,
         isRead: false,
         removedAt: null,
         from: 'Liam@techguide.com',
@@ -300,7 +276,7 @@ const emailRowData = [
     ,
     {
         id: 11,
-        title: "Eleanor",
+        title: "Ella",
         subject: "Your Car's Scheduled Maintenance",
         description: `
         Hello Alfie,
@@ -308,7 +284,7 @@ const emailRowData = [
         Your car is due for its scheduled maintenance next week. Please make an appointment at your earliest convenience.
     
         Emma`,
-        time: generateRandomDate(startDate, endDate),
+        time: 1657507200000,
         isRead: false,
         removedAt: null,
         from: 'Emma@carservice.com',
@@ -329,7 +305,7 @@ export const emailIncoming = {
     updateEmail,
     formatDate
 }
-const LATEST_EMAIL_VERSION = 12; 
+const LATEST_EMAIL_VERSION = 14; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()

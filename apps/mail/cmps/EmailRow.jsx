@@ -16,7 +16,19 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
             navigate(`EmailPreview/${id}`);
         }
     };
-                
+             
+    function formatTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        const options = {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        };
+        return date.toLocaleString('en-US', options);
+      }
             
         
     return (
@@ -55,7 +67,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
 
 
             <div className="emailRow_time">
-                {time}
+            {formatTimestamp(time)}
             </div>
 
 
