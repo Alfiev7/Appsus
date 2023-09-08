@@ -108,17 +108,23 @@
     }
 
     .header_left>img {
-        margin-left: 0;
+        margin-left: 0.7rem;
         height: 1.3rem;
-        object-fit:scale-down;
+        object-fit:cover;
+        position: absolute;
         top: 0.7rem;
         left: 0.7rem;
-        
     }
+        
 
     .header_right {
         padding-right: 0;
     }
+
+    .header_middle{
+        flex: 1
+    }
+        
 
     .header_middle input {
         width: 100%;
@@ -129,9 +135,6 @@
         margin-right: 0;
     }
 
-    .header_middle {
-        flex: 0.8;
-    }
 
     .header {
         border-bottom: 3px solid whitesmoke;
