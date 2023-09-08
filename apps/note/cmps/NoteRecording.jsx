@@ -88,7 +88,7 @@ export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
         </a>
       )}
       {
-        <div>
+        <div className='audio-container'>
           <audio src={audioUrl} controls />
         </div>
       }

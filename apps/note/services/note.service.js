@@ -173,6 +173,7 @@ function getEmptyNote() {
 }
 
 function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index, updatedUrl) {
+  console.log('updatedUrl', updatedUrl)
   return get(noteId).then(note => {
     if (updatedTitle) note.info.title = updatedTitle
 
