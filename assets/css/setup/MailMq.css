@@ -145,4 +145,24 @@
     .header {
         border-bottom: 3px solid whitesmoke;
     }
+
+    .emailpreview-body {
+        width: 90vw;
+        height: 50vh;
+        margin-left: 20px;
+    }
+
+    .emailpreview-bodyheader {
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .emailpreview-bodyheader .time {
+        display: none;
+    }
+
+    .emailpreview-bodyheader > p {
+        margin-left: 0.6rem;
+    }
 }
