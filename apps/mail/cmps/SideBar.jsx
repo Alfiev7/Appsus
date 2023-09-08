@@ -14,9 +14,17 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
 
 
     useEffect(() => {
-        sideBarService.getSideBarData().then(setSideBarData);
+        sideBarService.getSideBarData().then((data) => {
+            const updatedData = data.map((item) => ({
+                ...item,
+                isActive: item.title === 'Inbox',
+            }));
+            setSideBarData(updatedData);
+        });
     }, []);
+          
 
+    
     if (!sideBarData) return <div>Loading...</div>
 
     const handleSideBarItemClick = (selectedItemTitle) => {

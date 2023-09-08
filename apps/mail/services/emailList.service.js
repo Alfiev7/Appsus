@@ -57,11 +57,6 @@ function _createSectionData() {
 const now = new Date();
   
 
-    
-  
-
-  
-
 const emailRowData = [
     {
         id: 1,

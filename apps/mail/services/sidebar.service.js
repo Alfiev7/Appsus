@@ -1,7 +1,9 @@
 import { storageService } from "../../../services/async-storage.service.js";
 import {utilService} from "../../../services/util.service.js";
 
-const SIDEBAR_KEY = 'SIDEBAR_DB'
+const SIDEBAR_KEY = 'SIDEBAR_DB';
+const SIDEBAR_VERSION_KEY = 'SIDEBAR_VERSION';
+const LATEST_SIDEBAR_VERSION = 2;
 
 
 const sideBarData =[
