@@ -29,6 +29,7 @@
 @import './apps/note/cmps/NoteTodos.css';
 @import './apps/note/cmps/NoteRecording.css';
 @import './apps/note/cmps/NoteMap.css';
+@import './apps/note/cmps/NoteImg.css';
 @import './apps/note/cmps/NoteTxt.css';
 @import './apps/note/cmps/NoteCanvas.css';
 @import './apps/note/cmps/NoteVideo.css';
