@@ -9,7 +9,7 @@ import { utilService } from "../../../services/util.service.js";
 
 
 
-export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraft, sortEmailsByDate }) {
+export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraft, sortEmailsByDate, sortEmailsByTitle }) {
     const [sectionData, setSectionData] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -93,10 +93,11 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                 {isDropdownOpen && (
           <div className="dropdown">
             <span className="material-symbols-outlined" onClick={sortEmailsByDate}>timer</span>
-            
+            <span className="material-symbols-outlined" onClick={sortEmailsByTitle}>title</span>
           </div>
           )}
             </div> 
+            
 
 
             <div className="emaillist_sections">

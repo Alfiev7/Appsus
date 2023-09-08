@@ -171,7 +171,7 @@ const emailRowData = [
     ,
     {
         id: 6,
-        title: "Mark",
+        title: "Sebastian",
         subject: "Cancelled Flight Information",
         description: `
         Hi Alfie,
@@ -213,7 +213,7 @@ const emailRowData = [
     ,
     {
         id: 8,
-        title: "Daniel",
+        title: "Liam",
         subject: "Your Gym Membership is Expiring Soon",
         description: `
         Dear Alfie,
@@ -276,7 +276,7 @@ const emailRowData = [
     ,
     {
         id: 11,
-        title: "Eleanor",
+        title: "Ella",
         subject: "Your Car's Scheduled Maintenance",
         description: `
         Hello Alfie,
@@ -305,7 +305,7 @@ export const emailIncoming = {
     updateEmail,
     formatDate
 }
-const LATEST_EMAIL_VERSION = 12; 
+const LATEST_EMAIL_VERSION = 14; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()

@@ -45,6 +45,20 @@ export function MailIndex() {
         setIsAscending(!isAscending);
     };
 
+    const sortEmailsByTitle = () => {
+        const sortedEmails = [...emails].sort((a, b) => {
+          const titleA = a.title.toLowerCase();
+          const titleB = b.title.toLowerCase();
+          const firstLetterA = titleA.charAt(0);
+          const firstLetterB = titleB.charAt(0);
+    
+          const diff = firstLetterA.localeCompare(firstLetterB);
+          return isAscending ? diff : -diff;
+        });
+        setEmails(sortedEmails);
+        setIsAscending(!isAscending);
+      };
+
     const getFilteredEmails = () => {
         switch (appliedFilter) {
             case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com' && email.isTrash === false);
@@ -118,6 +132,7 @@ export function MailIndex() {
                                 emailsAfterFilter={getSearchFilteredEmails()}
                                 handleOpenDraft={handleOpenDraft} 
                                 sortEmailsByDate={sortEmailsByDate}
+                                sortEmailsByTitle={sortEmailsByTitle}
                             />
                         }
                     />
