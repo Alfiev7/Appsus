@@ -59,16 +59,28 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
     };
 
     const markasTrash = () => {
+
+        const flaggedForRemoval = [];
         const updatedEmails = emails.map(email => {
-            if (email.isChecked && !email.isTrash) {
-                return { ...email, isTrash: true };
+          if (email.isChecked) {
+            if (email.isTrash) {
+              flaggedForRemoval.push(email.id);
+              return null;
+            } else {
+              return { ...email, isTrash: true };
             }
-            return email;
-        }).filter(email => !(email.isChecked && email.isTrash));
-        
+          }
+          return email;
+        }).filter(email => email !== null);
+        if (flaggedForRemoval.length > 0) {
+            console.log(`Removed emails with IDs: ${flaggedForRemoval.join(", ")}`);
+        }
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
+
+      
+      
     
     
 
