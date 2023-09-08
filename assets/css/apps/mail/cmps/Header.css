@@ -51,7 +51,6 @@
 }
 
 .header_right > img {
-  object-fit: contain;
   height: 1.6rem;
   margin-left: 1rem;
   border: 2px solid pink;
