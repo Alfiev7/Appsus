@@ -30,7 +30,12 @@
   font-size: 20px;
 }
 
-.keep-header-middle > i {
+.search-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.keep-header-middle .search-input-container > i {
   color: #989aa0;
 }
 
@@ -43,6 +48,7 @@
   padding: 0.625rem;
   border-radius: 5px;
   gap: 0.5rem;
+  margin-inline-end: 2rem;
 }
 
 .keep-header-middle input {

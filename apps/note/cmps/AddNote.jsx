@@ -117,16 +117,18 @@ export function AddNote({ onAddNote }) {
             onChange={handleTextChange}
             onFocus={() => setIsExpanded(true)}
           />
-          {Object.keys(icons).map(icon => (
-            <a
-              key={icon}
-              className={`material-symbols-outlined icon ${selectedIcon === icon ? 'active' : ''}`}
-              title={icons[icon].title}
-              onClick={() => setSelectedIcon(icon)}
-            >
-              {icon}
-            </a>
-          ))}
+          <div className='add-icons'>
+            {Object.keys(icons).map(icon => (
+              <a
+                key={icon}
+                className={`material-symbols-outlined icon ${selectedIcon === icon ? 'active' : ''}`}
+                title={icons[icon].title}
+                onClick={() => setSelectedIcon(icon)}
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
         </div>
         {/* {isExpanded && <section className='actions'>Actions Area (??)</section>} */}
       </React.Fragment>
