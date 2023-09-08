@@ -1,4 +1,8 @@
-export function ColorPicker({ onChangeColor, note, setIsColorPickerExpanded }) {
+const { useState } = React
+
+export function ColorPicker({ onChangeColor, note }) {
+  const [selectedColor, setSelectedColor] = useState(null)
+
   const colors = {
     lightgray: '#eeeeee',
     beige: '#e9e3d4',
@@ -15,22 +19,27 @@ export function ColorPicker({ onChangeColor, note, setIsColorPickerExpanded }) {
 
   function handleColorChange(noteId, color) {
     onChangeColor(noteId, color)
-    // setIsColorPickerExpanded(false)
+    setSelectedColor(color)
   }
 
   return (
     <div className='color-picker'>
       {Object.keys(colors).map((color, index) => {
+        const isSelected = selectedColor === colors[color]
         return (
           <article
-            className={color}
+            className={`${color} ${isSelected ? 'picked' : ''}`}
+            title={color}
             key={index}
             style={{ backgroundColor: colors[color] }}
             onClick={() => handleColorChange(note.id, colors[color])}
           ></article>
         )
       })}
-      <article className='material-icons-outlined no-color' onClick={() => handleColorChange(note.id, '#fff')}>
+      <article
+        className={`material-icons-outlined no-color ${selectedColor === '#fff' ? 'picked' : ''}`}
+        onClick={() => handleColorChange(note.id, '#fff')}
+      >
         format_color_reset
       </article>
     </div>

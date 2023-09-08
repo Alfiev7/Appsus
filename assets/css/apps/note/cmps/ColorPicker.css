@@ -1,14 +1,13 @@
 .color-picker {
   display: flex;
-  z-index: 10;
+  flex-wrap: wrap;
   border: 1px solid lightgray;
   border-radius: 0.5em;
   gap: 0.3rem;
-  width: max-content;
-  padding: 10px;
+  max-width: 100%;
+  padding: 0.5rem;
   background-color: #ffffff;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }
 
 .color-picker article {
@@ -27,4 +26,21 @@
   align-items: center;
   justify-content: center;
   border: 3px solid lightgray;
+}
+
+.color-picker article.picked {
+  border: 2px solid #a142f4;
+}
+
+.color-picker article.picked:not(.no-color)::before {
+  content: '\✔';
+  position: relative;
+  top: -0.625rem;
+  left: -0.75rem;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: aliceblue;
+  background-color: #a142f4;
+  border-radius: 50%;
+  padding: 0rem 0.2rem;
 }
