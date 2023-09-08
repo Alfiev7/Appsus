@@ -79,8 +79,8 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                 <span className="material-icons-outlined" onClick={markasTrash}>delete_outline</span>
             </div>
 
-            <div className="emaillist_sections">
 
+            <div className="emaillist_sections">
                 {sectionData && sectionData.map((data, index) => (
                     <Section
                         key={index}
@@ -89,11 +89,11 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                         color={data.color}
                     />
                 ))}
-
             </div>
 
-            <div className="emailList_list">
 
+
+            <div className="emailList_list">
                 {emailsAfterFilter && emailsAfterFilter.map((data, index) => (
                     <EmailRow
                         key={index}
@@ -112,12 +112,11 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                         to={data.to}
                         isDraft={data.isDraft}
                         onOpenDraft={handleOpenDraft}
-
                     />
                 ))}
-
             </div>
 
         </div>
     )
 }
+
