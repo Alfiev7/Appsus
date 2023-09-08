@@ -11,7 +11,8 @@ const notesDB = [
     style: { backgroundColor: '#b4ddd3' },
     info: {
       title: 'Componenta Estupanda ',
-      txt: 'Fullstack Me Baby! Lorem ipsum dolpur adipisicing elit. Veoloremque non commodi dignissimos veniam aperiam quod, dolorum, unde illum nesciunt neque.',
+      txt: `Long text trimming in React is a crucial technique for optimizing user interfaces, especially when dealing with extensive content. This process involves displaying a condensed version of a lengthy text, with an option to expand and reveal the complete content. This approach enhances user experience by providing a concise preview while allowing users to delve deeper if desired.
+      The key component in achieving this functionality is the LongTxt component, which intelligently handles text truncation and expansion. By utilizing conditional rendering, React efficiently determines whether to display the full text or a trimmed version. The component first evaluates if the text length exceeds a predefined threshold, typically set at 50 characters. If so, it renders an abbreviated version with an ellipsis, indicating that there is more content available.`,
     },
   },
   {
@@ -173,7 +174,6 @@ function getEmptyNote() {
 }
 
 function updateNoteContent(noteId, noteType, updatedText, updatedTitle, index, updatedUrl) {
-  console.log('updatedUrl', updatedUrl)
   return get(noteId).then(note => {
     if (updatedTitle) note.info.title = updatedTitle
 

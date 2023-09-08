@@ -79,11 +79,16 @@ export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
   return (
     <div className='note-recording' style={style}>
       {recording ? (
-        <a ref={eqRef} className='material-symbols-outlined icon icon-eq' onClick={handleRecording}>
+        <a
+          ref={eqRef}
+          className='material-symbols-outlined icon icon-eq'
+          onClick={handleRecording}
+          title='Stop recording'
+        >
           graphic_eq
         </a>
       ) : (
-        <a className='material-symbols-outlined icon icon-mic' onClick={handleRecording}>
+        <a className='material-symbols-outlined icon icon-mic' onClick={handleRecording} title='Start recording'>
           mic
         </a>
       )}

@@ -3,6 +3,8 @@ import { AddNote } from '../cmps/AddNote.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
 import { KeepHeader } from '../cmps/KeepHeader.jsx'
+import { UserMsg } from '../../../cmps/UserMsg.jsx'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
@@ -22,9 +24,7 @@ export function NoteIndex() {
   }
 
   function onAddNote(note) {
-    noteService
-      .save(note)
-      .then(note => setNotes(prevNotes => [...prevNotes, note]))
+    noteService.save(note).then(note => setNotes(prevNotes => [...prevNotes, note]))
   }
 
   function onDuplicateNote(note) {
@@ -38,6 +38,7 @@ export function NoteIndex() {
       .remove(noteId)
       .then(() => {
         setNotes(notes.filter(note => note.id !== noteId))
+        showSuccessMsg('Note successfully removed')
       })
       .catch(err => console.log(err))
   }
@@ -50,9 +51,7 @@ export function NoteIndex() {
         return noteService.save(note)
       })
       .then(updatedNote => {
-        const updatedNotes = notes.map(note =>
-          note.id === updatedNote.id ? updatedNote : note
-        )
+        const updatedNotes = notes.map(note => (note.id === updatedNote.id ? updatedNote : note))
         setNotes(updatedNotes)
       })
       .catch(error => {
@@ -68,9 +67,7 @@ export function NoteIndex() {
         return noteService.save(note)
       })
       .then(updatedNote => {
-        const updatedNotes = notes.map(note =>
-          note.id === updatedNote.id ? updatedNote : note
-        )
+        const updatedNotes = notes.map(note => (note.id === updatedNote.id ? updatedNote : note))
         setNotes(updatedNotes)
       })
       .catch(error => {
@@ -94,22 +91,15 @@ export function NoteIndex() {
       {hasPinnedNotes && (
         <div className='pinned-notes'>
           <pre className='pinned-notes-label'>Pinned</pre>
-          <NoteList
-            notes={notes.filter(note => note.isPinned)}
-            noteHandlingFuncs={noteHandlingFuncs}
-          />
+          <NoteList notes={notes.filter(note => note.isPinned)} noteHandlingFuncs={noteHandlingFuncs} />
         </div>
       )}
 
       <div className='unpinned-notes'>
-        {hasPinnedNotes && (
-          <pre className='unpinned-notes-label'>Other notes</pre>
-        )}
-        <NoteList
-          notes={notes.filter(note => !note.isPinned)}
-          noteHandlingFuncs={noteHandlingFuncs}
-        />
+        {hasPinnedNotes && <pre className='unpinned-notes-label'>Other notes</pre>}
+        <NoteList notes={notes.filter(note => !note.isPinned)} noteHandlingFuncs={noteHandlingFuncs} />
       </div>
+      <UserMsg />
     </section>
   )
 }
