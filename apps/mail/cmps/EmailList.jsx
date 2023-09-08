@@ -58,8 +58,19 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
-
-
+    const markasTrash = () => {
+        const updatedEmails = emails.map(email => {
+            if (email.isChecked && !email.isTrash) {
+                return { ...email, isTrash: true };
+            }
+            return email;
+        }).filter(email => !(email.isChecked && email.isTrash));
+        
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
+    };
+    
+    
 
     return (
 
@@ -69,7 +80,7 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
                 <span className="material-icons-outlined" onClick={toggleAllCheckboxes}>check_box_outline_blank</span>
                 <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
-                <span className="material-icons-outlined" onClick={removeSelectedEmails}>delete_outline</span>
+                <span className="material-icons-outlined" onClick={markasTrash}>delete_outline</span>
             </div>
 
 

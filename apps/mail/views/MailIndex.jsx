@@ -9,7 +9,7 @@ import { emailIncoming } from "../services/emailList.service.js";
 
 export function MailIndex() {
     const [emails, setEmails] = useState([]);
-    const [appliedFilter, setAppliedFilter] = useState('')
+    const [appliedFilter, setAppliedFilter] = useState('Inbox')
     const [searchKeyword, setSearchKeyword] = useState('');
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export function MailIndex() {
 
         switch (appliedFilter) {
 
-            case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com');
+            case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com' && email.isTrash === false);
             case 'Starred': return emails.filter(email => email.isStarred);
             case 'Sent': return emails.filter(email => email.from === 'alfie@gmail.com');
             case 'Drafts': return emails.filter(email => email.isDraft);
