@@ -24,6 +24,20 @@
     color: grey;
 }
 
+.SideBarComponent.active {
+    background-color: #fcecec;
+}
+
+
+.SideBarComponent.active h3 {
+    color: #c04b37;
+    font-weight: 800;
+}
+
+.SideBarComponent.active p {
+    color: #c04b37;
+    font-weight: 800;
+} 
 
 .SideBarComponent:hover,
 .SideBarComponent:hover > p,

@@ -43,7 +43,7 @@ align-items: center;
 }
 
 .emailRow_message>h4 {
-    width: 25rem;
+    width: 40rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -68,7 +68,7 @@ align-items: center;
 }
 
 .emailRow_description {
-font-weight: 400;
+font-weight: 100;
 color: grey;
 }
 

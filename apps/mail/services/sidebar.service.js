@@ -8,27 +8,32 @@ const sideBarData =[
     {
         icon: "fa-solid fa-inbox",
         title: "Inbox",
-        number: 0
+        number: 0,
+        isActive: true,
     },
     {
         icon: "fa-solid fa-star",
         title: "Starred",
-        number: 0
+        number: 0,
+        isActive: false,
     },
     {
         icon: "fa-solid fa-share-from-square",
         title: "Sent",
-        number: 0
+        number: 0,
+        isActive: false,
     },
     {
         icon: "fa-brands fa-firstdraft",
         title: "Drafts",
-        number: 0
+        number: 0,
+        isActive: false,
     },
     {
         icon: "fa-regular fa-trash-can",
         title: "Trash",
-        number: 0
+        number: 0,
+        isActive: false,
     }
 ];
 

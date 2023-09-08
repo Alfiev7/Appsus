@@ -12,13 +12,12 @@ import { utilService } from "../../../services/util.service.js";
 export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraft, sortEmailsByDate, sortEmailsByTitle }) {
     const [sectionData, setSectionData] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-
-
-
+    const [activeSection, setActiveSection] = useState('Primary');
 
     useEffect(() => {
-        sectionService.getSectionData().then(setSectionData);
+        sectionService.getSectionData().then((data) => {
+            setSectionData(data || []);
+        });
     }, []);
 
 
@@ -77,8 +76,11 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
-      };
+    };
 
+    const toggleActiveSection = (sectionTitle) => {
+        setActiveSection(sectionTitle === activeSection ? null : sectionTitle);
+    };
 
     return (
 
@@ -89,26 +91,29 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                 <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
                 <span className="material-icons-outlined" onClick={markasTrash}>delete_outline</span>
-                <span className="material-symbols-outlined"  onClick={toggleDropdown}>filter_list</span>
+                <span className="material-symbols-outlined" onClick={toggleDropdown}>filter_list</span>
                 {isDropdownOpen && (
-          <div className="dropdown">
-            <span className="material-symbols-outlined" onClick={sortEmailsByDate}>timer</span>
-            <span className="material-symbols-outlined" onClick={sortEmailsByTitle}>title</span>
-          </div>
-          )}
-            </div> 
-            
+                    <div className="dropdown">
+                        <span className="material-symbols-outlined" onClick={sortEmailsByDate}>timer</span>
+                        <span className="material-symbols-outlined" onClick={sortEmailsByTitle}>title</span>
+                    </div>
+                )}
+            </div>
+
 
 
             <div className="emaillist_sections">
-                {sectionData && sectionData.map((data, index) => (
-                    <Section
-                        key={index}
-                        icon={data.icon}
-                        title={data.title}
-                        color={data.color}
-                    />
-                ))}
+                {sectionData &&
+                    sectionData.map((data, index) => (
+                        <Section
+                            key={index}
+                            Icon={data.Icon}
+                            title={data.title}
+                            color={data.color}
+                            isActive={data.title === activeSection} 
+                            onToggle={toggleActiveSection}
+                        />
+                    ))}
             </div>
 
 
