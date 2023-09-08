@@ -35,10 +35,11 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail }) {
         const getEmailsCountByTitle = (title) => {
             
             switch(title) {
-            case "Inbox": return allEmails.filter(email => email.isRead === false).length;
-            case "Starred": return allEmails.filter(email => email.isStarred === true).length;
-            case "Drafts": return allEmails.filter(email => email.isDraft === true).length;
-            case 'Sent': return allEmails.filter(email => email.from === 'alfie@gmail.com').length;
+            case "Inbox": return allEmails.filter(email => email.isRead === false && email.isTrash === false).length;
+            case "Starred": return allEmails.filter(email => email.isStarred === true && email.isTrash === false).length;
+            case "Drafts": return allEmails.filter(email => email.isDraft === true && email.isTrash === false).length;
+            case 'Sent': return allEmails.filter(email => email.from === 'alfie@gmail.com' && email.isTrash === false).length;
+            case 'Trash': return allEmails.filter(email => email.isTrash === true).length;
             default: return 0;
         }
     }

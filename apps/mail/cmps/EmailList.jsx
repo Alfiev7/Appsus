@@ -40,27 +40,35 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
     };
 
     const markAsRead = () => {
-        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: true } : email);
+        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: true, isChecked: false } : email);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
-
-    const removeSelectedEmails = () => {
-        const remainingEmails = emails.filter(email => !email.isChecked);
-        setEmails(remainingEmails);
-        utilService.saveToStorage(EMAILROWDATA_KEY, remainingEmails);
-    };
-
 
     const markAsUnread = () => {
-        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false } : email);
+        const updatedEmails = emails.map(email => email.isChecked ? { ...email, isRead: false, isChecked: false } : email);
         setEmails(updatedEmails);
         utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
     };
 
-
-
-
+    
+    const markasTrash = () => {
+        const flaggedForRemoval = [];
+        const updatedEmails = emails.map(email => {
+          if (email.isChecked) {
+            if (email.isTrash) {
+              flaggedForRemoval.push(email.id);
+              return null;
+            } else {
+              return { ...email, isTrash: true, isChecked: false };
+            }
+          }
+          return email;
+        }).filter(email => email !== null);
+        setEmails(updatedEmails);
+        utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
+    };
+        
     return (
 
         <div className="EmailList">
@@ -69,7 +77,7 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
                 <span className="material-icons-outlined" onClick={toggleAllCheckboxes}>check_box_outline_blank</span>
                 <span className="material-icons-outlined" onClick={markAsUnread}>markunread</span>
                 <span className="material-icons-outlined" onClick={markAsRead}>mark_email_unread</span>
-                <span className="material-icons-outlined" onClick={removeSelectedEmails}>delete_outline</span>
+                <span className="material-icons-outlined" onClick={markasTrash}>delete_outline</span>
             </div>
 
 
