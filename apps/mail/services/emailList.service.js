@@ -284,7 +284,8 @@ const emailRowData = [
 export const emailIncoming = {
     getEmailRowData,
     saveToStorage,
-    saveEmail
+    saveEmail,
+    updateEmail
 }
 const LATEST_EMAIL_VERSION = 6; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
@@ -329,4 +330,17 @@ function saveEmail(newEmail) {
   function saveToStorage(key, data) {
     
     return utilService.saveToStorage(key, data);
+}
+
+
+function updateEmail(updatedEmail) {
+    return storageService.query(EMAILROWDATA_KEY)
+        .then(emailRowData => {
+            const emailIdx = emailRowData.findIndex(email => email.id === updatedEmail.id);
+            if (emailIdx === -1) {
+                throw new Error('Email not found');
+            }
+            emailRowData[emailIdx] = updatedEmail;
+            return utilService.saveToStorage(EMAILROWDATA_KEY, emailRowData);
+        });
 }

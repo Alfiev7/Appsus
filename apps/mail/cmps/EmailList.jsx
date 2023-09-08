@@ -8,7 +8,7 @@ import { utilService } from "../../../services/util.service.js";
 
 
 
-export function EmailList({ emailsAfterFilter, emails, setEmails }) {
+export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraft }) {
     const [sectionData, setSectionData] = useState(null);
 
     useEffect(() => {
@@ -112,6 +112,9 @@ export function EmailList({ emailsAfterFilter, emails, setEmails }) {
                         removedAt={data.removedAt}
                         from={data.from}
                         to={data.to}
+                        isDraft={data.isDraft}
+                        onOpenDraft={handleOpenDraft}
+
                     />
                 ))}
 

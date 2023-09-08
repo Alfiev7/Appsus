@@ -1,11 +1,26 @@
 const { useNavigate } = ReactRouterDOM
 
-export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred }) {
+export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred, from, to, isDraft, onOpenDraft }) {
     const navigate = useNavigate();
 
     
+    const handleRowClick = () => {
+        if (isDraft) {
+            onOpenDraft({
+                id,
+                title,
+                subject,
+                description,
+            });
+        } else {
+            navigate(`EmailPreview/${id}`);
+        }
+    };
+                
+            
+        
     return (
-        <div onClick={() => navigate(`EmailPreview/${id}`)} className={`emailRow ${isRead ? 'read' : 'unread'}`}>
+        <div onClick={handleRowClick} className={`emailRow ${isRead ? 'read' : 'unread'}`}>
 
             <div className="emailRow_options">
                 <span onClick={e => { e.stopPropagation(); toggleCheckbox(id); }}>
