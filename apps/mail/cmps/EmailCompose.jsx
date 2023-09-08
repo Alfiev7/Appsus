@@ -1,16 +1,26 @@
-const { useState } = React
+const { useState, useEffect } = React
 import { emailIncoming } from '../services/emailList.service.js';
 
-export function EmailCompose({ show, onClose, addNewEmail }) {
-  const [to, setTo] = useState('');
-  const [subject, setSubject] = useState('');
-  const [description, setDescription] = useState('');
+export function EmailCompose({ show, onClose, addNewEmail, draftData, updateEmail}) {
+  const [to, setTo] = useState(draftData && draftData.to ? draftData.to : '');
+  const [subject, setSubject] = useState(draftData && draftData.subject ? draftData.subject : '');
+  const [description, setDescription] = useState(draftData && draftData.description ? draftData.description : '');
+
+  useEffect(() => {
+    setTo(draftData && draftData.to ? draftData.to : '');
+    setSubject(draftData && draftData.subject ? draftData.subject : '');
+    setDescription(draftData && draftData.description ? draftData.description : '');
+  }, [draftData]);
+  
+
 
   if (!show) return null;
+  
+  const isNewEmail = !draftData || !draftData.id;
 
   const handleSend = async () => {
     const newEmail = {
-      id: Date.now(),
+      id: isNewEmail ? Date.now() : draftData.id,
       title: "Alfie",
       from: 'alfie@gmail.com',
       to,
@@ -23,22 +33,48 @@ export function EmailCompose({ show, onClose, addNewEmail }) {
       isDraft: false
     };
     try {
+      if (isNewEmail) {
+        await emailIncoming.saveEmail(newEmail);
+        addNewEmail(newEmail);
+      } else {
+        await addNewEmail(newEmail, draftData.id);  
+       }
+       onClose();
+     } catch (error) {
+       console.error("Failed to send email", error);
+     }
+   };
+
+
+  const handleSaveDraft = async () => {
+    const newEmail = {
+      id: Date.now(),
+      title: "Alfie",
+      from: 'alfie@gmail.com',
+      to,
+      subject,
+      description,
+      time: new Date().toString(),
+      isRead: true,
+      isStarred: false,
+      isTrash: false,
+      isDraft: true
+    };
+    try {
       await emailIncoming.saveEmail(newEmail);
       addNewEmail(newEmail);
       onClose();
     } catch (error) {
-      console.error("Failed to save email", error);
+      console.error("Failed to save draft", error);
     }
   };
 
 
 
-
-
+  
+  
+  
   return (
-
-
-    
     <div className="compose-container">
       <div className='compose-header'>
         <h3>New Email</h3>
@@ -59,7 +95,7 @@ export function EmailCompose({ show, onClose, addNewEmail }) {
         onChange={(e) => setSubject(e.target.value)}
         />
       <textarea className='compose-message'
-        placeholder=""
+        placeholder="Message"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         />
@@ -67,6 +103,7 @@ export function EmailCompose({ show, onClose, addNewEmail }) {
 
       <div className='compose-buttons'>
       <button onClick={handleSend}>SEND</button>
+      <button onClick={handleSaveDraft}>DRAFT</button>
       </div>
 
     </div>

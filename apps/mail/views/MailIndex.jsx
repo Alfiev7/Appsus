@@ -11,6 +11,10 @@ export function MailIndex() {
     const [emails, setEmails] = useState([]);
     const [appliedFilter, setAppliedFilter] = useState('Inbox')
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [isDraftOpen, setIsDraftOpen] = useState(false);
+    const [showCompose, setShowCompose] = useState(false);
+    const [draftData, setDraftData] = useState(null);
+
 
     useEffect(() => {
         emailIncoming.getEmailRowData()
@@ -30,13 +34,16 @@ export function MailIndex() {
         setSearchKeyword(keyword);
     }
 
+
+        
+      
+
+    
     const getFilteredEmails = () => {
-
         switch (appliedFilter) {
-
             case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com' && email.isTrash === false);
             case 'Starred': return emails.filter(email => email.isStarred);
-            case 'Sent': return emails.filter(email => email.from === 'alfie@gmail.com');
+            case 'Sent': return emails.filter(email => email.from === 'alfie@gmail.com' && email.isDraft === false);
             case 'Drafts': return emails.filter(email => email.isDraft);
             case 'Trash': return emails.filter(email => email.isTrash);
             default: return emails;
@@ -54,8 +61,30 @@ export function MailIndex() {
         return filteredEmails;
     };
 
-    const addNewEmail = (newEmail) => {
+    const addNewEmail = (newEmail, draftId = null) => {
+        if (draftId !== null) {
+            setEmails(prevEmails => prevEmails.filter(email => email.id !== draftId));
+        }
         setEmails(prevEmails => [...prevEmails, newEmail]);
+    };
+
+
+      
+
+
+
+    const handleComposeClick = () => {
+        setDraftData(null);
+        setShowCompose(true);
+    };
+
+    const handleCloseCompose = () => {
+        setShowCompose(false);
+    };
+
+    const handleOpenDraft = (draftEmail) => {
+        setDraftData(draftEmail);
+        setShowCompose(true);
     };
 
     return (
@@ -66,10 +95,25 @@ export function MailIndex() {
             <div className="app_body">
                 <SideBar
                     allEmails={emails}
-                    updateFilterByTitle={(e) => getAppliedFilterParameter(e)} addNewEmail={addNewEmail} />
-
+                    updateFilterByTitle={getAppliedFilterParameter}
+                    addNewEmail={addNewEmail}
+                    showCompose={showCompose}
+                    handleComposeClick={handleComposeClick}
+                    handleCloseCompose={handleCloseCompose}
+                    draftData={draftData}
+                />
                 <Routes>
-                    <Route path="/" element={<EmailList emails={emails} setEmails={setEmails} emailsAfterFilter={getSearchFilteredEmails()} />} />
+                    <Route
+                        path="/"
+                        element={
+                            <EmailList
+                                emails={emails}
+                                setEmails={setEmails}
+                                emailsAfterFilter={getSearchFilteredEmails()}
+                                handleOpenDraft={handleOpenDraft} 
+                            />
+                        }
+                    />
                     <Route path="/EmailPreview/:id" element={<EmailPreview />} />
                 </Routes>
             </div>
