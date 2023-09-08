@@ -137,6 +137,7 @@ export function EmailList({ emailsAfterFilter, emails, setEmails, handleOpenDraf
                         to={data.to}
                         isDraft={data.isDraft}
                         onOpenDraft={handleOpenDraft}
+                        markasTrash={markasTrash}
                     />
                 ))}
             </div>

@@ -1,0 +1,87 @@
+@media (max-width: 640px) {
+
+    .SideBarComponent>h3,
+    .SideBarComponent>p,
+    button.sidebar_compose>h2 {
+        display: none;
+    }
+
+
+    .sidebar-labels {
+        display: none;
+    }
+
+    .sidebar {
+        max-width: 3rem;
+        border-right: 1px solid whitesmoke;
+
+    }
+
+    button.sidebar_compose {
+        padding: 0.5rem;
+    }
+
+    .EmailList {
+        width: 100%;
+        /* overflow: h */
+    }
+
+    .emaillist_sections {
+        display: none;
+    }
+
+    .emailRow {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: repeat(3, auto);
+        height: 4.5rem;
+        width: 430px;
+        flex: 0.1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .emailRow_options {
+        grid-column: 1/2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-row: 1/5;
+    }
+
+    .emailRow_options > span {
+        margin-bottom: 5px; 
+    }
+
+
+    .emailRow_title
+     {
+        grid-column: 2/3;
+        padding-right: 10px;
+        font-size: 1.3rem;
+        grid-row: 1/2;
+    }
+
+    .emailRow_time{
+        grid-column: 2/3;
+        grid-row: 3/4;
+        font-size: 0.8rem;
+        margin-left: 15px;
+    }
+    .emailRow_message {
+        grid-column: 2/3;
+        font-size: 0.75rem;
+        grid-row: 2/3;
+        font-size: 1rem;
+        margin-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 350px;
+    }
+
+    .emailRow_description {
+        display: none;
+    }
+
+}

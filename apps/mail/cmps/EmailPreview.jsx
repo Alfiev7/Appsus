@@ -15,15 +15,7 @@ export function EmailPreview() {
     navigate('/mail');
   };
 
-  const deleteEmail = () => {
-    emailIncoming.getEmailRowData()
-      .then(data => {
-        const remainingEmails = data.filter(email => email.id !== parseInt(id));
-        emailIncoming.saveToStorage(EMAILROWDATA_KEY, remainingEmails);  
-        goBackToHome();
-      });
-    };
-        
+
         
   useEffect(() => {
     emailIncoming.getEmailRowData()
@@ -44,6 +36,7 @@ if (!email) {
         <div className="emailpreview-toolsleft">
 
           <i className="material-icons-outlined" onClick={goBackToHome}>arrow_back</i>
+          
           
           
 

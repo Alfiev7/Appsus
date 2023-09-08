@@ -92,9 +92,6 @@ export function MailIndex() {
         }
     };
 
-
-
-
     const handleComposeClick = () => {
         setDraftData(null);
         setShowCompose(true);
@@ -148,10 +145,11 @@ export function MailIndex() {
                                 handleOpenDraft={handleOpenDraft}
                                 sortEmailsByDate={sortEmailsByDate}
                                 sortEmailsByTitle={sortEmailsByTitle}
+                                
                             />
                         }
                     />
-                    <Route path="/EmailPreview/:id" element={<EmailPreview />} />
+                    <Route path="/EmailPreview/:id" element={<EmailPreview  />} />
                 </Routes>
             </div>
         </div>
