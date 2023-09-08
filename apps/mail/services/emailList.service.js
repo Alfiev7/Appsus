@@ -287,7 +287,7 @@ export const emailIncoming = {
     saveEmail,
     updateEmail
 }
-const LATEST_EMAIL_VERSION = 6; 
+const LATEST_EMAIL_VERSION = 10; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
@@ -295,7 +295,6 @@ _createEmailRowData()
 async function getEmailRowData() {
     try {
         const emailRowData = await storageService.query(EMAILROWDATA_KEY);
-        
         if (emailRowData.length === 0) {
             console.log('No email data found');  
         }
@@ -305,6 +304,7 @@ async function getEmailRowData() {
         return null;  
     }
 }
+        
 
   
 

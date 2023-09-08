@@ -11,9 +11,9 @@ export function MailIndex() {
     const [emails, setEmails] = useState([]);
     const [appliedFilter, setAppliedFilter] = useState('Inbox')
     const [searchKeyword, setSearchKeyword] = useState('');
-    const [isDraftOpen, setIsDraftOpen] = useState(false);
     const [showCompose, setShowCompose] = useState(false);
     const [draftData, setDraftData] = useState(null);
+
 
 
     useEffect(() => {
@@ -43,8 +43,8 @@ export function MailIndex() {
         switch (appliedFilter) {
             case 'Inbox': return emails.filter(email => email.from !== 'alfie@gmail.com' && email.isTrash === false);
             case 'Starred': return emails.filter(email => email.isStarred);
-            case 'Sent': return emails.filter(email => email.from === 'alfie@gmail.com' && email.isDraft === false);
-            case 'Drafts': return emails.filter(email => email.isDraft);
+            case 'Sent': return emails.filter(email => email.from === 'alfie@gmail.com' && email.isDraft === false && email.isTrash === false);
+            case 'Drafts': return emails.filter(email => email.isDraft && email.isTrash === false);
             case 'Trash': return emails.filter(email => email.isTrash);
             default: return emails;
         }
@@ -65,14 +65,14 @@ export function MailIndex() {
         if (draftId !== null) {
             setEmails(prevEmails => prevEmails.filter(email => email.id !== draftId));
         }
-        setEmails(prevEmails => [...prevEmails, newEmail]);
+        if (newEmail !== null) {
+            setEmails(prevEmails => [...prevEmails, newEmail]);
+        }
     };
 
+        
 
       
-
-
-
     const handleComposeClick = () => {
         setDraftData(null);
         setShowCompose(true);
@@ -120,7 +120,6 @@ export function MailIndex() {
         </div>
     )
 }
-
 
 
 
