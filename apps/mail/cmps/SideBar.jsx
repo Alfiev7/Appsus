@@ -4,22 +4,23 @@ const { useEffect, useState } = React
 import { SideBarComponent } from "./SideBarComponent.jsx"
 import { sideBarService } from "../services/sidebar.service.js";
 import { EmailCompose } from './EmailCompose.jsx';
-import { EmailList } from './EmailList.jsx'; 
+import { EmailList } from './EmailList.jsx';
 
 
 export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompose, handleCloseCompose, handleComposeClick, draftData }) {
     const [sideBarData, setSideBarData] = useState(null);
+    
 
 
 
 
     useEffect(() => {
         sideBarService.getSideBarData().then(setSideBarData);
-        
+
     }, []);
 
 
-    
+
     if (!sideBarData) return <div>Loading...</div>
 
     const handleSideBarItemClick = (selectedItemTitle) => {
@@ -46,10 +47,10 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
 
     return (
         <div className="sidebar">
-              <button className="sidebar_compose" onClick={handleComposeClick}>
-                
+            <button className="sidebar_compose" onClick={handleComposeClick}>
+
                 <i className="fa-regular fa-pen-to-square"></i> Compose </button>
-                <EmailCompose show={showCompose} onClose={handleCloseCompose} addNewEmail={addNewEmail} draftData={draftData} />
+            <EmailCompose show={showCompose} onClose={handleCloseCompose} addNewEmail={addNewEmail} draftData={draftData} />
 
             {sideBarData.map((sideBarItemData) => (
                 <SideBarComponent onClick={() => handleSideBarItemClick(sideBarItemData.title)}
@@ -60,6 +61,36 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
                     isActive={sideBarItemData.isActive}
                 />
             ))}
+
+
+            <div className="sidebar-labels">
+                <h2>Labels</h2>
+
+                <div className="critical">
+                    <span className="material-symbols-outlined">label</span>
+                    <h3>Critical</h3>
+                </div>
+
+                <div className="family">
+                    <span className="material-symbols-outlined">label</span>
+                    <h3>Family</h3>
+                </div>
+
+                <div className="work">
+                    <span className="material-symbols-outlined">label</span>
+                    <h3>Work</h3>
+                </div>
+
+                <div className="memories">
+                    <span className="material-symbols-outlined">label</span>
+                    <h3>Memories</h3>
+                </div>
+
+
+
+
+            </div>
         </div>
+
     );
 }

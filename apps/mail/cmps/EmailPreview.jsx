@@ -44,15 +44,13 @@ if (!email) {
         <div className="emailpreview-toolsleft">
 
           <i className="material-icons-outlined" onClick={goBackToHome}>arrow_back</i>
-          <i className="material-icons-outlined" onClick={deleteEmail}>delete</i> 
+          
           
 
         </div>
 
         <div className="emailpreview-toolsright">
 
-          <i className="material-icons-outlined">reply</i>
-          <i className="material-icons-outlined">star_border</i>
 
         </div>
       </div>

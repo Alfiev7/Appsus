@@ -25,3 +25,34 @@ button.sidebar_compose > i {
     color: #041e49;
 }
 
+.sidebar-labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-labels > h2 {
+    margin-top: 2rem;
+    margin-left: 0.9rem;
+    padding: 0.35rem;
+    font-size: 0.9rem;
+    color: #202124;
+}
+
+.critical, .family, .work, .memories {
+    padding: 0 0.65rem;
+    display: flex;
+    align-items: center;
+    color: #202124;
+}
+
+.critical > span, .family > span, .work > span, .memories > span {
+    padding: 0.35rem;
+    color: grey;
+}
+
+.critical > h3, .family > h3, .work > h3, .memories > h3 {
+    flex: 1;
+    margin-left: 0.65rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
