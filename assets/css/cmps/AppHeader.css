@@ -1,4 +1,6 @@
 header {
+  display: flex;
+  justify-content: space-between;
   width: 90%;
   border-bottom: 2px solid white;
 
