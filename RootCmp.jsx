@@ -1,4 +1,4 @@
-const { Route, Routes } = ReactRouterDOM
+const { Route, Routes, Outlet } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
 
 import { AppHeader } from './cmps/AppHeader.jsx'
@@ -16,7 +16,9 @@ export function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          {/* <Route path='/books/*' element={<BooksRoot />} /> */}
+          <Route path='/book/*' element={<BooksRoot />}>
+            <Route element={<Outlet />} />
+          </Route>
           <Route path='/mail/*' element={<MailIndex />} />
           <Route path='/note' element={<NoteIndex />} />
         </Routes>

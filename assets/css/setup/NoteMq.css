@@ -29,14 +29,14 @@
   }
 
   .keep-header-left {
-    position: absolute;
-    right: 55%;
-    top: 65px;
+    position: relative;
+    left: -70px;
+    bottom: -20px;
   }
 
   .keep-header-right {
     position: relative;
-    left: 120px;
+    left: 110px;
     bottom: 5px;
   }
 }

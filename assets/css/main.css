@@ -12,6 +12,7 @@
 
 /* Views */
 @import './views/home.css';
+@import '../../apps/books/assets/style/books-main.css';
 
 /* @import './apps/note/views/NoteIndex.css'; */
 
