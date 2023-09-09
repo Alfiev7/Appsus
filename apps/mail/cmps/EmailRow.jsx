@@ -35,7 +35,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
     return (
         <div onClick={handleRowClick} className={`emailRow ${isRead ? 'read' : 'unread'}`}>
 
-            <div className="emailRow_options">
+            <div className="emailrow-options">
                 <span onClick={e => { e.stopPropagation(); toggleCheckbox(id); }}>
                     {isChecked ?
                         <i className="material-icons-outlined">check_box</i> :
@@ -53,11 +53,11 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
 
 
 
-            <h3 className="emailRow_title">
+            <h3 className="emailrow-title">
                 {title}
             </h3>
 
-            <div className="emailrow_label">
+            <div className="emailrow-label">
                 {labels && labels.map((label) => (
                     <span key={label} className="label-icon">
 
@@ -73,7 +73,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
                         {label === 'Memories' && (
                             <i className="fa-solid fa-tag" style={{ color: '#5EB1BF' }}></i>
                         )}
-                        
+
                     </span>
                 ))}
             </div>
@@ -81,7 +81,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
 
 
 
-            <div className="emailRow_message">
+            <div className="emailrow-message">
                 <h4>{subject}{" "}
                     <span className="emailRow_description">-
                         {" "}{description} </span>
@@ -89,7 +89,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
             </div>
 
 
-            <div className="emailRow_time">
+            <div className="emailrow-time">
                 {formatTimestamp(time)}
             </div>
 
