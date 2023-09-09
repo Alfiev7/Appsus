@@ -4,7 +4,7 @@ const { useEffect, useState } = React
 import { SideBarComponent } from "./SideBarComponent.jsx"
 import { sideBarService } from "../services/sidebar.service.js";
 import { EmailCompose } from './EmailCompose.jsx';
-import { EmailList } from './EmailList.jsx';
+
 
 
 export function SideBar({
@@ -18,17 +18,15 @@ export function SideBar({
     hideTitles,
     showTitlesAndNumbers,
     addLabelToEmail,
-   }) {
+    showSuccessMsg
+}) {
 
     const [sideBarData, setSideBarData] = useState(null);
 
 
     useEffect(() => {
         sideBarService.getSideBarData().then(setSideBarData);
-
     }, []);
-
-
 
     if (!sideBarData) return <div>Loading...</div>
 
@@ -42,8 +40,8 @@ export function SideBar({
     }
 
 
+    
     const getEmailsCountByTitle = (title) => {
-
         switch (title) {
             case "Inbox": return allEmails.filter(email => email.isRead === false && email.isTrash === false).length;
             case "Starred": return allEmails.filter(email => email.isStarred === true && email.isTrash === false).length;
@@ -54,12 +52,17 @@ export function SideBar({
         }
     }
 
-  const handleLabelClick = (label) => {
-    const selectedEmails = allEmails.filter((email) => email.isChecked);
-    selectedEmails.forEach((email) => {
-      addLabelToEmail(email.id, label);
-    });
-  };
+    const handleLabelClick = (label) => {
+        const selectedEmails = allEmails.filter((email) => email.isChecked);
+        if (selectedEmails.length === 0) {
+            showSuccessMsg("No email is checked. Please select an email first.");
+            return;
+        }
+        selectedEmails.forEach((email) => {
+            addLabelToEmail(email.id, label);
+        });
+    };
+
 
     return (
         <div className={`sidebar ${showTitlesAndNumbers ? '' : 'sidebar-icons-only'}`}>
@@ -80,29 +83,26 @@ export function SideBar({
                 />
             ))}
 
-
-
-
             <div className="sidebar-labels">
                 <h2>Labels</h2>
 
                 <div className="critical" onClick={() => handleLabelClick('Critical')}>
-                <i className="fa-solid fa-tag"></i>
+                    <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Critical</h3>
                 </div>
 
                 <div className="family" onClick={() => handleLabelClick('Family')}>
-                <i className="fa-solid fa-tag"></i>
+                    <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Family</h3>
                 </div>
 
                 <div className="work" onClick={() => handleLabelClick('Work')}>
-                <i className="fa-solid fa-tag"></i>
+                    <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Work</h3>
                 </div>
 
                 <div className="memories" onClick={() => handleLabelClick('Memories')}>
-                <i className="fa-solid fa-tag"></i>
+                    <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Memories</h3>
                 </div>
 

@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-import { emailIncoming, updateEmail } from '../services/emailList.service.js'
+import { emailIncoming } from '../services/emailList.service.js'
 
 export function EmailCompose({ show, onClose, addNewEmail, draftData }) {
   const [to, setTo] = useState(draftData && draftData.to ? draftData.to : '')

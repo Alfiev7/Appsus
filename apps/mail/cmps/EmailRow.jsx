@@ -1,6 +1,21 @@
 const { useNavigate } = ReactRouterDOM
 
-export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred, isDraft, onOpenDraft, labels, markAsReadById }) {
+export function EmailRow(
+    { id,
+        title,
+        subject,
+        description,
+        time,
+        isRead,
+        isChecked,
+        toggleCheckbox,
+        toggleIsStarred,
+        isStarred,
+        isDraft,
+        onOpenDraft,
+        labels,
+        markAsReadById
+    }) {
     const navigate = useNavigate();
 
 
