@@ -10,17 +10,22 @@ export function AddNote({ onAddNote }) {
   const contentInputRef = useRef(null)
   const pinIconRef = useRef(null)
   const icons = noteService.getIcons()
+  const { info } = noteToAdd
 
   useEffect(() => {
     function handleClickOutside({ target }) {
-      if (
-        (addNoteSectionRef.current && addNoteSectionRef.current.contains(target)) ||
-        (pinIconRef.current && pinIconRef.current.contains(target))
-      )
+      const isInsideAddNoteSection = addNoteSectionRef.current && addNoteSectionRef.current.contains(target)
+      const isInsidePinIcon = pinIconRef.current && pinIconRef.current.contains(target)
+
+      if (isInsideAddNoteSection || isInsidePinIcon) {
         return
+      }
+
       if (isExpanded) {
-        if (titleInputRef.current && !titleInputRef.current.contains(target)) {
-          if (noteToAdd.info.txt || noteToAdd.info.title || noteToAdd.info.url) {
+        const isOutsideTitleInput = titleInputRef.current && !titleInputRef.current.contains(target)
+
+        if (isOutsideTitleInput) {
+          if (info.txt || info.title || info.url) {
             onAddNote(noteToAdd)
           }
           setIsExpanded(false)
@@ -39,9 +44,9 @@ export function AddNote({ onAddNote }) {
     const { placeholder, disabled, isExpanded, type } = icons[selectedIcon]
     contentInputRef.current.placeholder = placeholder
     noteToAdd.info.txt = ''
+    noteToAdd.info.url = ''
     contentInputRef.current.disabled = disabled
     setIsExpanded(isExpanded)
-
     setNoteToAdd(prevNoteToAdd => ({
       ...prevNoteToAdd,
       type: type,
@@ -49,21 +54,25 @@ export function AddNote({ onAddNote }) {
   }, [selectedIcon])
 
   function handleTextChange({ target: { value } }) {
-    setNoteToAdd(prevNoteToAdd => ({
-      ...prevNoteToAdd,
-      info: {
-        ...prevNoteToAdd.info,
-        ...(prevNoteToAdd.type === 'NoteTxt'
-          ? { txt: value }
-          : prevNoteToAdd.type === 'NoteImg'
-          ? { url: value }
-          : prevNoteToAdd.type === 'NoteVideo'
-          ? {
-              url: `https://www.youtube.com/embed/${value.match(/[?&]v=([^&]+)/)[1]}`,
-            }
-          : {}),
-      },
-    }))
+    setNoteToAdd(prevNoteToAdd => {
+      const updatedInfo = { ...prevNoteToAdd.info }
+      if (prevNoteToAdd.type === 'NoteTxt') {
+        updatedInfo.txt = value
+      } else if (prevNoteToAdd.type === 'NoteImg') {
+        updatedInfo.url = value
+      } else if (prevNoteToAdd.type === 'NoteVideo') {
+        const match = value.match(/[?&]v=([^&]+)/)
+        if (match) {
+          updatedInfo.url = `https://www.youtube.com/embed/${match[1]}`
+        } else {
+          updatedInfo.url = value
+        }
+      }
+      return {
+        ...prevNoteToAdd,
+        info: updatedInfo,
+      }
+    })
   }
 
   function handleTitleChange({ target: { value } }) {
@@ -91,7 +100,7 @@ export function AddNote({ onAddNote }) {
         {isExpanded && (
           <div className='title-input'>
             <input
-              value={noteToAdd.info.title}
+              value={info.title}
               ref={titleInputRef}
               type='text'
               name='title'
@@ -108,7 +117,7 @@ export function AddNote({ onAddNote }) {
         <div className='content-input' ref={addNoteSectionRef}>
           <input
             ref={contentInputRef}
-            value={noteToAdd.info.txt || noteToAdd.info.url}
+            value={info.txt || info.url}
             className='content'
             type='text'
             name='txt'

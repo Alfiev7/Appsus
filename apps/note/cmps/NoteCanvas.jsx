@@ -2,7 +2,7 @@ import { noteService } from '../services/note.service.js'
 
 const { useRef, useEffect, useState } = React
 
-export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
+export function NoteCanvas({ id, info, type }) {
   const canvasRef = useRef(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const { url: canvasUrl } = info
@@ -45,7 +45,6 @@ export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
   }, [isDrawing, canvasUrl])
 
   function onCanvasSave(newUrl) {
-    console.log('newUrl', newUrl)
     noteService.updateNoteContent(id, type, null, null, null, newUrl)
   }
 

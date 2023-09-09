@@ -23,7 +23,6 @@ export function NoteMap() {
             map: map,
             title: 'Current Location',
           })
-          showSuccessMsg('Map pinned to your current location')
         },
         error => {
           console.error('Error getting location:', error)

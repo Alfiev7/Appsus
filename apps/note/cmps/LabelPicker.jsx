@@ -1,3 +1,4 @@
+import { showErrorMsg } from '../../../services/event-bus.service.js'
 const { useState } = React
 
 export function LabelPicker({ onAddLabel, note }) {
@@ -11,7 +12,10 @@ export function LabelPicker({ onAddLabel, note }) {
   }
 
   function handleLabelPicked(noteId, label) {
-    if (note.info.labels && note.info.labels.length && note.info.labels.some(l => l.txt === label.txt)) return
+    if (note.info.labels && note.info.labels.length && note.info.labels.some(l => l.txt === label.txt)) {
+      showErrorMsg('Label already exists')
+      return
+    }
     onAddLabel(noteId, label)
     setSelectedLabel(label)
   }
