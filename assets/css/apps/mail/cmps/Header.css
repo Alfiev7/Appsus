@@ -48,6 +48,7 @@
 .header_right > i {
   color: #989aa0;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .header_right > img {
