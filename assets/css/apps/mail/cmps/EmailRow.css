@@ -18,6 +18,17 @@
 
 }
 
+.emailRow_label > i {
+    display: flex;
+    align-items: center;
+}
+ 
+
+.label-icon {
+    display: flex;
+    font-size: 1.25rem;
+}
+
 .emailRow_options>i {
 align-items: center;
     margin-left: 1rem;

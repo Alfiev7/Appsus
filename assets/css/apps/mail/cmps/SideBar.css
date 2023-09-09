@@ -73,12 +73,30 @@ button.sidebar_compose>h2 {
     color: #202124;
 }
 
-.critical>span,
-.family>span,
-.work>span,
-.memories>span {
+.critical>i,
+.family>i,
+.work>i,
+.memories>i {
     padding: 0.35rem;
-    color: grey;
+    font-size: 1.25rem;
+    
+}
+
+.critical > i {
+    color: #D84727;
+}
+    
+
+.work > i {
+    color: #CDEDF6;
+}
+
+.family > i {
+    color: #A569DA
+}
+
+.memories > i {
+    color: #5EB1BF;
 }
 
 .critical>h3,

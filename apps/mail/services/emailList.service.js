@@ -77,6 +77,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     },
     {
         id: 2,
@@ -102,6 +103,7 @@ const emailRowData = [
         isTrash: false,
         isDraft: false,
         isChecked: false,
+        labels: [],
     }
     ,
     {
@@ -123,6 +125,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -144,6 +147,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -165,6 +169,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -186,6 +191,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -207,6 +213,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -228,6 +235,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -249,6 +257,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -270,6 +279,7 @@ const emailRowData = [
         isStarred: true,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -290,6 +300,7 @@ const emailRowData = [
         isStarred: true,
         isTrash: false,
         isDraft: false,
+        labels: [],
     }
     ,
     {
@@ -315,6 +326,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 13,
@@ -341,6 +353,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 14,
@@ -367,6 +380,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 15,
@@ -389,6 +403,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 16,
@@ -411,6 +426,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 17,
@@ -433,6 +449,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 18,
@@ -457,6 +474,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 19,
@@ -479,6 +497,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 20,
@@ -505,6 +524,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 21,
@@ -527,6 +547,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 22,
@@ -553,6 +574,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 23,
@@ -575,6 +597,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 24,
@@ -597,6 +620,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 25,
@@ -619,6 +643,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 26,
@@ -641,6 +666,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 27,
@@ -665,6 +691,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 28,
@@ -687,6 +714,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       },
       {
         id: 29,
@@ -711,6 +739,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
+        labels: [],
       }
 
 ];
@@ -724,7 +753,7 @@ export const emailIncoming = {
     updateEmail,
     formatDate
 }
-const LATEST_EMAIL_VERSION = 16; 
+const LATEST_EMAIL_VERSION = 17; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
