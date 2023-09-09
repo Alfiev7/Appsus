@@ -9,15 +9,13 @@ export function AddNote({ onAddNote }) {
   const addNoteSectionRef = useRef(null)
   const contentInputRef = useRef(null)
   const pinIconRef = useRef(null)
-  const actionsAreaRef = useRef(null)
   const icons = noteService.getIcons()
 
   useEffect(() => {
     function handleClickOutside({ target }) {
       if (
         (addNoteSectionRef.current && addNoteSectionRef.current.contains(target)) ||
-        (pinIconRef.current && pinIconRef.current.contains(target)) ||
-        (actionsAreaRef.current && actionsAreaRef.current.contains(target))
+        (pinIconRef.current && pinIconRef.current.contains(target))
       )
         return
       if (isExpanded) {
@@ -132,11 +130,6 @@ export function AddNote({ onAddNote }) {
             ))}
           </div>
         </div>
-        {isExpanded && (
-          <section ref={actionsAreaRef} className='actions'>
-            Actions Area (??)
-          </section>
-        )}
       </React.Fragment>
     </section>
   )

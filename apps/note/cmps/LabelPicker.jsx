@@ -11,6 +11,7 @@ export function LabelPicker({ onAddLabel, note }) {
   }
 
   function handleLabelPicked(noteId, label) {
+    if (note.info.labels && note.info.labels.length && note.info.labels.some(l => l.txt === label.txt)) return
     onAddLabel(noteId, label)
     setSelectedLabel(label)
   }
