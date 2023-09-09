@@ -77,7 +77,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Critical"],
     },
     {
         id: 2,
@@ -125,7 +125,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Family"],
     }
     ,
     {
@@ -147,7 +147,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Work"],
     }
     ,
     {
@@ -169,7 +169,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["family"],
     }
     ,
     {
@@ -213,7 +213,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Memories"],
     }
     ,
     {
@@ -235,7 +235,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: []["Critical"],
     }
     ,
     {
@@ -257,7 +257,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Work"],
     }
     ,
     {
@@ -300,7 +300,7 @@ const emailRowData = [
         isStarred: true,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Critical"],
     }
     ,
     {
@@ -353,7 +353,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Family"],
       },
       {
         id: 14,
@@ -403,7 +403,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Critical"],
       },
       {
         id: 16,
@@ -474,7 +474,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Family"],
       },
       {
         id: 19,
@@ -666,7 +666,7 @@ const emailRowData = [
         isStarred: false,
         isTrash: false,
         isDraft: false,
-        labels: [],
+        labels: ["Critical"],
       },
       {
         id: 27,
@@ -753,7 +753,7 @@ export const emailIncoming = {
     updateEmail,
     formatDate
 }
-const LATEST_EMAIL_VERSION = 17; 
+const LATEST_EMAIL_VERSION = 20; 
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION';
 
 _createEmailRowData()
