@@ -1,6 +1,7 @@
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 const { useEffect, useRef } = React
 
-export function NoteMap({ id, createdAt, isPinned, style, info, type }) {
+export function NoteMap() {
   const mapRef = useRef(null)
   let marker = null
 
@@ -16,9 +17,7 @@ export function NoteMap({ id, createdAt, isPinned, style, info, type }) {
         position => {
           const { latitude, longitude } = position.coords
           const coords = { lat: latitude, lng: longitude }
-
           map.setCenter(coords)
-
           marker = new window.google.maps.Marker({
             position: coords,
             map: map,
@@ -32,16 +31,13 @@ export function NoteMap({ id, createdAt, isPinned, style, info, type }) {
     }
 
     return () => {
-      if (marker) {
-        marker.setMap(null)
-      }
+      if (marker) marker.setMap(null)
     }
   }, [])
 
   return (
     <div className='note-map'>
       <div ref={mapRef} className='map-container' style={{ height: '300px', width: '100%' }}></div>
-      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

@@ -2,7 +2,7 @@ const { useState, useEffect, useRef } = React
 import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
 
-export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
+export function NoteRecording({ id, createdAt, info, type }) {
   const [audioStream, setAudioStream] = useState(null)
   const [recording, setRecording] = useState(false)
   const [audioUrl, setAudioUrl] = useState(info.url || null)
@@ -117,7 +117,6 @@ export function NoteRecording({ id, createdAt, isPinned, style, info, type }) {
           <audio src={audioUrl} controls />
         </div>
       }
-      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

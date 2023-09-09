@@ -15,6 +15,7 @@ export function NoteActions({ note, noteHandlingFuncs }) {
   const labelIconRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
+  const { id, info, type } = note
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
@@ -45,13 +46,13 @@ export function NoteActions({ note, noteHandlingFuncs }) {
   }
 
   function sendAsEmail() {
-    if (note.type === 'NoteMap') {
+    if (type === 'NoteMap') {
       showErrorMsg('You cannot send a map as an email')
       return
     }
     const queryParams = new URLSearchParams(location.search)
-    queryParams.set('title', note.info.title)
-    queryParams.set('content', note.info.txt ? note.info.txt : note.info.url || note.info.todos.map(todo => todo.txt))
+    queryParams.set('title', info.title)
+    queryParams.set('content', info.txt ? info.txt : info.url || info.todos.map(todo => todo.txt))
     const newSearch = queryParams.toString()
 
     navigate('/mail?' + newSearch)
@@ -61,7 +62,7 @@ export function NoteActions({ note, noteHandlingFuncs }) {
     <div className='note-actions'>
       <React.Fragment>
         <div>
-          <a className='material-icons-outlined' onClick={() => onRemoveNote(note.id)} title='Delete note'>
+          <a className='material-icons-outlined' onClick={() => onRemoveNote(id)} title='Delete note'>
             delete
           </a>
           <a

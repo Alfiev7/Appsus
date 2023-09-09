@@ -10,32 +10,25 @@ import { NoteRecording } from './NoteRecording.jsx'
 import { NoteActions } from './NoteActions.jsx'
 
 export function NotePreview({ note, noteHandlingFuncs }) {
-  const { id, type, info } = note
+  const { id, type, info, createdAt, style } = note
   const { onPinNote } = noteHandlingFuncs
 
   function getNoteToRender() {
     switch (type) {
       case 'NoteTxt':
         return <NoteTxt {...note} />
-
       case 'NoteImg':
         return <NoteImg {...note} />
-
       case 'NoteVideo':
         return <NoteVideo {...note} />
-
       case 'NoteTodos':
         return <NoteTodos {...note} />
-
       case 'NoteCanvas':
         return <NoteCanvas {...note} />
-
       case 'NoteMap':
         return <NoteMap {...note} />
-
       case 'NoteRecording':
         return <NoteRecording {...note} />
-
       default:
         return null
     }
@@ -46,9 +39,10 @@ export function NotePreview({ note, noteHandlingFuncs }) {
   }
 
   return (
-    <article className='note-preview' style={note.style}>
+    <article className='note-preview' style={style}>
       <NoteHeader note={note} onUpdateTitle={onUpdateTitle} onPinNote={onPinNote} />
       {getNoteToRender()}
+      <pre className='last-edit'>Last edit: {createdAt}</pre>
       <NoteActions note={note} noteHandlingFuncs={noteHandlingFuncs} />
     </article>
   )

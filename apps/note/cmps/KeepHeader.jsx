@@ -45,7 +45,7 @@ export function KeepHeader({ onSetFilterBy }) {
     <React.Fragment>
       <div className='keep-header'>
         <div className='keep-header-left'>
-          <i className='fas fa-bars'></i>
+          <i className='fas fa-bars' title='Not supported'></i>
           <img src='./assets/img/keep-logo.png' alt='' />
           <h1 className='keep-header-name'>Keep</h1>
         </div>
@@ -59,10 +59,14 @@ export function KeepHeader({ onSetFilterBy }) {
         </div>
 
         <div className='keep-header-right'>
-          <i className='material-symbols-outlined icon-apps' onClick={() => setIsMenuExpanded(!isMenuExpanded)}>
+          <i
+            className='material-symbols-outlined icon-apps'
+            title='Apps menu'
+            onClick={() => setIsMenuExpanded(!isMenuExpanded)}
+          >
             apps
           </i>
-          <img src='./assets/img/user-yarin.jpeg' alt='' />
+          <img src='./assets/img/user-yarin.jpeg' alt='' title='Yarin !' />
         </div>
       </div>
       {isMenuExpanded && <AppsMenu handleNavigate={handleNavigate} />}

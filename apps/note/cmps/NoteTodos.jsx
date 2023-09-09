@@ -1,10 +1,12 @@
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
+import { todoService } from '../services/todo.service.js'
 import { TodoItem } from './TodoItem.jsx'
 
 const { useState, useRef } = React
 
-export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
+export function NoteTodos({ id, createdAt, info, type }) {
   const [todos, setTodos] = useState(info.todos)
   const editRef = useRef(null)
 
@@ -25,33 +27,14 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
       editRef.current.textContent = 'Todo item..'
       return
     }
-    noteService
-      .get(id)
-      .then(note => {
-        const newTodo = { txt: todoToAdd, isDone: false, doneAt: null }
-        note.info.todos.push(newTodo)
-        return noteService.save(note).then(() => newTodo)
-      })
-      .then(newTodo => {
-        setTodos(prevTodos => [...prevTodos, newTodo])
-        editRef.current.textContent = 'Todo item..'
-      })
-      .catch(error => {
-        console.error("Couldn't add todo:", error)
-      })
+    todoService.addTodo(todoToAdd, id, setTodos)
+    editRef.current.textContent = 'Todo item..'
+    showSuccessMsg('Added todo')
   }
 
   function onRemoveTodo(index) {
-    noteService
-      .get(id)
-      .then(note => {
-        note.info.todos.splice(index, 1)
-        return noteService.save(note)
-      })
-      .then(setTodos(prevTodos => prevTodos.filter((_, idx) => idx !== index)))
-      .catch(err => {
-        console.error("Couldn't remove todo:", err)
-      })
+    todoService.removeTodo(index, id, setTodos)
+    showSuccessMsg('Removed todo')
   }
 
   function onUpdateTxt({ target: { textContent: newTxt } }, index) {
@@ -83,7 +66,6 @@ export function NoteTodos({ id, createdAt, isPinned, style, info, type }) {
           Todo item..
         </span>
       </div>
-      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

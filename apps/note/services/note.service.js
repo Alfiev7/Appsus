@@ -34,6 +34,10 @@ const notesDB = [
         { txt: "Catch 'em all", doneAt: 'Aug 20, 1994', isDone: false },
         { txt: 'Kamehameha a cat', doneAt: 'Sep 9, 2011', isDone: false },
       ],
+      labels: [
+        { txt: 'critical', color: '#D84727' },
+        { txt: 'work', color: '#CDEDF6' },
+      ],
     },
   },
   {
@@ -41,10 +45,11 @@ const notesDB = [
     createdAt: "Jan 1, '0 at 00:00",
     type: 'NoteVideo',
     isPinned: false,
-    style: {},
+    style: { background: '#eeeeee' },
     info: {
       title: 'Deprecated feature',
       url: 'https://www.youtube.com/embed/Yvz_axxWG4Y',
+      labels: [{ txt: 'critical', color: '#D84727' }],
     },
   },
   {
@@ -83,6 +88,7 @@ const notesDB = [
     style: { background: '#f6e2dd' },
   },
 ]
+
 const NOTES_KEY = 'notesDB'
 _createNotes()
 

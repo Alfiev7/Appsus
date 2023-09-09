@@ -23,10 +23,7 @@ export function NoteIndex() {
     const title = queryParams.get('title')
     const content = queryParams.get('content')
     if (title && content) {
-      console.log('title', title)
-      console.log('content', content)
       const noteFromEmail = noteService.getEmptyNote(title, content)
-      console.log('noteFromEmail', noteFromEmail)
       onAddNote(noteFromEmail)
     }
   }, [filterBy])
@@ -36,7 +33,6 @@ export function NoteIndex() {
   }
 
   function onAddNote(note, isDuplicate = false) {
-    console.log('note', note)
     noteService
       .save(note)
       .then(note => {

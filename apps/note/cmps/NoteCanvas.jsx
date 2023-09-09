@@ -2,7 +2,7 @@ import { noteService } from '../services/note.service.js'
 
 const { useRef, useEffect, useState } = React
 
-export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
+export function NoteCanvas({ id, info, type }) {
   const canvasRef = useRef(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const { url: canvasUrl } = info
@@ -45,7 +45,6 @@ export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
   }, [isDrawing, canvasUrl])
 
   function onCanvasSave(newUrl) {
-    console.log('newUrl', newUrl)
     noteService.updateNoteContent(id, type, null, null, null, newUrl)
   }
 
@@ -67,15 +66,10 @@ export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
         >
           save
         </a>
-        <a
-          className='material-symbols-outlined'
-          onClick={clearCanvas}
-          title='Clear canvas'
-        >
+        <a className='material-symbols-outlined' onClick={clearCanvas} title='Clear canvas'>
           delete_sweep
         </a>
       </div>
-      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }
