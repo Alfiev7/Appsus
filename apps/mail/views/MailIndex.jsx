@@ -24,8 +24,20 @@ export function MailIndex() {
     const title = queryParams.get('title')
     const content = queryParams.get('content')
     if (title && content) {
-      console.log('title', title)
-      console.log('content', content)
+      setDraftData({
+        id: Date.now(),
+        title: 'Alfie',
+        from: 'alfie@gmail.com',
+        to: '',
+        subject: title,
+        description: content,
+        time: Date.now(),
+        isRead: true,
+        isStarred: false,
+        isTrash: false,
+        isDraft: true,
+        isFromNote: true,
+      })
       setShowCompose(true)
     }
     emailIncoming
