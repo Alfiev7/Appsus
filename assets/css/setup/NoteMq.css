@@ -2,20 +2,41 @@
   .note-list {
     margin-inline-start: 10px;
     margin-inline-end: 10px;
-    columns: 1;
+  }
+
+  .note-preview:last-child {
+    margin-bottom: 0px;
   }
 
   .content-input {
     flex-direction: column;
   }
+
   .add-note {
     margin-inline-start: 0.625rem;
     margin-inline-end: 0.625rem;
     width: calc(100% - 0.625rem * 2);
   }
 
+  .keep-header {
+    flex-direction: column;
+  }
+
   .keep-header-middle {
     flex-direction: column;
     margin-inline-end: 0rem;
+    order: 1;
+  }
+
+  .keep-header-left {
+    position: absolute;
+    right: 55%;
+    top: 65px;
+  }
+
+  .keep-header-right {
+    position: relative;
+    left: 120px;
+    bottom: 5px;
   }
 }
