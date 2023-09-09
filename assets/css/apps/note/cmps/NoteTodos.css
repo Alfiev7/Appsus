@@ -27,6 +27,8 @@
   color: rgba(68, 68, 68, 0.493);
   pointer-events: none;
   user-select: none;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
 }
 
 .note-todos .material-icons-outlined:not(.icon-add) {

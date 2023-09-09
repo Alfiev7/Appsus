@@ -5,7 +5,6 @@ export function NoteImg({ id, createdAt, isPinned, style, info, onUpdateTitle })
   return (
     <div className='note-img'>
       <p>{<img src={url} alt={title} />}</p>
-      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

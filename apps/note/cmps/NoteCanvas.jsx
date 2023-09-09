@@ -67,15 +67,10 @@ export function NoteCanvas({ id, createdAt, isPinned, style, info, type }) {
         >
           save
         </a>
-        <a
-          className='material-symbols-outlined'
-          onClick={clearCanvas}
-          title='Clear canvas'
-        >
+        <a className='material-symbols-outlined' onClick={clearCanvas} title='Clear canvas'>
           delete_sweep
         </a>
       </div>
-      <pre className='last-edit'>Last edit: {createdAt}</pre>
     </div>
   )
 }

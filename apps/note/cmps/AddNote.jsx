@@ -38,6 +38,7 @@ export function AddNote({ onAddNote }) {
   useEffect(() => {
     const { placeholder, disabled, isExpanded, type } = icons[selectedIcon]
     contentInputRef.current.placeholder = placeholder
+    noteToAdd.info.txt = ''
     contentInputRef.current.disabled = disabled
     setIsExpanded(isExpanded)
 
