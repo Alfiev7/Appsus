@@ -6,6 +6,9 @@ import { SideBar } from '../cmps/SideBar.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
 import { EmailPreview } from '../cmps/EmailPreview.jsx'
 import { emailIncoming } from '../services/emailList.service.js'
+import { UserMsg } from '../../../cmps/UserMsg.jsx'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
+
 
 export function MailIndex() {
   const [emails, setEmails] = useState([])
@@ -16,6 +19,15 @@ export function MailIndex() {
   const [isAscending, setIsAscending] = useState(true)
   const [hideTitles, setHideTitles] = useState(false)
   const [showTitlesAndNumbers, setShowTitlesAndNumbers] = useState(true)
+
+
+
+
+
+
+
+
+  
   const location = useLocation()
 
   useEffect(() => {
@@ -47,7 +59,8 @@ export function MailIndex() {
       .catch(error => {
         console.log(error)
       })
-  }, [])
+    }, [])
+      
 
   const getAppliedFilterParameter = selectedItemTitle => {
     setAppliedFilter(selectedItemTitle)
@@ -143,7 +156,8 @@ export function MailIndex() {
       prevEmails.map(email => {
         if (email.id === emailId) {
           const updatedEmail = { ...email, labels: [...email.labels, label] }
-          console.log('Updated email with label:', updatedEmail) // Add this line to check the updated email
+          console.log('Updated email with label:', updatedEmail) 
+          showSuccessMsg('Label Added')
           return updatedEmail
         }
         return email
@@ -164,6 +178,7 @@ export function MailIndex() {
 
   return (
     <div className='mailapp'>
+    
       <Header
         updateSearchKeyword={updateSearchKeyword}
         toggleHideTitles={() => setHideTitles(!hideTitles)}
@@ -201,6 +216,7 @@ export function MailIndex() {
           <Route path='/EmailPreview/:id' element={<EmailPreview />} />
         </Routes>
       </div>
+      <UserMsg />
     </div>
   )
 }

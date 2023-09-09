@@ -4,6 +4,9 @@ import { Section } from './Section.jsx'
 import { EmailRow } from './EmailRow.jsx'
 import { sectionService, EMAILROWDATA_KEY } from '../services/emailList.service.js'
 import { utilService } from '../../../services/util.service.js'
+import { UserMsg } from '../../../cmps/UserMsg.jsx'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
+
 
 export function EmailList({
   emailsAfterFilter,
@@ -33,11 +36,13 @@ export function EmailList({
     })
     setEmails(updatedEmails)
     utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails)
+    showSuccessMsg('All emails toggled!')
   }
   const toggleIsStarred = id => {
     const updatedEmails = emails.map(email => (email.id === id ? { ...email, isStarred: !email.isStarred } : email))
     setEmails(updatedEmails)
     utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails)
+    showSuccessMsg('Email starred!')
   }
 
   const toggleCheckbox = id => {
@@ -50,12 +55,14 @@ export function EmailList({
     const updatedEmails = emails.map(email => (email.isChecked ? { ...email, isRead: true, isChecked: false } : email))
     setEmails(updatedEmails)
     utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails)
+    showSuccessMsg('Email marked as read!')
   }
 
   const markAsUnread = () => {
     const updatedEmails = emails.map(email => (email.isChecked ? { ...email, isRead: false, isChecked: false } : email))
     setEmails(updatedEmails)
     utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails)
+    showSuccessMsg('Email marked as unread!')
   }
 
   const markasTrash = () => {
@@ -75,6 +82,8 @@ export function EmailList({
       .filter(email => email !== null)
     setEmails(updatedEmails)
     utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails)
+    showSuccessMsg('Email trashed!')
+
   }
 
   const toggleDropdown = () => {
@@ -85,32 +94,32 @@ export function EmailList({
     setActiveSection(sectionTitle === activeSection ? null : sectionTitle)
   }
 
-  function sendToNote() {}
+
 
   return (
     <div className='EmailList'>
       <div className='emaillist-topbuttons'>
-        <span className='material-icons-outlined' onClick={toggleAllCheckboxes}>
+        <span className='material-icons-outlined' onClick={toggleAllCheckboxes}  title='Check All'>
           check_box_outline_blank
         </span>
-        <span className='material-icons-outlined' onClick={markAsUnread}>
+        <span className='material-icons-outlined' onClick={markAsUnread}  title='Mark Unread'>
           markunread
         </span>
-        <span className='material-icons-outlined' onClick={markAsRead}>
+        <span className='material-icons-outlined' onClick={markAsRead}  title='Mark Read'>
           mark_email_unread
         </span>
-        <span className='material-icons-outlined' onClick={markasTrash}>
+        <span className='material-icons-outlined' onClick={markasTrash}  title='Trash'>
           delete_outline
         </span>
-        <span className='material-symbols-outlined' onClick={toggleDropdown}>
+        <span className='material-symbols-outlined' onClick={toggleDropdown}  title='Sort by'>
           filter_list
         </span>
         {isDropdownOpen && (
           <div className='dropdown'>
-            <span className='material-symbols-outlined' onClick={sortEmailsByDate}>
+            <span className='material-symbols-outlined' onClick={sortEmailsByDate} title='Sort by date'>
               timer
             </span>
-            <span className='material-symbols-outlined' onClick={sortEmailsByTitle}>
+            <span className='material-symbols-outlined' onClick={sortEmailsByTitle} title='Sort by Sender'>
               title
             </span>
           </div>
@@ -156,6 +165,7 @@ export function EmailList({
             />
           ))}
       </div>
+      <UserMsg />
     </div>
   )
 }
