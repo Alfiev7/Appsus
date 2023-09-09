@@ -48,7 +48,7 @@
     grid-template-columns: 50px 1fr;
     grid-template-rows: repeat(3, auto);
     height: 5.5rem;
-    width: 350px;
+    width: 100%;
     flex: 0.1;
     white-space: nowrap;
     text-overflow: ellipsis;
