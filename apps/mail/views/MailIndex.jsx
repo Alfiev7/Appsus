@@ -1,4 +1,4 @@
-const { Routes, Route } = ReactRouterDOM
+const { Routes, Route, useLocation } = ReactRouterDOM
 const { useState, useEffect } = React
 
 import { Header } from '../cmps/Header.jsx'
@@ -6,7 +6,6 @@ import { SideBar } from '../cmps/SideBar.jsx'
 import { EmailList } from '../cmps/EmailList.jsx'
 import { EmailPreview } from '../cmps/EmailPreview.jsx'
 import { emailIncoming } from '../services/emailList.service.js'
-const { useLocation } = ReactRouterDOM
 
 export function MailIndex() {
   const [emails, setEmails] = useState([])

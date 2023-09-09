@@ -152,15 +152,15 @@ function getDefaultFilter() {
   return { title: '', txt: '', type: '' }
 }
 
-function getEmptyNote() {
+function getEmptyNote(title, content) {
   return {
     type: 'NoteTxt',
     isPinned: false,
     createdAt: utilService.getFormattedDate(),
     style: { backgroundSize: 'cover' },
     info: {
-      title: '',
-      txt: '',
+      title: title || '',
+      txt: content || '',
       todos: [],
       labels: [],
       url: '',

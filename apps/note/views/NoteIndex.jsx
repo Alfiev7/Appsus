@@ -1,4 +1,5 @@
 const { useEffect, useState } = React
+const { useLocation } = ReactRouterDOM
 import { AddNote } from '../cmps/AddNote.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
@@ -10,6 +11,7 @@ export function NoteIndex() {
   const [notes, setNotes] = useState(null)
   const [filterBy, setFilterBy] = useState('')
   const [hasPinnedNotes, sethasPinnedNotes] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     notes && sethasPinnedNotes(notes.some(note => note.isPinned))
@@ -17,6 +19,16 @@ export function NoteIndex() {
 
   useEffect(() => {
     noteService.query(filterBy).then(setNotes)
+    const queryParams = new URLSearchParams(location.search)
+    const title = queryParams.get('title')
+    const content = queryParams.get('content')
+    if (title && content) {
+      console.log('title', title)
+      console.log('content', content)
+      const noteFromEmail = noteService.getEmptyNote(title, content)
+      console.log('noteFromEmail', noteFromEmail)
+      onAddNote(noteFromEmail)
+    }
   }, [filterBy])
 
   function onSetFilterBy(filterBy) {
@@ -24,6 +36,7 @@ export function NoteIndex() {
   }
 
   function onAddNote(note, isDuplicate = false) {
+    console.log('note', note)
     noteService
       .save(note)
       .then(note => {
