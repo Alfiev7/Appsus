@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+
+    .profilecontainers {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        margin-block-start: 5rem;
+        margin-inline-start: -4rem;
+        gap: 40px;
+    }
+}

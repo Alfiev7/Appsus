@@ -14,7 +14,9 @@
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
 @import './views/Home.css';
+@import './views/About.css';
 @import './setup/home-mq.css';
+@import './setup/about-mq.css';
 @import '../../apps/books/assets/style/books-main.css';
 
 /* @import './apps/note/views/NoteIndex.css'; */
