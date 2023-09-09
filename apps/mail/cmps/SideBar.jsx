@@ -18,9 +18,7 @@ export function SideBar({
     hideTitles,
     showTitlesAndNumbers,
     addLabelToEmail,
-   
-
-}) {
+   }) {
 
     const [sideBarData, setSideBarData] = useState(null);
 
@@ -62,12 +60,6 @@ export function SideBar({
       addLabelToEmail(email.id, label);
     });
   };
-      
-
-      
-
-
-
 
     return (
         <div className={`sidebar ${showTitlesAndNumbers ? '' : 'sidebar-icons-only'}`}>
