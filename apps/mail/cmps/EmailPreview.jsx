@@ -39,7 +39,7 @@ export function EmailPreview() {
           <i className='material-icons-outlined' onClick={goBackToHome}>
             arrow_back
           </i>
-          <i className='material-symbols-outlined' onClick={() => sendToNote()}>
+          <i className='material-symbols-outlined' onClick={() => sendToNote()} title='Save as note'>
             export_notes
           </i>
         </div>
