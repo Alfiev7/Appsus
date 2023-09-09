@@ -12,3 +12,13 @@
   font-family: teko;
   src: url('../../fonts/Teko.ttf');
 }
+
+@font-face {
+  font-family: playfair;
+  src: url('../../fonts/Playfair.ttf');
+}
+
+@font-face {
+  font-family: futura;
+  src: url('../../fonts/futura.ttf');
+}
