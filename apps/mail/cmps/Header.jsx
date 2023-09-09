@@ -6,6 +6,7 @@ const { useNavigate } = ReactRouterDOM
 export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitlesAndNumbers }) {
   const [hideTitles, setHideTitles] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false)
+  const navigate = useNavigate()
 
   const handleToggleHideTitles = () => {
     setHideTitles(!hideTitles);
