@@ -4,7 +4,7 @@ export function SideBarComponent({ icon, title, number, onClick, isActive }) {
         <div className={`SideBarComponent ${isActive ? 'active' : ''}`} onClick={onClick}>
             <i className={icon}></i>
             <h3>{title}</h3>
-            <p>{number}</p>
+            <h4>{number}</h4>
         </div>
     )
 }

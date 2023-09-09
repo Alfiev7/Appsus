@@ -8,6 +8,7 @@
     cursor: pointer;
     color: #202124;
     font-weight: 100;
+    
 }
 
 
@@ -24,6 +25,10 @@
     color: grey;
 }
 
+.SideBarComponent > h4 {
+    color: grey;
+}
+
 .SideBarComponent.active {
     background-color: #fcecec;
 }
@@ -34,13 +39,14 @@
     font-weight: 800;
 }
 
-.SideBarComponent.active p {
+.SideBarComponent.active h4 {
     color: #c04b37;
     font-weight: 800;
+
 } 
 
 .SideBarComponent:hover,
-.SideBarComponent:hover > p,
+.SideBarComponent:hover > h4,
 .SideBarComponent:hover > h3 {
     background-color: #fcecec;
     color: #c04b37;
