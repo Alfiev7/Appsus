@@ -18,6 +18,10 @@
 
 }
 
+.emailrow-label {
+    display: flex;
+}
+
 .emailrow-label > i {
     display: flex;
     align-items: center;
