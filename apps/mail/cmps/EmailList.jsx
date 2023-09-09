@@ -104,6 +104,7 @@ export function EmailList({
 
   const toggleActiveSection = sectionTitle => {
     setActiveSection(sectionTitle === activeSection ? null : sectionTitle)
+    showSuccessMsg('Coming soon!')
   }
 
 
