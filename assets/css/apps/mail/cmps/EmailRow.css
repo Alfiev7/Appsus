@@ -18,6 +18,10 @@
 
 }
 
+.emailrow-label {
+    display: flex;
+}
+
 .emailrow-label > i {
     display: flex;
     align-items: center;
@@ -54,7 +58,7 @@ align-items: center;
 }
 
 .emailrow-message>h4 {
-    width: 40rem;
+    width: 25rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
