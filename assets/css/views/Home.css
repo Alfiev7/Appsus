@@ -1,1 +1,39 @@
- /* home */
+.home {
+  margin-inline-start: 25rem;
+}
+
+.home-header {
+  margin-block-start: 5rem;
+  margin-inline-start: 3rem;
+}
+
+.home-main-header {
+  font-size: 2rem;
+  font-family: teko;
+}
+
+.home-sub-header {
+  font-family: roboto;
+  font-size: 1rem;
+  margin-block-start: 0px;
+  color: rgb(110, 105, 105);
+}
+
+.img-container {
+  width: 350px;
+}
+
+.iphone-notes {
+  margin-inline-start: 40px;
+  position: relative;
+  top: -40px;
+  left: 180px;
+  z-index: 11;
+}
+
+.iphone-email {
+  margin-inline-start: 40px;
+  position: relative;
+  top: -460px;
+  left: 270px;
+}
