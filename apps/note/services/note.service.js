@@ -83,6 +83,7 @@ const notesDB = [
     style: { background: '#f6e2dd' },
   },
 ]
+
 const NOTES_KEY = 'notesDB'
 _createNotes()
 

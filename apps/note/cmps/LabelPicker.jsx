@@ -3,8 +3,12 @@ const { useState } = React
 
 export function LabelPicker({ onAddLabel, note }) {
   const [selectedLabel, setSelectedLabel] = useState(null)
+  const {
+    id,
+    info: { labels },
+  } = note
 
-  const labels = {
+  const labelsDB = {
     critical: '#D84727',
     work: '#CDEDF6',
     family: '#a569da',
@@ -12,7 +16,7 @@ export function LabelPicker({ onAddLabel, note }) {
   }
 
   function handleLabelPicked(noteId, label) {
-    if (note.info.labels && note.info.labels.length && note.info.labels.some(l => l.txt === label.txt)) {
+    if (labels && labels.length && labels.some(l => l.txt === label.txt)) {
       showErrorMsg('Label already exists')
       return
     }
@@ -22,15 +26,15 @@ export function LabelPicker({ onAddLabel, note }) {
 
   return (
     <div className='label-picker'>
-      {Object.keys(labels).map((label, index) => {
-        const isSelected = selectedLabel === labels[label]
+      {Object.keys(labelsDB).map((label, index) => {
+        const isSelected = selectedLabel === labelsDB[label]
         return (
           <article
             className={`${label} ${isSelected ? 'picked' : ''}`}
             title={label}
             key={index}
-            style={{ backgroundColor: labels[label] }}
-            onClick={() => handleLabelPicked(note.id, { txt: label, color: labels[label] })}
+            style={{ backgroundColor: labelsDB[label] }}
+            onClick={() => handleLabelPicked(id, { txt: label, color: labelsDB[label] })}
           >
             {label.charAt(0).toUpperCase() + label.slice(1)}
           </article>
