@@ -58,6 +58,18 @@ export function EmailList({
     showSuccessMsg('Email marked as read!')
   }
 
+  const markAsReadById = (id) => {
+    const updatedEmails = emails.map(email => {
+      if(email.id === id) {
+        return { ...email, isRead: true };
+      }
+      return email;
+    });
+    setEmails(updatedEmails);
+    utilService.saveToStorage(EMAILROWDATA_KEY, updatedEmails);
+    showSuccessMsg('Email marked as read!');
+  };
+
   const markAsUnread = () => {
     const updatedEmails = emails.map(email => (email.isChecked ? { ...email, isRead: false, isChecked: false } : email))
     setEmails(updatedEmails)
@@ -162,6 +174,7 @@ export function EmailList({
               onOpenDraft={handleOpenDraft}
               markasTrash={markasTrash}
               labels={data.labels}
+              markAsReadById={() => markAsReadById(data.id)}
             />
           ))}
       </div>

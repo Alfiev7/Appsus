@@ -21,13 +21,6 @@ export function MailIndex() {
   const [showTitlesAndNumbers, setShowTitlesAndNumbers] = useState(true)
 
 
-
-
-
-
-
-
-  
   const location = useLocation()
 
   useEffect(() => {

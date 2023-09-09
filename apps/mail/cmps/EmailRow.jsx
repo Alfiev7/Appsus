@@ -1,10 +1,10 @@
 const { useNavigate } = ReactRouterDOM
 
-export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred, isDraft, onOpenDraft, labels }) {
+export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred, isDraft, onOpenDraft, labels, markAsReadById }) {
     const navigate = useNavigate();
 
 
-    const handleRowClick = () => {
+    const handleRowClick = async () => {
         if (isDraft) {
             onOpenDraft({
                 id,
@@ -13,6 +13,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
                 description,
             });
         } else {
+            markAsReadById()
             navigate(`EmailPreview/${id}`);
         }
     };
