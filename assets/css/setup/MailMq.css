@@ -1,6 +1,6 @@
 @media (max-width: 640px) {
   body .EmailList {
-    overflow: hidden;
+    overflow: scroll;
   }
 
   .SideBarComponent > h3,
@@ -47,7 +47,7 @@
     display: grid;
     grid-template-columns: 50px 1fr;
     grid-template-rows: repeat(3, auto);
-    height: 4.5rem;
+    height: 5.5rem;
     width: 350px;
     flex: 0.1;
     white-space: nowrap;
@@ -69,14 +69,14 @@
   .emailRow_title {
     grid-column: 2/3;
     padding-right: 10px;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     grid-row: 1/2;
   }
 
   .emailRow_time {
     grid-column: 2/3;
     grid-row: 3/4;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     margin-left: 15px;
   }
 
