@@ -12,7 +12,6 @@ export function NoteIndex() {
   const [filterBy, setFilterBy] = useState('')
   const [hasPinnedNotes, sethasPinnedNotes] = useState(false)
   const location = useLocation()
-
   useEffect(() => {
     notes && sethasPinnedNotes(notes.some(note => note.isPinned))
   }, [notes])

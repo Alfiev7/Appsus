@@ -47,7 +47,7 @@
 }
 
 .note-todos .icon.icon-add {
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .note-todos .todo-line:hover .icon.icon-remove {
