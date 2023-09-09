@@ -39,7 +39,7 @@
     width: 100%;
   }
 
-  .emaillist_sections {
+  .emaillist-sections {
     display: none;
   }
 
@@ -54,7 +54,7 @@
     text-overflow: ellipsis;
   }
 
-  .emailRow_options {
+  .emailrow-options {
     grid-column: 1/2;
     display: flex;
     flex-direction: column;
@@ -62,25 +62,25 @@
     grid-row: 1/5;
   }
 
-  .emailRow_options > span {
+  .emailrow-options > span {
     margin-bottom: 5px;
   }
 
-  .emailRow_title {
+  .emailrow-title {
     grid-column: 2/3;
     padding-right: 10px;
     font-size: 1.25rem;
     grid-row: 1/2;
   }
 
-  .emailRow_time {
+  .emailrow-time {
     grid-column: 2/3;
     grid-row: 3/4;
     font-size: 0.6rem;
     margin-left: 15px;
   }
 
-  .emailRow_message {
+  .emailrow-message {
     grid-column: 2/3;
     font-size: 0.75rem;
     grid-row: 2/3;
@@ -96,33 +96,33 @@
     display: none;
   }
 
-  .header_left > i {
+  .header-left > i {
     display: none;
   }
 
-  .header_left > img {
+  .header-left > img {
     margin-left: 0.1rem;
     margin-right: 30px;
     height: 28.75px;
     width: 37.8px;
   }
 
-  .header_right {
+  .header-right {
     padding-right: 0;
     width: 55px;
   }
 
-  .header_middle {
+  .header-middle {
     width: 250px;
     margin-right: 10px;
     flex: 1;
   }
 
-  .header_middle input {
+  .header-middle input {
     width: 100%;
   }
 
-  .header_right > img {
+  .header-right > img {
     margin-left: 10px;
     margin-right: 0;
     height: 25.75px;

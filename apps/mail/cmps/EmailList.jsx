@@ -97,21 +97,21 @@ export function EmailList({
 
 
   return (
-    <div className='EmailList'>
+    <div className='emailList'>
       <div className='emaillist-topbuttons'>
-        <span className='material-icons-outlined' onClick={toggleAllCheckboxes}  title='Check All'>
+        <span className='material-icons-outlined' onClick={toggleAllCheckboxes} title='Check All'>
           check_box_outline_blank
         </span>
-        <span className='material-icons-outlined' onClick={markAsUnread}  title='Mark Unread'>
+        <span className='material-icons-outlined' onClick={markAsUnread} title='Mark Unread'>
           markunread
         </span>
-        <span className='material-icons-outlined' onClick={markAsRead}  title='Mark Read'>
+        <span className='material-icons-outlined' onClick={markAsRead} title='Mark Read'>
           mark_email_unread
         </span>
-        <span className='material-icons-outlined' onClick={markasTrash}  title='Trash'>
+        <span className='material-icons-outlined' onClick={markasTrash} title='Trash'>
           delete_outline
         </span>
-        <span className='material-symbols-outlined' onClick={toggleDropdown}  title='Sort by'>
+        <span className='material-symbols-outlined' onClick={toggleDropdown} title='Sort by'>
           filter_list
         </span>
         {isDropdownOpen && (
@@ -126,7 +126,7 @@ export function EmailList({
         )}
       </div>
 
-      <div className='emaillist_sections'>
+      <div className='emaillist-sections'>
         {sectionData &&
           sectionData.map((data, index) => (
             <Section
@@ -140,7 +140,7 @@ export function EmailList({
           ))}
       </div>
 
-      <div className='emailList_list'>
+      <div className='emailList-list'>
         {emailsAfterFilter &&
           emailsAfterFilter.map((data, index) => (
             <EmailRow

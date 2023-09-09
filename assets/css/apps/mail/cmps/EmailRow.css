@@ -12,13 +12,13 @@
     box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.24);
 }
 
-.emailRow_options {
+.emailrow-options {
     display: flex;
     align-items: center;
 
 }
 
-.emailRow_label > i {
+.emailrow-label > i {
     display: flex;
     align-items: center;
 }
@@ -29,31 +29,31 @@
     font-size: 1.25rem;
 }
 
-.emailRow_options>i {
+.emailrow-options>i {
 align-items: center;
     margin-left: 1rem;
     color: #989aa0;
 }
 
 
-.emailRow_options > span {
+.emailrow-options > span {
     display: flex;
     align-items: center;
 }
-.emailRow_options > span > i {
+.emailrow-options > span > i {
     margin-left: 1rem;
     color: #989aa0;
     font-size: 1.2rem;
 }
 
-.emailRow_message {
+.emailrow-message {
     display: flex;
     flex: 0.8;
     align-items: center;
     font-size: 0.8rem;
 }
 
-.emailRow_message>h4 {
+.emailrow-message>h4 {
     width: 40rem;
     white-space: nowrap;
     overflow: hidden;
@@ -62,14 +62,14 @@ align-items: center;
     padding-right: 0.35rem;
 }
 
-.emailRow_title {
+.emailrow-title {
     font-size: 0.85rem;
     flex: 0.3;
     font-weight: bold;
     padding-left: 1rem;
 }
 
-.emailRow_time {
+.emailrow-time {
     display: flex;
     padding-right: 0.95rem;
     font-size: 0.55rem;
