@@ -7,3 +7,8 @@
   font-family: product-sans;
   src: url('../../fonts/PTSans-Regular.ttf');
 }
+
+@font-face {
+  font-family: teko;
+  src: url('../../fonts/Teko.ttf');
+}
