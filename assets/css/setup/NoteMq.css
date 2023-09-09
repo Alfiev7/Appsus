@@ -29,14 +29,16 @@
   }
 
   .keep-header-left {
-    position: relative;
+    /* position: relative;
     left: -70px;
-    bottom: -20px;
+    bottom: -20px; */
+    display: none;
   }
 
   .keep-header-right {
-    position: relative;
+    /* position: relative;
     left: 110px;
-    bottom: 5px;
+    bottom: 5px; */
+    display: none;
   }
 }
