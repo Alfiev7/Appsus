@@ -1,4 +1,4 @@
-@media (max-width: 640px) {
+@media (max-width: 850px) {
   body .EmailList {
     overflow: scroll;
   }
@@ -135,7 +135,7 @@
 
   .emailpreview-body {
     width: 90vw;
-    height: 50vh;
+    height: 60vh;
     margin-left: 20px;
   }
 
