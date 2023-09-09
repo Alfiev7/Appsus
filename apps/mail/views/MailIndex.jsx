@@ -149,8 +149,7 @@ export function MailIndex() {
       prevEmails.map(email => {
         if (email.id === emailId) {
           const updatedEmail = { ...email, labels: [...email.labels, label] }
-          console.log('Updated email with label:', updatedEmail) 
-          showSuccessMsg('Label Added')
+
           return updatedEmail
         }
         return email
