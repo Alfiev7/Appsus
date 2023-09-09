@@ -32,6 +32,19 @@ export function EmailPreview() {
     navigate('/note?' + newSearch)
   }
 
+  function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    };
+    return date.toLocaleString('en-US', options);
+}
+
   return (
     <div className='emailpreview'>
       <div className='emailpreview-tools'>
@@ -52,7 +65,7 @@ export function EmailPreview() {
           <h2>{email.subject}</h2>
           <i className='material-icons-outlined'>label_important</i>
           <p>{email.from}</p>
-          <div className='time'>{email.time}</div>
+          <div className='time'>{formatTimestamp(email.time)}</div>
         </div>
 
         <div className='emailpreview-message'>

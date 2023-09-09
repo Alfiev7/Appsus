@@ -159,14 +159,14 @@ const emailRowData = [
         Best,
         Sophia`,
     time: 1669862400000,
-    isRead: false,
+    isRead: true,
     removedAt: null,
     from: 'Sophia@techupdate.com',
     to: 'alfie@gmail.com',
     isStarred: false,
     isTrash: false,
     isDraft: false,
-    labels: ['family'],
+    labels: ['family']
   },
   {
     id: 6,
@@ -222,7 +222,7 @@ const emailRowData = [
         Cheers,
         Daniel`,
     time: 1680028800000,
-    isRead: false,
+    isRead: true,
     removedAt: null,
     from: 'Daniel@gym.com',
     to: 'alfie@gmail.com',
@@ -386,7 +386,7 @@ const emailRowData = [
         Regards,
         Ava`,
     time: 1677320000000,
-    isRead: false,
+    isRead: true,
     removedAt: null,
     from: 'hr@company.com',
     to: 'alfie@gmail.com',
@@ -741,7 +741,7 @@ export const emailIncoming = {
   updateEmail,
   formatDate,
 }
-const LATEST_EMAIL_VERSION = 20
+const LATEST_EMAIL_VERSION = 23
 const EMAIL_VERSION_KEY = 'EMAIL_VERSION'
 
 _createEmailRowData()
