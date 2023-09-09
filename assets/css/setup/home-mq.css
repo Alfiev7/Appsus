@@ -62,13 +62,17 @@
 }
 
 @media (max-width: 600px) {
-  .home {
+    .app{
+        width: 100vw;
+    }
+    .home {
     max-width: 10vw;
   }
   .home-header {
     grid-column: 1/3;
     margin-inline-start: 0rem;
     font-size: 20px;
+    max-width: 385px !important;
   }
   .phones {
     grid-column: 1/9;
