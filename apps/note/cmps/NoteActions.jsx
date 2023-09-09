@@ -1,7 +1,9 @@
 import { ColorPicker } from './ColorPicker.jsx'
 import { LabelPicker } from './LabelPicker.jsx'
 import { NoteLabels } from './NoteLabels.jsx'
+import { showErrorMsg } from '../../../services/event-bus.service.js'
 const { useState, useEffect, useRef } = React
+const { useNavigate, useLocation } = ReactRouterDOM
 
 export function NoteActions({ note, noteHandlingFuncs }) {
   const [isColorPickerExpanded, setIsColorPickerExpanded] = useState(false)
@@ -11,6 +13,8 @@ export function NoteActions({ note, noteHandlingFuncs }) {
   const paletteIconRef = useRef(null)
   const labelPickerRef = useRef(null)
   const labelIconRef = useRef(null)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
@@ -38,6 +42,19 @@ export function NoteActions({ note, noteHandlingFuncs }) {
     if (labelPickerRef.current && !labelPickerRef.current.contains(target)) {
       setIsLabelPickerExpanded(false)
     }
+  }
+
+  function sendAsEmail() {
+    if (note.type === 'NoteMap') {
+      showErrorMsg('You cannot send a map as an email')
+      return
+    }
+    const queryParams = new URLSearchParams(location.search)
+    queryParams.set('title', note.info.title)
+    queryParams.set('content', note.info.txt ? note.info.txt : note.info.url || note.info.todos.map(todo => todo.txt))
+    const newSearch = queryParams.toString()
+
+    navigate('/mail?' + newSearch)
   }
 
   return (
@@ -72,7 +89,7 @@ export function NoteActions({ note, noteHandlingFuncs }) {
           <a className='material-symbols-outlined' onClick={() => onDuplicateNote(note)} title='Duplicate note'>
             content_copy
           </a>
-          <a className='material-symbols-outlined' onClick={() => {}} title='Send as mail'>
+          <a className='material-symbols-outlined' onClick={() => sendAsEmail()} title='Send as mail'>
             outgoing_mail
           </a>
         </div>
