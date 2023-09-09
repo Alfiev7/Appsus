@@ -1,7 +1,11 @@
+
+import { AppsMenu } from '../../../cmps/AppsMenu.jsx'
 const { useState } = React
+const { useNavigate } = ReactRouterDOM
 
 export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitlesAndNumbers }) {
   const [hideTitles, setHideTitles] = useState(false);
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false)
 
   const handleToggleHideTitles = () => {
     setHideTitles(!hideTitles);
@@ -13,7 +17,14 @@ export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitles
     handleToggleHideTitles()
   };
 
+  function handleNavigate(path) {
+    navigate(path)
+  }
+
   return (
+    <React.Fragment>
+
+ 
     <div className='header'>
       <div className="header_left">
       <i className="fas fa-bars" onClick={handleToggleShowTitlesAndNumbers}></i>
@@ -27,10 +38,14 @@ export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitles
       </div>
 
       <div className="header_right">
-      <i className="fa-solid fa-sun"></i>
+      <i className='material-symbols-outlined icon-apps' onClick={() => setIsMenuExpanded(!isMenuExpanded)}>
+            apps
+          </i>
       <img src="./assets/img/profile.png" alt="" />
       </div>
     </div>
+    {isMenuExpanded && <AppsMenu handleNavigate={handleNavigate} />}
+    </React.Fragment>
   )
 }
 
