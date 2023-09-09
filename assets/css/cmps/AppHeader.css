@@ -1,15 +1,18 @@
 header {
+  display: flex;
+  justify-content: space-between;
   width: 90%;
-  margin-inline-start: 60%;
-  /* background: lightcyan; */
   border-bottom: 2px solid white;
+
 }
 
 .app-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   padding-block-start: 10px;
+  
 }
+
 
 nav a {
   margin: 0.5em;

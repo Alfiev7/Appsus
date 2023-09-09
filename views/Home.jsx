@@ -17,8 +17,8 @@ export function Home() {
       {/* <img className='iphone-email' src='assets/img/iphone-email.png' alt='' /> */}
       <div className='buttons-container'>
         <img src='assets/img/gmail.png' alt='' onClick={() => handleNavigate('/mail')} />
-        <img src='assets/img/book.png' alt='' onClick={() => handleNavigate('/book')} />
         <img src='assets/img/keep-logo.png' alt='' onClick={() => handleNavigate('/note')} />
+        <img src='assets/img/book.png' alt='' onClick={() => handleNavigate('/book')} />
       </div>
     </section>
   )
