@@ -167,5 +167,9 @@
     box-shadow: none; 
   }
 
+  .label-icon {
+    display: none;
+  }
+
 }
 

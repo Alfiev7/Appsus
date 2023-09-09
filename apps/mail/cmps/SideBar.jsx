@@ -7,11 +7,25 @@ import { EmailCompose } from './EmailCompose.jsx';
 import { EmailList } from './EmailList.jsx';
 
 
-export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompose, handleCloseCompose, handleComposeClick, draftData, hideTitles, showTitlesAndNumbers, toggleHideTitles }) {
+export function SideBar({
+    allEmails,
+    updateFilterByTitle,
+    addNewEmail,
+    showCompose,
+    handleCloseCompose,
+    handleComposeClick,
+    draftData,
+    hideTitles,
+    showTitlesAndNumbers,
+    addLabelToEmail,
+   
+
+}) {
+
     const [sideBarData, setSideBarData] = useState(null);
 
- 
-   useEffect(() => {
+
+    useEffect(() => {
         sideBarService.getSideBarData().then(setSideBarData);
 
     }, []);
@@ -42,14 +56,25 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
         }
     }
 
+  const handleLabelClick = (label) => {
+    const selectedEmails = allEmails.filter((email) => email.isChecked);
+    selectedEmails.forEach((email) => {
+      addLabelToEmail(email.id, label);
+    });
+  };
+      
+
+      
+
+
 
 
     return (
-        <div className={`sidebar ${showTitlesAndNumbers? '' : 'sidebar-icons-only'}`}>
+        <div className={`sidebar ${showTitlesAndNumbers ? '' : 'sidebar-icons-only'}`}>
             <button className="sidebar_compose" onClick={handleComposeClick}>
                 <i className="fa-regular fa-pen-to-square"></i>
                 <h2 className={hideTitles ? 'hidden' : ''}>Compose</h2>
-                </button>
+            </button>
 
             <EmailCompose show={showCompose} onClose={handleCloseCompose} addNewEmail={addNewEmail} draftData={draftData} />
 
@@ -69,28 +94,25 @@ export function SideBar({ allEmails, updateFilterByTitle, addNewEmail, showCompo
             <div className="sidebar-labels">
                 <h2>Labels</h2>
 
-                <div className="critical">
-                    <span className="material-symbols-outlined">label</span>
+                <div className="critical" onClick={() => handleLabelClick('Critical')}>
+                <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Critical</h3>
                 </div>
 
-                <div className="family">
-                    <span className="material-symbols-outlined">label</span>
+                <div className="family" onClick={() => handleLabelClick('Family')}>
+                <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Family</h3>
                 </div>
 
-                <div className="work">
-                    <span className="material-symbols-outlined">label</span>
+                <div className="work" onClick={() => handleLabelClick('Work')}>
+                <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Work</h3>
                 </div>
 
-                <div className="memories">
-                    <span className="material-symbols-outlined">label</span>
+                <div className="memories" onClick={() => handleLabelClick('Memories')}>
+                <i className="fa-solid fa-tag"></i>
                     <h3 className={hideTitles ? 'hidden' : ''}>Memories</h3>
                 </div>
-
-
-
 
             </div>
         </div>

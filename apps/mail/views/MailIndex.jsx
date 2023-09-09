@@ -127,6 +127,30 @@ export function MailIndex() {
     setShowTitlesAndNumbers(!showTitlesAndNumbers)
   }
 
+  const addLabelToEmail = (emailId, label) => {
+    setEmails(prevEmails =>
+      prevEmails.map(email => {
+        if (email.id === emailId) {
+          const updatedEmail = { ...email, labels: [...email.labels, label] }
+          console.log('Updated email with label:', updatedEmail) // Add this line to check the updated email
+          return updatedEmail
+        }
+        return email
+      })
+    )
+  }
+
+  const removeLabelFromEmail = (emailId, label) => {
+    setEmails(prevEmails =>
+      prevEmails.map(email => {
+        if (email.id === emailId) {
+          return { ...email, labels: email.labels.filter(l => l !== label) }
+        }
+        return email
+      })
+    )
+  }
+
   return (
     <div className='mailapp'>
       <Header
@@ -146,6 +170,8 @@ export function MailIndex() {
           draftData={draftData}
           hideTitles={hideTitles}
           showTitlesAndNumbers={showTitlesAndNumbers}
+          addLabelToEmail={addLabelToEmail}
+          removeLabelFromEmail={removeLabelFromEmail}
         />
         <Routes>
           <Route

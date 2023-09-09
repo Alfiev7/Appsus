@@ -1,9 +1,9 @@
 const { useNavigate } = ReactRouterDOM
 
-export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred, from, to, isDraft, onOpenDraft }) {
+export function EmailRow({ id, title, subject, description, time, isRead, isChecked, toggleCheckbox, toggleIsStarred, isStarred, from, to, isDraft, onOpenDraft, labels }) {
     const navigate = useNavigate();
 
-    
+
     const handleRowClick = () => {
         if (isDraft) {
             onOpenDraft({
@@ -16,21 +16,22 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
             navigate(`EmailPreview/${id}`);
         }
     };
-             
+
     function formatTimestamp(timestamp) {
         const date = new Date(timestamp);
         const options = {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true,
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
         };
         return date.toLocaleString('en-US', options);
-      }
-            
-        
+    }
+
+
+
     return (
         <div onClick={handleRowClick} className={`emailRow ${isRead ? 'read' : 'unread'}`}>
 
@@ -43,11 +44,11 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
                 </span>
                 <span onClick={e => { e.stopPropagation(); toggleIsStarred(id); }}>
                     {isStarred ?
-                        <i className="fa-solid fa-star" style={{color: '#ffdd00'}}></i> :
+                        <i className="fa-solid fa-star" style={{ color: '#ffdd00' }}></i> :
                         <i className="fa-regular fa-star"></i>
                     }
                 </span>
-                
+
             </div>
 
 
@@ -55,6 +56,28 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
             <h3 className="emailRow_title">
                 {title}
             </h3>
+
+            <div className="emailrow_label">
+                {labels && labels.map((label) => (
+                    <span key={label} className="label-icon">
+
+                        {label === 'Critical' && (
+                            <i className="fa-solid fa-tag" style={{ color: '#d84727' }}></i>
+                        )}
+                        {label === 'Family' && (
+                            <i className="fa-solid fa-tag" style={{ color: '#A569DA' }}></i>
+                        )}
+                        {label === 'Work' && (
+                            <i className="fa-solid fa-tag" style={{ color: '#CDEDF6' }}></i>
+                        )}
+                        {label === 'Memories' && (
+                            <i className="fa-solid fa-tag" style={{ color: '#5EB1BF' }}></i>
+                        )}
+                        
+                    </span>
+                ))}
+            </div>
+
 
 
 
@@ -67,7 +90,7 @@ export function EmailRow({ id, title, subject, description, time, isRead, isChec
 
 
             <div className="emailRow_time">
-            {formatTimestamp(time)}
+                {formatTimestamp(time)}
             </div>
 
 
