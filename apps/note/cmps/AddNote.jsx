@@ -130,7 +130,6 @@ export function AddNote({ onAddNote }) {
             ))}
           </div>
         </div>
-        {/* {isExpanded && <section className='actions'>Actions Area (??)</section>} */}
       </React.Fragment>
     </section>
   )

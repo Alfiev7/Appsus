@@ -11,8 +11,8 @@
 /* @import './basics/layout.css'; */
 
 /* Views */
-@import './setup/HomeMQ.css';
-@import './views/home.css';
+@import './setup/home-mq.css';
+@import './views/Home.css';
 @import '../../apps/books/assets/style/books-main.css';
 
 /* @import './apps/note/views/NoteIndex.css'; */
