@@ -1,62 +1,87 @@
 @media (max-width: 1720px) {
-    .home {
-        grid-template-columns: 0.2fr 0.6fr 3fr 3.5fr 1fr 0.2fr !important;
-    }
-
+  .home {
+    grid-template-columns: 0.2fr 0.6fr 3fr 3.5fr 1fr 0.2fr;
+  }
 }
 
 @media (max-width: 1430px) {
-    .home {
-        grid-template-columns: 0.2fr 0.3fr 3.3fr 3.8fr 0.7fr 0.2fr !important;
-    }
+  .home {
+    grid-template-columns: 0.2fr 0.3fr 3.3fr 3.8fr 0.7fr 0.2fr;
+  }
 }
 
 @media (max-width: 1307px) {
-
-    .home {
-        grid-template-columns: 0.2fr 0.3fr 3.8fr 3.8fr 0.2fr 0.2fr !important;
-    }
+  .home {
+    grid-template-columns: 0.2fr 0.3fr 3.8fr 3.8fr 0.2fr 0.2fr;
+  }
 }
 
 @media (max-width: 1105px) {
+  .home-main-header,
+  .home-main-name {
+    max-width: 450px;
+  }
 
-    .home-main-header,
-    .home-main-name {
-        max-width: 450px !important;
-    }
+  .home-header {
+    margin-inline-start: 5rem;
+  }
 
-    .home-header {
-        margin-inline-start: 8rem !important;
-    }
+  .phones {
+    margin-inline-start: 1rem;
+  }
 
-    .buttons-container {
-        margin-inline-start: 125px !important;
-    }
+  .buttons-container {
+    margin-inline-start: 125px;
+  }
 }
 
 @media (max-width: 902px) {
-    .home {
-        grid-template-columns: 0fr 0fr 8.8fr 7.2fr 0.6fr 0fr !important;
-    }
+  .home {
+    grid-template-columns: 0fr 0fr 8.8fr 7.2fr 0.6fr 0fr;
+  }
 
-    .home-header {
-        margin-inline-start: 10rem !important;
-    }
+  .home-header {
+    margin-inline-start: 10rem;
+  }
 
-.buttons-container{
-    margin-inline-start: 160px !important;
+  .buttons-container {
+    margin-inline-start: 160px;
+  }
 }
-}
-
-
 
 @media (max-width: 765px) {
-
-.home{
-    grid-template-columns: 1fr !important;
-    grid-template-rows: 3 !important;
+  .home {
+    grid-template-columns: 1fr 1fr;
+  }
+  .home-header {
+    z-index: 20;
+  }
+  .phones {
+    opacity: 0.5;
+  }
 }
 
+@media (max-width: 600px) {
+  .home {
+    max-width: 10vw;
+  }
+  .home-header {
+    margin-inline-start: 1rem;
+    font-size: 20px;
+  }
+  .phones {
+    grid-column: 1/9;
+    height: 100vh;
+    width: 100%;
+    opacity: 0.3;
+  }
+  .buttons-container {
+    z-index: 20;
+    opacity: 1;
+    margin-inline-start: 1rem;
+    margin-block-start: 460px;
+  }
+  .home-sub-header {
+    line-height: 20px !important;
+  }
 }
-
-

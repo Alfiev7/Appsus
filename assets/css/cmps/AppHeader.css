@@ -8,7 +8,7 @@ header {
 .app-header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding-block-start: 10px;
 }
 
 nav a {
