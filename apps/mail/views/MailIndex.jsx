@@ -52,8 +52,8 @@ export function MailIndex() {
       .catch(error => {
         console.log(error)
       })
-    }, [])
-      
+  }, [])
+
 
   const getAppliedFilterParameter = selectedItemTitle => {
     setAppliedFilter(selectedItemTitle)
@@ -170,7 +170,7 @@ export function MailIndex() {
 
   return (
     <div className='mailapp'>
-    
+
       <Header
         updateSearchKeyword={updateSearchKeyword}
         toggleHideTitles={() => setHideTitles(!hideTitles)}
@@ -190,6 +190,7 @@ export function MailIndex() {
           showTitlesAndNumbers={showTitlesAndNumbers}
           addLabelToEmail={addLabelToEmail}
           removeLabelFromEmail={removeLabelFromEmail}
+          showSuccessMsg={showSuccessMsg}
         />
         <Routes>
           <Route

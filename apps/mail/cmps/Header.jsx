@@ -3,14 +3,18 @@ import { AppsMenu } from '../../../cmps/AppsMenu.jsx'
 const { useState } = React
 const { useNavigate } = ReactRouterDOM
 
-export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitlesAndNumbers }) {
+export function Header({
+  updateSearchKeyword,
+  toggleHideTitles,
+  toggleShowTitlesAndNumbers
+}) {
   const [hideTitles, setHideTitles] = useState(false);
   const [isMenuExpanded, setIsMenuExpanded] = useState(false)
   const navigate = useNavigate()
 
   const handleToggleHideTitles = () => {
     setHideTitles(!hideTitles);
-    toggleHideTitles(); 
+    toggleHideTitles();
   };
 
   const handleToggleShowTitlesAndNumbers = () => {
@@ -25,27 +29,25 @@ export function Header({ updateSearchKeyword, toggleHideTitles, toggleShowTitles
   return (
     <React.Fragment>
 
- 
-    <div className='header'>
-      <div className="header-left">
-      <i className="fas fa-bars" onClick={handleToggleShowTitlesAndNumbers}></i>
+      <div className='header'>
+        <div className="header-left">
+          <i className="fas fa-bars" onClick={handleToggleShowTitlesAndNumbers}></i>
+          <img src="./assets/img/gmail.png" alt="" />
+        </div>
 
-      <img src="./assets/img/gmail.png" alt="" />
-      </div>
+        <div className="header-middle">
+          <i className="fa-solid fa-magnifying-glass"></i>
+          <input placeholder="Search mail" type="text" onChange={e => updateSearchKeyword(e.target.value)} className="searchHeader" />
+        </div>
 
-      <div className="header-middle">
-      <i className="fa-solid fa-magnifying-glass"></i>
-      <input placeholder="Search mail" type="text" onChange={e => updateSearchKeyword(e.target.value)} className="searchHeader" />
-      </div>
-
-      <div className="header-right">
-      <i className='material-symbols-outlined icon-apps' onClick={() => setIsMenuExpanded(!isMenuExpanded)}>
+        <div className="header-right">
+          <i className='material-symbols-outlined icon-apps' onClick={() => setIsMenuExpanded(!isMenuExpanded)}>
             apps
           </i>
-      <img src="./assets/img/profile.png" alt="" />
+          <img src="./assets/img/profile.png" alt="" />
+        </div>
       </div>
-    </div>
-    {isMenuExpanded && <AppsMenu handleNavigate={handleNavigate} />}
+      {isMenuExpanded && <AppsMenu handleNavigate={handleNavigate} />}
     </React.Fragment>
   )
 }
