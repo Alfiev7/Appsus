@@ -1,23 +1,38 @@
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 const { useEffect, useRef } = React
 
-export function NoteMap() {
+export function NoteMap({ info: { coords, title } }) {
   const mapRef = useRef(null)
-  let marker = null
 
   useEffect(() => {
+    if (!window.google) {
+      console.error('Google Maps API not loaded. Make sure you have included the API script.')
+      return
+    }
+
     const mapOptions = {
       zoom: 15,
     }
 
     const map = new window.google.maps.Map(mapRef.current, mapOptions)
+    let marker = null
 
-    if (navigator.geolocation) {
+    if (coords && coords.lat && coords.lng) {
+      map.setCenter({ lat: coords.lat, lng: coords.lng }) // Set the map center
+      marker = new window.google.maps.Marker({
+        position: {
+          lat: coords.lat,
+          lng: coords.lng,
+        },
+        map: map,
+        title: title,
+      })
+    } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
           const { latitude, longitude } = position.coords
           const coords = { lat: latitude, lng: longitude }
-          map.setCenter(coords)
+          map.setCenter(coords) // Set the map center
           marker = new window.google.maps.Marker({
             position: coords,
             map: map,
@@ -26,6 +41,7 @@ export function NoteMap() {
         },
         error => {
           console.error('Error getting location:', error)
+          // Handle the error, e.g., show an error message to the user.
         }
       )
     }
@@ -33,7 +49,7 @@ export function NoteMap() {
     return () => {
       if (marker) marker.setMap(null)
     }
-  }, [])
+  }, [coords, title]) // Include coords and title as dependencies
 
   return (
     <div className='note-map'>

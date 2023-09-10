@@ -119,6 +119,10 @@ const notesDB = [
     type: 'NoteMap',
     isPinned: false,
     info: {
+      coords: {
+        lat: 48.854779,
+        lng: 2.349939,
+      },
       url: '',
       title: 'Home ♥',
     },
@@ -150,7 +154,7 @@ const notesDB = [
     style: { background: `url('https://www.gstatic.com/keep/backgrounds/travel_light_0614_rtl.svg')` },
     info: {
       title: 'This video changed my life',
-      url: 'https://youtu.be/WmN5-_oWr_4?si=CCVU1PfClBEq8wcJ',
+      url: 'https://www.youtube.com/embed/QvsQ9hYKq7c',
       labels: [{ txt: 'critical', color: '#D84727' }],
     },
   },
@@ -319,7 +323,7 @@ function getIcons() {
     map: {
       title: 'Map note',
       type: 'NoteMap',
-      placeholder: 'Add title to create map',
+      placeholder: 'Add title, map pins to your location',
       disabled: true,
       isExpanded: true,
     },

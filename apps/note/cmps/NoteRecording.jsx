@@ -11,39 +11,34 @@ export function NoteRecording({ id, createdAt, info, type }) {
   const micRef = useRef(null)
   let timeout
 
-  useEffect(() => {
-    let stream
-
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  function startRecording() {
+    if (!audioStream) {
       navigator.mediaDevices
         .getUserMedia({ audio: true })
-        .then(audioStream => {
-          stream = audioStream
-          setAudioStream(audioStream)
+        .then(stream => {
+          setAudioStream(stream)
+          const mediaRecorder = new MediaRecorder(stream)
+          setmediaRecorderState(mediaRecorder)
+          const chunks = []
+
+          mediaRecorder.ondataavailable = e => {
+            chunks.push(e.data)
+          }
+
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, { type: 'audio/wav' })
+            const url = URL.createObjectURL(blob)
+            setAudioUrl(url)
+            noteService.updateNoteContent(id, type, null, null, null, url)
+          }
+
+          mediaRecorder.start()
+          setRecording(true)
         })
         .catch(error => {
           console.error('Error accessing microphone:', error)
         })
-    }
-
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop())
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (recording) {
-      const interval = setInterval(() => {
-        utilService.animateCSS(eqRef.current, 'tada')
-      }, 200)
-      return () => clearInterval(interval)
-    }
-  }, [recording])
-
-  function startRecording() {
-    if (audioStream) {
+    } else {
       const mediaRecorder = new MediaRecorder(audioStream)
       setmediaRecorderState(mediaRecorder)
       const chunks = []
@@ -81,6 +76,15 @@ export function NoteRecording({ id, createdAt, info, type }) {
       stopRecording()
     }
   }
+
+  useEffect(() => {
+    if (recording) {
+      const interval = setInterval(() => {
+        utilService.animateCSS(eqRef.current, 'tada')
+      }, 200)
+      return () => clearInterval(interval)
+    }
+  }, [recording])
 
   return (
     <div className='note-recording'>
