@@ -168,7 +168,7 @@ const notesDB = [
   },
 ]
 
-const NOTES_KEY = 'notesDB'
+const NOTES_KEY = 'notesDBnew'
 _createNotes()
 
 export const noteService = {
